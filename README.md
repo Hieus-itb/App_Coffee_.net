@@ -1,5 +1,5 @@
 # LD - Peoples
-### Quản lý quán cà phê  bằng ngôn ngữ C# Dưới đây là đề cương chi tiết cho từng thành viên, mô tả chức năng modules và layout draft cho các chức năng cần quản lý trong hệ thống
+Quản lý quán cà phê  bằng ngôn ngữ C# Dưới đây là đề cương chi tiết cho từng thành viên, mô tả chức năng modules và layout draft cho các chức năng cần quản lý trong hệ thống
 ## Thành viên 1(Văn Đăng Hiếu): Đăng nhập, Đặt bàn, Báo cáo doanh thu, Quản lý nhân sự
 
 ## **Nhiệm vụ:** Quản lý thông tin hệ thống, đặt bàn, báo cáo tài chính, và nhân sự trong quán cà phê.

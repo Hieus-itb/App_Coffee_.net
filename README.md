@@ -2,7 +2,7 @@
 Quản lý quán cà phê  bằng ngôn ngữ C# Dưới đây là đề cương chi tiết cho từng thành viên, mô tả chức năng modules và layout draft cho các chức năng cần quản lý trong hệ thống
 ## Thành viên 1(Văn Đăng Hiếu): Đăng nhập, Đặt bàn, Báo cáo doanh thu, Quản lý nhân sự
 
-## **Nhiệm vụ:** Quản lý thông tin hệ thống, đặt bàn, báo cáo tài chính, và nhân sự trong quán cà phê.
+**Nhiệm vụ:** Quản lý thông tin hệ thống, đặt bàn, báo cáo tài chính, và nhân sự trong quán cà phê.
 Chức năng Modules:
 1. Đăng nhập
 - **Đăng nhập hệ thống:** Người dùng nhập tài khoản và mật khẩu để truy cập.
@@ -23,11 +23,11 @@ Layout Draft:
 - **Trang Báo cáo doanh thu:** Giao diện biểu đồ và danh sách chi tiết doanh thu theo thời gian.
 - **Trang Quản lý Nhân sự:** Danh sách nhân viên với các nút Thêm, Sửa, Xóa.
 ## Thành viên 2(Lê Văn Đức): Đăng ký, Thanh toán, Gọi món
-## **Nhiệm vụ:** Phụ trách các chức năng chính liên quan đến phục vụ khách hàng, bao gồm đăng ký tài khoản, gọi món và thanh toán hóa đơn.
+**Nhiệm vụ:** Phụ trách các chức năng chính liên quan đến phục vụ khách hàng, bao gồm đăng ký tài khoản, gọi món và thanh toán hóa đơn.
 Chức năng Modules:
 1. Đăng ký
-- **Đăng ký tài khoản:** Hỗ trợ nhân viên mới hoặc khách hàng đăng ký tài khoản.
-- **Xác thực thông tin:** Kiểm tra thông tin đăng ký (tài khoản, mật khẩu, thông tin cá nhân).
+  1. **Đăng ký tài khoản:** Hỗ trợ nhân viên mới hoặc khách hàng đăng ký tài khoản.
+  2. **Xác thực thông tin:** Kiểm tra thông tin đăng ký (tài khoản, mật khẩu, thông tin cá nhân).
 2. Gọi món
 - **Xem thực đơn:** Hiển thị danh sách đồ uống và giá cả.
 - **Thêm món vào đơn hàng:** Hỗ trợ chọn món ăn, số lượng.
@@ -39,12 +39,12 @@ Layout Draft:
 - **Trang Thanh toán:** Hiển thị hóa đơn với chi tiết món, tổng tiền.
 Tóm lại:
 ## Thành viên 1(Văn Đăng Hiếu):
-Đăng nhập.
-Đặt bàn.
-Báo cáo doanh thu.
+Đăng nhập,
+Đặt bàn,
+Báo cáo doanh thu,
 Quản lý nhân sự.
 
 ## Thành viên 2(Lê Văn Đức:
-Đăng ký.
-Thanh toán.
+Đăng ký,
+Thanh toán,
 Gọi món.

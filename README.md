@@ -5,8 +5,8 @@ Quản lý quán cà phê  bằng ngôn ngữ C# Dưới đây là đề cương
 ### **Nhiệm vụ:** Quản lý thông tin hệ thống, đặt bàn, báo cáo tài chính, và nhân sự trong quán cà phê.
 Chức năng Modules:
 1. Đăng nhập
-- **Đăng nhập hệ thống:** Người dùng nhập tài khoản và mật khẩu để truy cập.
-- **Phân quyền truy cập:** Quy định quyền hạn dựa trên vai trò (quản lý, nhân viên...).
+  1. **Đăng nhập hệ thống:** Người dùng nhập tài khoản và mật khẩu để truy cập.
+  2. **Phân quyền truy cập:** Quy định quyền hạn dựa trên vai trò (quản lý, nhân viên...).
 2. Đặt bàn
 - **Quản lý sơ đồ bàn:** Hiển thị trạng thái bàn (trống, đã đặt) theo thời gian thực.
 - **Đặt bàn:** Hỗ trợ nhân viên đặt bàn cho khách.

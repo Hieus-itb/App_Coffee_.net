@@ -17,11 +17,11 @@ Chức năng Modules:
 - Quản lý nhân sự
   - **Thêm mới nhân viên:** Lưu thông tin nhân viên (họ tên, chức vụ, ngày sinh, ngày vào làm).
   - **Cập nhật thông tin:** Chỉnh sửa hoặc vô hiệu hóa thông tin nhân sự.
-  - Layout Draft:
-    - **Trang Đăng nhập:** Giao diện đơn giản với form đăng nhập.
-    - **Trang Quản lý Đặt bàn:** Hiển thị sơ đồ bàn, trạng thái và chức năng đặt bàn.
-    - **Trang Báo cáo doanh thu:** Giao diện biểu đồ và danh sách chi tiết doanh thu theo thời gian.
-    - **Trang Quản lý Nhân sự:** Danh sách nhân viên với các nút Thêm, Sửa, Xóa.
+- Layout Draft:
+  - **Trang Đăng nhập:** Giao diện đơn giản với form đăng nhập.
+  - **Trang Quản lý Đặt bàn:** Hiển thị sơ đồ bàn, trạng thái và chức năng đặt bàn.
+  - **Trang Báo cáo doanh thu:** Giao diện biểu đồ và danh sách chi tiết doanh thu theo thời gian.
+  - **Trang Quản lý Nhân sự:** Danh sách nhân viên với các nút Thêm, Sửa, Xóa.
 ## Thành viên 2(Lê Văn Đức): Đăng ký, Thanh toán, Gọi món
 ###   **Nhiệm vụ:** Phụ trách các chức năng chính liên quan đến phục vụ khách hàng, bao gồm đăng ký tài khoản, gọi món và thanh toán hóa đơn.
 Chức năng Modules:
@@ -33,10 +33,10 @@ Chức năng Modules:
   - **Thêm món vào đơn hàng:** Hỗ trợ chọn món ăn, số lượng.
 - Thanh toán
   - **Tạo hóa đơn:** Tự động tính tổng giá trị đơn hàng.
-  - Layout Draft:
-    - **Trang Đăng ký:** Form đăng ký tài khoản với các trường cơ bản (họ tên, tài khoản, mật khẩu,...).
-    - **Trang Gọi món:** Hiển thị thực đơn, nút chọn món, và bảng tổng đơn hàng.
-    - **Trang Thanh toán:** Hiển thị hóa đơn với chi tiết món, tổng tiền.
+- Layout Draft:
+  - **Trang Đăng ký:** Form đăng ký tài khoản với các trường cơ bản (họ tên, tài khoản, mật khẩu,...).
+  - **Trang Gọi món:** Hiển thị thực đơn, nút chọn món, và bảng tổng đơn hàng.
+  - **Trang Thanh toán:** Hiển thị hóa đơn với chi tiết món, tổng tiền.
 Tóm lại:
 ## Thành viên 1(Văn Đăng Hiếu):
 Đăng nhập,

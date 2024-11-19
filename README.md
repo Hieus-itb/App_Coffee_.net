@@ -37,7 +37,7 @@ Chức năng Modules:
   - **Trang Đăng ký:** Form đăng ký tài khoản với các trường cơ bản (họ tên, tài khoản, mật khẩu,...).
   - **Trang Gọi món:** Hiển thị thực đơn, nút chọn món, và bảng tổng đơn hàng.
   - **Trang Thanh toán:** Hiển thị hóa đơn với chi tiết món, tổng tiền.
-##Tóm lại:
+## Tóm lại:
 ### Thành viên 1(Văn Đăng Hiếu):
 Đăng nhập,
 Đặt bàn,

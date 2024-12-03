@@ -1,25 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace App_Coffee.controller
+namespace App_Coffee.Controller
 {
-    public class connection
+    public class Connection
     {
         private SqlConnection conn;
         private string connectionString;
 
-        
-        public connection()
+        // Constructor: Khởi tạo chuỗi kết nối
+        public Connection()
         {
-             string connectionString = "Data Source=Van_Duc25\\SQLEXPRESS;Initial Catalog=QLCOFFEE;Integrated Security=True;Encrypt=True;";
-             conn = new SqlConnection(connectionString);
+            connectionString = "Data Source=MAYHIEU\\SQLEXPRESS;Initial Catalog=QLCOFFEE;Integrated Security=True;Encrypt=True;";
+            conn = new SqlConnection(connectionString);
         }
 
-        // Phương thức để mở kết nối
+        // Phương thức mở kết nối
         public void OpenConnection()
         {
             try
@@ -40,8 +36,7 @@ namespace App_Coffee.controller
             }
         }
 
-
-        // Phương thức để đóng kết nối
+        // Phương thức đóng kết nối
         public void CloseConnection()
         {
             try
@@ -62,5 +57,10 @@ namespace App_Coffee.controller
             }
         }
 
+        // Getter để lấy SqlConnection
+        public SqlConnection GetConnection()
+        {
+            return conn;
+        }
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kNsZ6IB8pxM=",
+  "dgSpecHash": "Pn53QOMc/Nc=",
   "success": true,
-  "projectFilePath": "E:\\Github\\App_Coffee_.net\\App_Coffee\\App_Coffee\\App_Coffee.csproj",
+  "projectFilePath": "E:\\Github\\App_Coffe.net\\Hieus-coder\\App_Coffee_.net\\App_Coffee\\App_Coffee\\App_Coffee.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\PC\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",

@@ -1,7 +1,6 @@
 ﻿using App_Coffee.Controller;
 using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -12,34 +11,35 @@ using System.Windows.Forms;
 
 namespace App_Coffee.view
 {
-    public partial class Dangki : Form
+    public partial class Dangky : Form
     {
         private AccountController accountController;
-        public Dangki()
+        public Dangky()
         {
             InitializeComponent();
-            Captcha.Text = GenerateCaptcha();
             accountController = new AccountController();
+            lbCaptcha.Text = GenerateCaptcha();
         }
-
-        static string GenerateCaptcha()
+        private string GenerateCaptcha()
         {
             Random random = new Random();
             int captchaNumber = random.Next(1000, 10000);
             return captchaNumber.ToString();
         }
-
         private void btnDangki_Click(object sender, EventArgs e)
         {
             string taikhoan = txtTaikhoan.Text.Trim();
             string matkhau = txtMatkhau.Text.Trim();
             string nhaplai = txtNhaplai.Text.Trim();
-            string captcha = txtCapcha.Text.Trim();
+            string captcha = txtCaptcha.Text.Trim();
+
+            // Kiểm tra các trường đầu vào
             if (string.IsNullOrEmpty(taikhoan))
             {
                 MessageBox.Show("Vui lòng nhập tài khoản!");
                 return;
             }
+
             if (taikhoan.Length <= 6)
             {
                 MessageBox.Show("Tài khoản phải có độ dài lớn hơn 6 ký tự!");
@@ -69,17 +69,23 @@ namespace App_Coffee.view
                 MessageBox.Show("Vui lòng nhập captcha!");
                 return;
             }
-            if (captcha != Captcha.Text)
+
+            // Kiểm tra captcha
+            if (captcha != lbCaptcha.Text)
             {
                 MessageBox.Show("Nhập captcha không chính xác!");
                 return;
             }
+
+            // Kiểm tra khớp mật khẩu
             if (nhaplai != matkhau)
             {
                 MessageBox.Show("Mật khẩu và nhập lại mật khẩu không trùng nhau!");
                 return;
             }
-            bool add = accountController.AddAccount(taikhoan, matkhau);
+
+            // Thêm tài khoản vào hệ thống
+            bool add = accountController.addAccount(taikhoan, matkhau);
             if (add)
             {
                 MessageBox.Show("Thêm tài khoản thành công!");

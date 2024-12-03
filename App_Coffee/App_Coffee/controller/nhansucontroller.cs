@@ -8,5 +8,6 @@ namespace App_Coffee.controller
 {
     internal class Nhansucontroller
     {
+
     }
 }

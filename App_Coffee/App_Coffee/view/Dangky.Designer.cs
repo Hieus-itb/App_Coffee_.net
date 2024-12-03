@@ -35,7 +35,7 @@
             txtCaptcha = new TextBox();
             label6 = new Label();
             lbCaptcha = new Label();
-            btnDangnhap = new Button();
+            btnDangky = new Button();
             btnHuy = new Button();
             SuspendLayout();
             // 
@@ -128,14 +128,15 @@
             lbCaptcha.Size = new Size(75, 20);
             lbCaptcha.TabIndex = 10;
             // 
-            // btnDangnhap
+            // btnDangky
             // 
-            btnDangnhap.Location = new Point(217, 440);
-            btnDangnhap.Name = "btnDangnhap";
-            btnDangnhap.Size = new Size(94, 29);
-            btnDangnhap.TabIndex = 11;
-            btnDangnhap.Text = "Đăng nhập";
-            btnDangnhap.UseVisualStyleBackColor = true;
+            btnDangky.Location = new Point(217, 440);
+            btnDangky.Name = "btnDangky";
+            btnDangky.Size = new Size(94, 29);
+            btnDangky.TabIndex = 11;
+            btnDangky.Text = "Đăng ký";
+            btnDangky.UseVisualStyleBackColor = true;
+            btnDangky.Click += btnDangky_Click;
             // 
             // btnHuy
             // 
@@ -145,6 +146,7 @@
             btnHuy.TabIndex = 12;
             btnHuy.Text = "Hủy";
             btnHuy.UseVisualStyleBackColor = true;
+            btnHuy.Click += btnHuy_Click;
             // 
             // Dangky
             // 
@@ -152,7 +154,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(814, 495);
             Controls.Add(btnHuy);
-            Controls.Add(btnDangnhap);
+            Controls.Add(btnDangky);
             Controls.Add(lbCaptcha);
             Controls.Add(label6);
             Controls.Add(txtCaptcha);
@@ -183,7 +185,7 @@
         private TextBox txtCaptcha;
         private Label label6;
         private Label lbCaptcha;
-        private Button btnDangnhap;
+        private Button btnDangky;
         private Button btnHuy;
     }
 

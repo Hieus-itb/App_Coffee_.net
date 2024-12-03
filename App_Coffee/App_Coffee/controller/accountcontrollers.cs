@@ -14,7 +14,7 @@ namespace App_Coffee.Controller
         public bool addAccount(string username, string password)
         {
             string sql = "INSERT INTO ACCOUNT (TAIKHOAN, MATKHAU) VALUES (@username, @password)";
-            conn.Open();
+           
             try
             {
                 using (SqlCommand command = new SqlCommand(sql, conn))

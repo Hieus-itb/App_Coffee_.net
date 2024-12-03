@@ -26,7 +26,8 @@ namespace App_Coffee.view
             int captchaNumber = random.Next(1000, 10000);
             return captchaNumber.ToString();
         }
-        private void btnDangki_Click(object sender, EventArgs e)
+
+        private void btnDangky_Click(object sender, EventArgs e)
         {
             string taikhoan = txtTaikhoan.Text.Trim();
             string matkhau = txtMatkhau.Text.Trim();
@@ -94,6 +95,13 @@ namespace App_Coffee.view
             {
                 MessageBox.Show("Thêm tài khoản thất bại!");
             }
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Dangnhap frm = new Dangnhap(); 
+            frm.ShowDialog();
         }
     }
 }

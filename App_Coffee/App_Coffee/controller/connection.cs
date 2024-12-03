@@ -18,7 +18,6 @@ namespace App_Coffee
 
                 // Tạo kết nối
                 conn = new SqlConnection(connectionString);
-                conn.Open(); // Mở kết nối
             }
             catch (Exception e)
             {

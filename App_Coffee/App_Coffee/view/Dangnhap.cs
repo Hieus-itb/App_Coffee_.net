@@ -36,11 +36,11 @@ namespace App_Coffee.view
 
                 // Hiển thị thông báo và chuyển đến form Datban
                 MessageBox.Show("Đăng nhập thành côngggggggggggggggg!");
+                this.Hide();
 
-                Datban frm = new(); // Chuyển sang form Datban
-                this.Close();
+                Datban frm = new Datban(); // Chuyển sang form Datban
                 frm.ShowDialog();
-                this.Show();
+                frm.Show();
             }
             else
             {

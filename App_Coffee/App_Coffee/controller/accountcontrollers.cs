@@ -11,9 +11,9 @@ namespace App_Coffee.Controller
         {
             conn = Connection.GetInstance().GetConnection();
         }
-        public bool addAccount(string username, string password)
+        public bool addAccount(string username, string password, string chucvu)
         {
-            string sql = "INSERT INTO ACCOUNT (TAIKHOAN, MATKHAU) VALUES (@username, @password)";
+            string sql = "INSERT INTO ACCOUNT (TAIKHOAN, MATKHAU, CHUC_VU) VALUES (@username, @password, @chucvu)";
            
             try
             {
@@ -22,7 +22,7 @@ namespace App_Coffee.Controller
                     // Thêm tham số để tránh SQL Injection
                     command.Parameters.AddWithValue("@username", username);
                     command.Parameters.AddWithValue("@password", password);
-
+                    command.Parameters.AddWithValue("@chucvu", chucvu);
                     // Thực thi câu lệnh
                     int rowsAffected = command.ExecuteNonQuery();
 
@@ -62,7 +62,6 @@ namespace App_Coffee.Controller
             }
             return false; // Đăng nhập thất bại
         }
-
 
         public bool IsAdmin(string username)
         {

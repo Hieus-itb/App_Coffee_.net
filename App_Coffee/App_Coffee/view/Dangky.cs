@@ -33,7 +33,7 @@ namespace App_Coffee.view
             string matkhau = txtMatkhau.Text.Trim();
             string nhaplai = txtNhaplai.Text.Trim();
             string captcha = txtCaptcha.Text.Trim();
-
+            string role = cbRole.Text.Trim();
             // Kiểm tra các trường đầu vào
             if (string.IsNullOrEmpty(taikhoan))
             {
@@ -86,7 +86,7 @@ namespace App_Coffee.view
             }
 
             // Thêm tài khoản vào hệ thống
-            bool add = accountController.addAccount(taikhoan, matkhau);
+            bool add = accountController.addAccount(taikhoan, matkhau, role);
             if (add)
             {
                 MessageBox.Show("Thêm tài khoản thành công!");

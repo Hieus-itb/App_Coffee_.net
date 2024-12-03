@@ -50,6 +50,7 @@ namespace App_Coffee.view
 
         private void btnDangky_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            this.Hide();
             Dangky dangki = new Dangky();
             dangki.Show();
         }

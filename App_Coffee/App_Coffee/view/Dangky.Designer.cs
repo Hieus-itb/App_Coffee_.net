@@ -37,6 +37,8 @@
             lbCaptcha = new Label();
             btnDangky = new Button();
             btnHuy = new Button();
+            label7 = new Label();
+            cbRole = new ComboBox();
             SuspendLayout();
             // 
             // label1
@@ -95,6 +97,7 @@
             // 
             txtMatkhau.Location = new Point(267, 185);
             txtMatkhau.Name = "txtMatkhau";
+            txtMatkhau.PasswordChar = '*';
             txtMatkhau.Size = new Size(350, 27);
             txtMatkhau.TabIndex = 6;
             // 
@@ -102,6 +105,7 @@
             // 
             txtNhaplai.Location = new Point(267, 247);
             txtNhaplai.Name = "txtNhaplai";
+            txtNhaplai.PasswordChar = '*';
             txtNhaplai.Size = new Size(350, 27);
             txtNhaplai.TabIndex = 7;
             // 
@@ -123,7 +127,7 @@
             // 
             // lbCaptcha
             // 
-            lbCaptcha.Location = new Point(267, 365);
+            lbCaptcha.Location = new Point(267, 368);
             lbCaptcha.Name = "lbCaptcha";
             lbCaptcha.Size = new Size(75, 20);
             lbCaptcha.TabIndex = 10;
@@ -148,11 +152,31 @@
             btnHuy.UseVisualStyleBackColor = true;
             btnHuy.Click += btnHuy_Click;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(385, 371);
+            label7.Name = "label7";
+            label7.Size = new Size(64, 20);
+            label7.TabIndex = 13;
+            label7.Text = "Chức vụ:";
+            // 
+            // cbRole
+            // 
+            cbRole.FormattingEnabled = true;
+            cbRole.Items.AddRange(new object[] { "Pha Chế", "Bồi Bàn", "Lao Công", "Quản Lý", "Bảo Vệ" });
+            cbRole.Location = new Point(466, 368);
+            cbRole.Name = "cbRole";
+            cbRole.Size = new Size(151, 28);
+            cbRole.TabIndex = 14;
+            // 
             // Dangky
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(814, 495);
+            Controls.Add(cbRole);
+            Controls.Add(label7);
             Controls.Add(btnHuy);
             Controls.Add(btnDangky);
             Controls.Add(lbCaptcha);
@@ -187,6 +211,8 @@
         private Label lbCaptcha;
         private Button btnDangky;
         private Button btnHuy;
+        private Label label7;
+        private ComboBox cbRole;
     }
 
 }

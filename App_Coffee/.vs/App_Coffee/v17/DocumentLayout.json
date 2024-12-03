@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\Github\\App_Coffee_.net\\App_Coffee\\",
+  "WorkspaceRootPath": "D:\\Code Lung Tung\\C and C\u002B\u002B\\C#\\App_Coffee_.net\\App_Coffee\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{23DC8885-3E9D-4EB4-9CF4-3581F0988309}|App_Coffee\\App_Coffee.csproj|e:\\github\\app_coffee_.net\\app_coffee\\app_coffee\\controller\\connection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{23DC8885-3E9D-4EB4-9CF4-3581F0988309}|App_Coffee\\App_Coffee.csproj|d:\\code lung tung\\c and c\u002B\u002B\\c#\\app_coffee_.net\\app_coffee\\app_coffee\\controller\\connection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{23DC8885-3E9D-4EB4-9CF4-3581F0988309}|App_Coffee\\App_Coffee.csproj|solutionrelative:app_coffee\\controller\\connection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -24,11 +24,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Connection.cs",
-              "DocumentMoniker": "E:\\Github\\App_Coffee_.net\\App_Coffee\\App_Coffee\\Controller\\Connection.cs",
+              "DocumentMoniker": "D:\\Code Lung Tung\\C and C\u002B\u002B\\C#\\App_Coffee_.net\\App_Coffee\\App_Coffee\\Controller\\Connection.cs",
               "RelativeDocumentMoniker": "App_Coffee\\Controller\\Connection.cs",
-              "ToolTip": "E:\\Github\\App_Coffee_.net\\App_Coffee\\App_Coffee\\Controller\\Connection.cs",
+              "ToolTip": "D:\\Code Lung Tung\\C and C\u002B\u002B\\C#\\App_Coffee_.net\\App_Coffee\\App_Coffee\\Controller\\Connection.cs",
               "RelativeToolTip": "App_Coffee\\Controller\\Connection.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-03T02:04:10.796Z",
               "EditorCaption": ""

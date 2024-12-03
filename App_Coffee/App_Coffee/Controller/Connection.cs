@@ -10,8 +10,8 @@ namespace App_Coffee.Controller
 {
     class Connection
     {
-        string conStr = @"Data Source=LAPTOP-EGMSJUVU\MAYHIEU;Initial Catalog=QLCOFFEE;Integrated Security=True;";
-        SqlConnection conn;
+        private string conStr = @"Data Source=LAPTOP-EGMSJUVU\MAYHIEU;Initial Catalog=QLCOFFEE;Integrated Security=True;";
+        private SqlConnection conn;
         public Connection()
         {
             conn = new SqlConnection(conStr);

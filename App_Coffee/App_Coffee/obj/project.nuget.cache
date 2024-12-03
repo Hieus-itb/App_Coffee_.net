@@ -1,8 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "HOdHOcg2QZE=",
+  "dgSpecHash": "DAbe8QJacdk=",
   "success": true,
-  "projectFilePath": "E:\\Github\\App_Coffee_.net\\App_Coffee\\App_Coffee\\App_Coffee.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "D:\\Code Lung Tung\\C and C++\\C#\\App_Coffee_.net\\App_Coffee\\App_Coffee\\App_Coffee.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\leduc\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\leduc\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\leduc\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\leduc\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\leduc\\.nuget\\packages\\system.data.sqlclient\\4.9.0\\system.data.sqlclient.4.9.0.nupkg.sha512"
+  ],
   "logs": []
 }

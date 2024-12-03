@@ -11,7 +11,32 @@ namespace App_Coffee.Controller
         {
             conn = DbConnection.GetInstance().GetConnection();
         }
+        public bool addAccount(string username, string password)
+        {
+            string sql = "INSERT INTO ACCOUNT (TAIKHOAN, MATKHAU) VALUES (@username, @password)";
+            conn.Open();
+            try
+            {
+                using (SqlCommand command = new SqlCommand(sql, conn))
+                {
+                    // Thêm tham số để tránh SQL Injection
+                    command.Parameters.AddWithValue("@username", username);
+                    command.Parameters.AddWithValue("@password", password);
 
+                    // Thực thi câu lệnh
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    // Kiểm tra xem có hàng nào được thêm hay không
+                    return rowsAffected > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Ghi log hoặc xử lý ngoại lệ
+                Console.WriteLine("Lỗi khi thêm tài khoản: " + ex.Message);
+                return false;
+            }
+        }
         public bool CheckUserCredentials(string username, string password)
         {
             try

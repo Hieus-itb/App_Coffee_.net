@@ -1,105 +1,41 @@
 ﻿using System;
-using System.Data.SqlClient;
+using System.Data;
 using System.Text;
 using System.Security.Cryptography;
+using Microsoft.Data.SqlClient;
 
 namespace App_Coffee.Controller
 {
     public class AccountController
     {
-        private Connection connManager;
-        private SqlConnection conn;
+        SqlConnection conn = KetNoi.GetConnection();
 
-        public AccountController()
+        public bool CheckLogin(string username, string password)
         {
-            // Sử dụng lớp Connection để quản lý kết nối
-            connManager = new Connection();
-            connManager.OpenConnection();
-            conn = connManager.GetConnection(); // Lấy kết nối từ đối tượng Connection
-        }
+            SqlConnection conn = KetNoi.GetConnection();
+            if (conn == null || conn.State != ConnectionState.Open)
+            {
+                Console.WriteLine("Không thể kết nối đến cơ sở dữ liệu.");
+                return false; // Không thể kết nối đến cơ sở dữ liệu
+            }
 
-        // Phương thức kiểm tra tài khoản và mật khẩu
-        public bool CheckUserCredentials(string username, string password)
-        {
+            // Câu truy vấn để kiểm tra tài khoản
+            string query = "SELECT COUNT(*) FROM ACCOUNT WHERE TAIKHOAN = @username AND MATKHAU = @password";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.Parameters.AddWithValue("@username", username);
+            cmd.Parameters.AddWithValue("@password", password);
+
             try
             {
-                string hashedPassword = HashPassword(password);
-
-                string sql = "SELECT * FROM ACCOUNT WHERE TAIKHOAN = @Username AND MATKHAU = @Password";
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
-                {
-                    cmd.Parameters.AddWithValue("@Username", username);
-                    cmd.Parameters.AddWithValue("@Password", hashedPassword);
-
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            Console.WriteLine("Đăng nhập thành công!");
-                            return true;
-                        }
-                    }
-                }
+                int count = (int)cmd.ExecuteScalar();
+                return count > 0; // Nếu có tài khoản thì trả về true
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Lỗi khi kiểm tra tài khoản: " + ex.Message);
-            }
-            return false;
-        }
-
-        // Phương thức băm mật khẩu
-        public static string HashPassword(string password)
-        {
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                byte[] hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-                StringBuilder sb = new StringBuilder();
-                foreach (byte b in hashedBytes)
-                {
-                    sb.Append(b.ToString("x2"));
-                }
-                return sb.ToString();
+                Console.WriteLine("Lỗi thực thi truy vấn: " + ex.Message);
+                return false;
             }
         }
 
-        // Phương thức kiểm tra quyền quản trị viên
-        public bool IsAdmin(string taikhoan)
-        {
-            SqlCommand cmd = null;
-            SqlDataReader reader = null;
-
-            try
-            {
-                // Câu lệnh SQL kiểm tra quyền quản lý
-                string sql = @"SELECT ns.CHUC_VU 
-                               FROM ACCOUNT a 
-                               JOIN NHAN_SU ns ON a.ID_NHAN_SU = ns.ID_NHAN_SU 
-                               WHERE a.TAIKHOAN = @TaiKhoan";
-
-                cmd = new SqlCommand(sql, conn); // 'conn' là SqlConnection đã được mở kết nối trước
-                cmd.Parameters.AddWithValue("@TaiKhoan", taikhoan);
-
-                reader = cmd.ExecuteReader();
-
-                if (reader.Read())
-                {
-                    string chucVu = reader["CHUC_VU"].ToString();
-                    return string.Equals(chucVu, "Quản lý", StringComparison.OrdinalIgnoreCase);
-                }
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine("Lỗi SQL: " + ex.Message);
-            }
-            finally
-            {
-                // Đảm bảo đóng tài nguyên
-                reader?.Close();
-                cmd?.Dispose();
-            }
-
-            return false;
-        }
     }
 }

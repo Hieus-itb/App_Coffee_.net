@@ -120,7 +120,10 @@ namespace App_Coffee.view
 
         private void btnDoanhthu_Click(object sender, EventArgs e)
         {
+            Doanhthu dthu = new Doanhthu();
+            dthu.Show();
 
+            this.Close();
         }
 
         private void btnNhanvien_Click(object sender, EventArgs e)

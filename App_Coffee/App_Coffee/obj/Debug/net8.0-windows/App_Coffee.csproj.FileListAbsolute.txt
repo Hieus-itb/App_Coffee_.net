@@ -23,3 +23,28 @@ D:\Code Lung Tung\C and C++\C#\App_Coffee_.net\App_Coffee\App_Coffee\obj\Debug\n
 D:\Code Lung Tung\C and C++\C#\App_Coffee_.net\App_Coffee\App_Coffee\obj\Debug\net8.0-windows\ref\App_Coffee.dll
 D:\Code Lung Tung\C and C++\C#\App_Coffee_.net\App_Coffee\App_Coffee\obj\Debug\net8.0-windows\App_Coffee.view.Form1.resources
 D:\Code Lung Tung\C and C++\C#\App_Coffee_.net\App_Coffee\App_Coffee\obj\Debug\net8.0-windows\App_Coffee.csproj.GenerateResource.cache
+E:\Github\App_Coffee_.net\App_Coffee\App_Coffee\bin\Debug\net8.0-windows\App_Coffee.exe
+E:\Github\App_Coffee_.net\App_Coffee\App_Coffee\bin\Debug\net8.0-windows\App_Coffee.deps.json
+E:\Github\App_Coffee_.net\App_Coffee\App_Coffee\bin\Debug\net8.0-windows\App_Coffee.runtimeconfig.json
+E:\Github\App_Coffee_.net\App_Coffee\App_Coffee\bin\Debug\net8.0-windows\App_Coffee.dll
+E:\Github\App_Coffee_.net\App_Coffee\App_Coffee\bin\Debug\net8.0-windows\App_Coffee.pdb
+E:\Github\App_Coffee_.net\App_Coffee\App_Coffee\bin\Debug\net8.0-windows\System.Data.SqlClient.dll
+E:\Github\App_Coffee_.net\App_Coffee\App_Coffee\bin\Debug\net8.0-windows\runtimes\win-arm64\native\sni.dll
+E:\Github\App_Coffee_.net\App_Coffee\App_Coffee\bin\Debug\net8.0-windows\runtimes\win-x64\native\sni.dll
+E:\Github\App_Coffee_.net\App_Coffee\App_Coffee\bin\Debug\net8.0-windows\runtimes\win-x86\native\sni.dll
+E:\Github\App_Coffee_.net\App_Coffee\App_Coffee\bin\Debug\net8.0-windows\runtimes\unix\lib\net8.0\System.Data.SqlClient.dll
+E:\Github\App_Coffee_.net\App_Coffee\App_Coffee\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Data.SqlClient.dll
+E:\Github\App_Coffee_.net\App_Coffee\App_Coffee\obj\Debug\net8.0-windows\App_Coffee.csproj.AssemblyReference.cache
+E:\Github\App_Coffee_.net\App_Coffee\App_Coffee\obj\Debug\net8.0-windows\App_Coffee.view.Form1.resources
+E:\Github\App_Coffee_.net\App_Coffee\App_Coffee\obj\Debug\net8.0-windows\App_Coffee.csproj.GenerateResource.cache
+E:\Github\App_Coffee_.net\App_Coffee\App_Coffee\obj\Debug\net8.0-windows\App_Coffee.GeneratedMSBuildEditorConfig.editorconfig
+E:\Github\App_Coffee_.net\App_Coffee\App_Coffee\obj\Debug\net8.0-windows\App_Coffee.AssemblyInfoInputs.cache
+E:\Github\App_Coffee_.net\App_Coffee\App_Coffee\obj\Debug\net8.0-windows\App_Coffee.AssemblyInfo.cs
+E:\Github\App_Coffee_.net\App_Coffee\App_Coffee\obj\Debug\net8.0-windows\App_Coffee.csproj.CoreCompileInputs.cache
+E:\Github\App_Coffee_.net\App_Coffee\App_Coffee\obj\Debug\net8.0-windows\App_Coffee.sourcelink.json
+E:\Github\App_Coffee_.net\App_Coffee\App_Coffee\obj\Debug\net8.0-windows\App_Coffee.csproj.Up2Date
+E:\Github\App_Coffee_.net\App_Coffee\App_Coffee\obj\Debug\net8.0-windows\App_Coffee.dll
+E:\Github\App_Coffee_.net\App_Coffee\App_Coffee\obj\Debug\net8.0-windows\refint\App_Coffee.dll
+E:\Github\App_Coffee_.net\App_Coffee\App_Coffee\obj\Debug\net8.0-windows\App_Coffee.pdb
+E:\Github\App_Coffee_.net\App_Coffee\App_Coffee\obj\Debug\net8.0-windows\App_Coffee.genruntimeconfig.cache
+E:\Github\App_Coffee_.net\App_Coffee\App_Coffee\obj\Debug\net8.0-windows\ref\App_Coffee.dll

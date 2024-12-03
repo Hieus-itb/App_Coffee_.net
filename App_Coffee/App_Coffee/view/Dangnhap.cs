@@ -35,10 +35,10 @@ namespace App_Coffee.view
                 userRole = accController.IsAdmin(username) ? "Admin" : "User";
 
                 // Hiển thị thông báo và chuyển đến form Datban
-                MessageBox.Show("Đăng nhập thành công!");
+                MessageBox.Show("Đăng nhập thành côngggggggggggggggg!");
 
-                Datban frm = new Datban(); // Chuyển sang form Datban
-                this.Hide();
+                Datban frm = new(); // Chuyển sang form Datban
+                this.Close();
                 frm.ShowDialog();
                 this.Show();
             }
@@ -50,8 +50,8 @@ namespace App_Coffee.view
 
         private void btnDangky_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Dangki dangki = new Dangki();
-            dangki.Show();
+            //Dangki dangki = new Dangki();
+            //dangki.Show();
         }
     }
 }

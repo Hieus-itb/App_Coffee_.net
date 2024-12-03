@@ -10,32 +10,47 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-//using App_Coffee.Controller;
 
 namespace App_Coffee.view
 {
     public partial class Dangnhap : Form
     {
-        
+        private AccountController accController;
+        public static bool isAuthenticated = false;
+        private bool isAdmin = false;
         public Dangnhap()
         {
             InitializeComponent();
+            accController = new AccountController();
         }
-        AccountController accountController = new AccountController();
-
         private void btnDangnhap_Click(object sender, EventArgs e)
         {
-            string username = txtTaikhoan.Text;
-            string password = txtMatkhau.Text;
+            string username = txtTaikhoan.Text.Trim();
+            string password = txtMatkhau.Text.Trim();
 
-            // Kiểm tra đăng nhập
-            if (accountController.CheckLogin(username, password))
+            // Kiểm tra tài khoản và mật khẩu
+            if (accController.CheckUserCredentials(username, password))
             {
-                MessageBox.Show("Đăng nhập thành công!");
-                // Chuyển đến form chính hoặc chức năng khác
-                Datban frm = new Datban();
-                this.Hide();
-                frm.ShowDialog();
+                isAuthenticated = true;
+                isAdmin = accController.IsAdmin(username); // Kiểm tra nếu là admin
+
+                // Hiển thị form chính hoặc form admin
+                if (isAdmin)
+                {
+                    MessageBox.Show("Đăng nhập thành công với quyền Admin!");
+                    // Chuyển đến form quản lý admin
+                    Datban frm = new Datban(); // Ví dụ: Form quản lý admin
+                    this.Hide();
+                    frm.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Đăng nhập thành công!");
+                    // Chuyển đến form người dùng
+                    Datban frm = new Datban();
+                    this.Hide();
+                    frm.ShowDialog();
+                }
                 this.Show();
             }
             else

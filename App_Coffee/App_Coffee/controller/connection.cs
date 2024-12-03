@@ -1,27 +1,42 @@
 ﻿using System;
-using Microsoft.Data.SqlClient;
+using System.Data.SqlClient;
 
 namespace App_Coffee
 {
-    class KetNoi
+    public class DbConnection
     {
-        private static string  connectionString = @"Data Source=LAPTOP-EGMSJUVU\MAYHIEU;Initial Catalog=QLCOFFEE;Integrated Security=True";
+        private static DbConnection instance;
+        private SqlConnection conn;
 
-        public static SqlConnection GetConnection()
+        private DbConnection()
         {
             try
             {
-                SqlConnection conn = new SqlConnection(connectionString);
-                conn.Open();
+                // Chuỗi kết nối mới sử dụng SQL Server với Windows Authentication
+                string connectionString = "Data Source=LAPTOP-EGMSJUVU\\MAYHIEU;Initial Catalog=QLCOFFEE;Integrated Security=True";
 
-                return conn;
-                
+                // Tạo kết nối
+                conn = new SqlConnection(connectionString);
+                conn.Open(); // Mở kết nối
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                Console.WriteLine("Lỗi kết nối cơ sở dữ liệu: " + ex.Message);
-                return null;
+                Console.WriteLine("Error while connecting to the database: " + e.Message);
             }
+        }
+
+        public static DbConnection GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new DbConnection();
+            }
+            return instance;
+        }
+
+        public SqlConnection GetConnection()
+        {
+            return conn;
         }
     }
 }

@@ -1,41 +1,65 @@
 ﻿using System;
-using System.Data;
-using System.Text;
-using System.Security.Cryptography;
-using Microsoft.Data.SqlClient;
+using System.Data.SqlClient;
 
 namespace App_Coffee.Controller
 {
     public class AccountController
     {
-        SqlConnection conn = KetNoi.GetConnection();
+        private SqlConnection conn;
 
-        public bool CheckLogin(string username, string password)
+        public AccountController()
         {
-            SqlConnection conn = KetNoi.GetConnection();
-            if (conn == null || conn.State != ConnectionState.Open)
-            {
-                Console.WriteLine("Không thể kết nối đến cơ sở dữ liệu.");
-                return false; // Không thể kết nối đến cơ sở dữ liệu
-            }
+            conn = DbConnection.GetInstance().GetConnection();
+        }
 
-            // Câu truy vấn để kiểm tra tài khoản
-            string query = "SELECT COUNT(*) FROM ACCOUNT WHERE TAIKHOAN = @username AND MATKHAU = @password";
-            SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.Parameters.AddWithValue("@username", username);
-            cmd.Parameters.AddWithValue("@password", password);
-
+        public bool CheckUserCredentials(string username, string password)
+        {
             try
             {
-                int count = (int)cmd.ExecuteScalar();
-                return count > 0; // Nếu có tài khoản thì trả về true
+                string sql = "SELECT * FROM ACCOUNT WHERE TAIKHOAN = @taikhoan AND MATKHAU = @matkhau";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@taikhoan", username);
+                    cmd.Parameters.AddWithValue("@matkhau", password); // Có thể mã hóa mật khẩu nếu cần
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        return true; // Đăng nhập thành công
+                    }
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Lỗi thực thi truy vấn: " + ex.Message);
-                return false;
+                Console.WriteLine(ex.Message);
             }
+            return false; // Đăng nhập thất bại
         }
 
+        public bool IsAdmin(string username)
+        {
+            try
+            {
+                string sql = "SELECT CHUC_VU FROM ACCOUNT WHERE TAIKHOAN = @taikhoan";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@taikhoan", username);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            string chucVu = reader["CHUC_VU"].ToString();
+                            return "Quản lý".Equals(chucVu, StringComparison.OrdinalIgnoreCase);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return false; // Không phải admin
+        }
     }
 }

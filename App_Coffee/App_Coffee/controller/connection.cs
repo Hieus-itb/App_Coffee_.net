@@ -3,17 +3,18 @@ using System.Data.SqlClient;
 
 namespace App_Coffee
 {
-    public class DbConnection
+    public class Connection
     {
-        private static DbConnection instance;
+        private static Connection instance;
+
         private SqlConnection conn;
 
-        private DbConnection()
+        private Connection()
         {
             try
             {
                 // Chuỗi kết nối mới sử dụng SQL Server với Windows Authentication
-                string connectionString = "Data Source=LAPTOP-EGMSJUVU\\MAYHIEU;Initial Catalog=QLCOFFEE;Integrated Security=True";
+                string connectionString = "Data Source=Van_Duc25\\SQLEXPRESS;Initial Catalog=QLCOFFEE;Integrated Security=True;";
 
                 // Tạo kết nối
                 conn = new SqlConnection(connectionString);
@@ -25,11 +26,11 @@ namespace App_Coffee
             }
         }
 
-        public static DbConnection GetInstance()
+        public static Connection GetInstance()
         {
             if (instance == null)
             {
-                instance = new DbConnection();
+                instance = new Connection();
             }
             return instance;
         }

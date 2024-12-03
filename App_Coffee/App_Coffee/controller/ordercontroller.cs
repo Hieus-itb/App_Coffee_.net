@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace App_Coffee.controller
 {
-    internal class ordercontroller
+    internal class Ordercontroller
     {
     }
 }

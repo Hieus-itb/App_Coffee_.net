@@ -1,5 +1,4 @@
 ﻿using App_Coffee.Controller;
-using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,19 +8,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 
 namespace App_Coffee.view
 {
     public partial class Dangnhap : Form
     {
-        private AccountController accController;
+        private Accountcontroller accController;
         public static string userRole = ""; // Biến tĩnh lưu role của người dùng (Admin hay User)
 
         public Dangnhap()
         {
             InitializeComponent();
-            accController = new AccountController();
+            accController = new Accountcontroller();
         }
         private void btnDangnhap_Click(object sender, EventArgs e)
         {

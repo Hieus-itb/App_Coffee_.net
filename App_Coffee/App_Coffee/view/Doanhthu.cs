@@ -10,20 +10,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Azure.Core.HttpHeader;
+//using static Azure.Core.HttpHeader;
 
 namespace App_Coffee.view
 {
     public partial class Doanhthu : Form
     {
-        private DoanhthuController doanhThuController;
+        private Doanhthucontroller doanhThuController;
         private string currentUserRole;
 
         public Doanhthu()
         {
             InitializeComponent();
 
-            doanhThuController = new DoanhthuController();
+            doanhThuController = new Doanhthucontroller();
             currentUserRole = Dangnhap.userRole; // Nhận quyền từ form đăng nhập
 
             LoadDataToTable();

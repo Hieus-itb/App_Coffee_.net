@@ -5,13 +5,13 @@ using App_Coffee.model;
 
 namespace App_Coffee.Controller
 {
-    public class DoanhthuController
+    public class Doanhthucontroller
     {
         private SqlConnection conn;
 
-        public DoanhthuController()
+        public Doanhthucontroller()
         {
-            conn = DbConnection.GetInstance().GetConnection();
+            conn = Connection.GetInstance().GetConnection();
         }
 
         // Lấy danh sách hóa đơn dưới dạng List<HoaDon>

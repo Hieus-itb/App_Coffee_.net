@@ -5,11 +5,12 @@ using System.Data.SqlClient;
 
 namespace App_Coffee.controller
 {
-    internal class BanController
+    internal class Bancontroller
     {
-        private SqlConnection conn; public BanController()
+        private SqlConnection conn; 
+        public Bancontroller()
         {
-            conn = DbConnection.GetInstance().GetConnection(); 
+            conn = Connection.GetInstance().GetConnection(); 
             OpenConnection(); // Mở kết nối khi khởi tạo controller
         } 
         private void OpenConnection() 

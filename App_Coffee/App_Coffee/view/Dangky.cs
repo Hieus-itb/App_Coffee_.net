@@ -13,11 +13,11 @@ namespace App_Coffee.view
 {
     public partial class Dangky : Form
     {
-        private AccountController accountController;
+        private Accountcontroller accountController;
         public Dangky()
         {
             InitializeComponent();
-            accountController = new AccountController();
+            accountController = new Accountcontroller();
             lbCaptcha.Text = GenerateCaptcha();
         }
         private string GenerateCaptcha()

@@ -3,19 +3,19 @@ using System.Data;
 using System.Windows.Forms;
 using App_Coffee.controller;
 using App_Coffee.model;
-using static Azure.Core.HttpHeader;
+//using static Azure.Core.HttpHeader;
 
 
 namespace App_Coffee.view
 {
     public partial class Datban : Form
     {
-        private BanController bancontroller;
+        private Bancontroller bancontroller;
         private string currentUserRole;
         public Datban()
         {
             InitializeComponent();
-            bancontroller = new BanController();
+            bancontroller = new Bancontroller();
             currentUserRole = Dangnhap.userRole; // Nhận quyền người dùng từ form đăng nhập
 
             LoadDataToTable();

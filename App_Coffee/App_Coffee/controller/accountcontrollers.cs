@@ -3,13 +3,13 @@ using System.Data.SqlClient;
 
 namespace App_Coffee.Controller
 {
-    public class AccountController
+    public class Accountcontroller
     {
         private SqlConnection conn;
 
-        public AccountController()
+        public Accountcontroller()
         {
-            conn = DbConnection.GetInstance().GetConnection();
+            conn = Connection.GetInstance().GetConnection();
         }
         public bool addAccount(string username, string password)
         {

@@ -37,7 +37,7 @@ namespace App_Coffee.view
                 // Hiển thị form chính hoặc form admin
                 if (isAdmin)
                 {
-                    MessageBox.Show("Đăng nhập thành công với quyền Admin!");
+                    MessageBox.Show("Đăng nhập thành công!");
                     // Chuyển đến form quản lý admin
                     Datban frm = new Datban(); // Ví dụ: Form quản lý admin
                     this.Hide();

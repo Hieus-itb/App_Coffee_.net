@@ -58,5 +58,11 @@ namespace App_Coffee.view
                 MessageBox.Show("Tên đăng nhập hoặc mật khẩu không chính xác.");
             }
         }
+
+        private void btnDangky_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Dangki dangki = new Dangki();
+            dangki.Show();
+        }
     }
 }

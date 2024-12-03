@@ -79,6 +79,7 @@
             btnDangky.TabIndex = 4;
             btnDangky.TabStop = true;
             btnDangky.Text = "Đăng ký";
+            btnDangky.LinkClicked += btnDangky_LinkClicked;
             // 
             // btnDangnhap
             // 

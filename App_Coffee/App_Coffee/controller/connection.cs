@@ -36,7 +36,12 @@ namespace App_Coffee
 
         public SqlConnection GetConnection()
         {
+            if (conn.State == System.Data.ConnectionState.Closed || conn.State == System.Data.ConnectionState.Broken)
+            {
+                conn.Open();
+            }
             return conn;
         }
+
     }
 }

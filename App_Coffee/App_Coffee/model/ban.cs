@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace App_Coffee.model
 {
-    internal class quanliban
+    public class Ban
     {
+        public string MaBan { get; set; }
+        public string TenBan { get; set; }
+        public string TrangThai { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using System.Data;
 using System.Windows.Forms;
 using App_Coffee.controller;
+using App_Coffee.model;
 using static Azure.Core.HttpHeader;
 
 
@@ -9,44 +10,34 @@ namespace App_Coffee.view
 {
     public partial class Datban : Form
     {
-        private BanController banController;
+        private BanController bancontroller;
         private string currentUserRole;
         public Datban()
         {
             InitializeComponent();
-            banController = new BanController();
-            currentUserRole = userRole; // Nhận role người dùng từ form đăng nhập hoặc session
+            bancontroller = new BanController();
+            currentUserRole = Dangnhap.userRole; // Nhận quyền người dùng từ form đăng nhập
 
             LoadDataToTable();
             CheckAdminRole();
         }
         private void LoadDataToTable()
         {
-            try
-            {
-                DataTable dt = banController.GetAllBan();
-                dataGridView1.DataSource = dt;
-                dataGridView1.Columns["TRANGTHAI"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill; // Căn chỉnh cột trạng thái
-                dataGridView1.Columns["MABAN"].HeaderText = "Mã Bàn";
-                dataGridView1.Columns["TENBAN"].HeaderText = "Tên Bàn";
-                dataGridView1.Columns["TRANGTHAI"].HeaderText = "Trạng Thái";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi tải dữ liệu: " + ex.Message);
-            }
+            List <Ban> bans = bancontroller.GetAllBan();
+            dataGridView1.DataSource = bans;
         }
+
 
         // Kiểm tra quyền admin để hiển thị nút Nhân viên
         private void CheckAdminRole()
         {
             if (currentUserRole == "Admin")
             {
-                btnNhanVien.Visible = true;
+                btnNhanvien.Visible = true;
             }
             else
             {
-                btnNhanVien.Visible = false;
+                btnNhanvien.Visible = false;
             }
         }
 
@@ -66,7 +57,7 @@ namespace App_Coffee.view
             {
                 var selectedRow = dataGridView1.SelectedRows[0];
                 string maBan = selectedRow.Cells["MABAN"].Value.ToString();
-                bool success = banController.DatBan(maBan);
+                bool success = bancontroller.DatBan(maBan);
 
                 if (success)
                 {
@@ -90,7 +81,7 @@ namespace App_Coffee.view
             {
                 var selectedRow = dataGridView1.SelectedRows[0];
                 string maBan = selectedRow.Cells["MABAN"].Value.ToString();
-                bool success = banController.UpdateBanStatus(maBan, "Trống");
+                bool success = bancontroller.UpdateBanStatus(maBan, "Trống");
 
                 if (success)
                 {
@@ -115,16 +106,16 @@ namespace App_Coffee.view
 
         private void btnDatmon_Click(object sender, EventArgs e)
         {
-            bool hasBanDaDat = banController.IsAnyBanDaDat();
-            if (!hasBanDaDat)
-            {
-                MessageBox.Show("Không có bàn nào đang được đặt. Vui lòng đặt bàn trước!");
-                return;
-            }
+            //bool hasBanDaDat = banController.IsAnyBanDaDat();
+            //if (!hasBanDaDat)
+            //{
+            //    MessageBox.Show("Không có bàn nào đang được đặt. Vui lòng đặt bàn trước!");
+            //    return;
+            //}
 
-            Goimon goiMonUI = new Goimon();
-            goiMonUI.Show();
-            this.Hide();
+            //Goimon goiMonUI = new Goimon();
+            //goiMonUI.Show();
+            //this.Hide();
         }
 
         private void btnDoanhthu_Click(object sender, EventArgs e)
@@ -134,9 +125,9 @@ namespace App_Coffee.view
 
         private void btnNhanvien_Click(object sender, EventArgs e)
         {
-            QuanLy ql = new QuanLy();
-            ql.Show();
-            this.Hide();
+            //QuanLy ql = new QuanLy();
+            //ql.Show();
+            //this.Hide();
         }
 
         private void btnDangxuat_Click(object sender, EventArgs e)

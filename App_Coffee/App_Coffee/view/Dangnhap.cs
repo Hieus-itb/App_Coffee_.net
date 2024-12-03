@@ -16,8 +16,8 @@ namespace App_Coffee.view
     public partial class Dangnhap : Form
     {
         private AccountController accController;
-        public static bool isAuthenticated = false;
-        private bool isAdmin = false;
+        public static string userRole = ""; // Biến tĩnh lưu role của người dùng (Admin hay User)
+
         public Dangnhap()
         {
             InitializeComponent();
@@ -31,26 +31,15 @@ namespace App_Coffee.view
             // Kiểm tra tài khoản và mật khẩu
             if (accController.CheckUserCredentials(username, password))
             {
-                isAuthenticated = true;
-                isAdmin = accController.IsAdmin(username); // Kiểm tra nếu là admin
+                // Lưu role của người dùng (Admin hay User) vào biến tĩnh
+                userRole = accController.IsAdmin(username) ? "Admin" : "User";
 
-                // Hiển thị form chính hoặc form admin
-                if (isAdmin)
-                {
-                    MessageBox.Show("Đăng nhập thành công!");
-                    // Chuyển đến form quản lý admin
-                    Datban frm = new Datban(); // Ví dụ: Form quản lý admin
-                    this.Hide();
-                    frm.ShowDialog();
-                }
-                else
-                {
-                    MessageBox.Show("Đăng nhập thành công!");
-                    // Chuyển đến form người dùng
-                    Datban frm = new Datban();
-                    this.Hide();
-                    frm.ShowDialog();
-                }
+                // Hiển thị thông báo và chuyển đến form Datban
+                MessageBox.Show("Đăng nhập thành công!");
+
+                Datban frm = new Datban(); // Chuyển sang form Datban
+                this.Hide();
+                frm.ShowDialog();
                 this.Show();
             }
             else

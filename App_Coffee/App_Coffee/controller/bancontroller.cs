@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App_Coffee.model;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -6,29 +7,52 @@ namespace App_Coffee.controller
 {
     internal class BanController
     {
-        private SqlConnection conn;
-
-        public BanController()
+        private SqlConnection conn; public BanController()
         {
-            conn = DbConnection.GetInstance().GetConnection();
+            conn = DbConnection.GetInstance().GetConnection(); 
+            OpenConnection(); // Mở kết nối khi khởi tạo controller
+        } 
+        private void OpenConnection() 
+        { if (conn.State == ConnectionState.Closed) { 
+                conn.Open(); 
+            } 
+        } 
+        private void CloseConnection() { 
+            if (conn.State == ConnectionState.Open) { 
+                conn.Close(); 
+            } 
         }
-
-        public DataTable GetAllBan()
+        public List<Ban> GetAllBan()
         {
+            List<Ban> listBan = new List<Ban>();
+            string sql = "SELECT * FROM BAN";
             try
             {
-                string sql = "SELECT * FROM BAN";
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                DataTable dataTable = new DataTable();
-                adapter.Fill(dataTable);
-                return dataTable;
+                OpenConnection();
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Ban ban = new Ban
+                            {
+                                MaBan = reader["MABAN"].ToString(),
+                                TenBan = reader["TENBAN"].ToString(),
+                                TrangThai = reader["TRANGTHAI"].ToString()
+                            };
+                            listBan.Add(ban);
+                        }
+                    }
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return null;
+                Console.WriteLine("Lỗi: " + ex.Message);
             }
+            finally { 
+            }
+            return listBan;
         }
 
         public bool IsAnyBanDaDat()

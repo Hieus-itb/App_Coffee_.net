@@ -20,12 +20,14 @@ namespace App_Coffee.Controller
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@taikhoan", username);
-                    cmd.Parameters.AddWithValue("@matkhau", password); // Có thể mã hóa mật khẩu nếu cần
+                    cmd.Parameters.AddWithValue("@matkhau", password);
 
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader.Read())
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        return true; // Đăng nhập thành công
+                        if (reader.Read())
+                        {
+                            return true; // Đăng nhập thành công
+                        }
                     }
                 }
             }
@@ -35,6 +37,7 @@ namespace App_Coffee.Controller
             }
             return false; // Đăng nhập thất bại
         }
+
 
         public bool IsAdmin(string username)
         {
@@ -49,8 +52,8 @@ namespace App_Coffee.Controller
                     {
                         if (reader.Read())
                         {
-                            string chucVu = reader["CHUC_VU"].ToString();
-                            return "Quản lý".Equals(chucVu, StringComparison.OrdinalIgnoreCase);
+                            string chucVu = reader["CHUC_VU"].ToString().Trim();
+                            return "Quản Lý".Equals(chucVu, StringComparison.OrdinalIgnoreCase);
                         }
                     }
                 }
@@ -59,7 +62,9 @@ namespace App_Coffee.Controller
             {
                 Console.WriteLine(ex.Message);
             }
-            return false; // Không phải admin
+            return false;
         }
+
+
     }
 }

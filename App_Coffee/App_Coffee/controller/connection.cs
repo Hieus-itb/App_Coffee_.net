@@ -15,7 +15,7 @@ namespace App_Coffee.controller
         
         public connection()
         {
-             string connectionString = "Data Source=LAPTOP-EGMSJUVU\\MAYHIEU;Initial Catalog=QLCOFFEE;Integrated Security=True";
+             string connectionString = "Data Source=Van_Duc25\\SQLEXPRESS;Initial Catalog=QLCOFFEE;Integrated Security=True;Encrypt=True;";
              conn = new SqlConnection(connectionString);
         }
 

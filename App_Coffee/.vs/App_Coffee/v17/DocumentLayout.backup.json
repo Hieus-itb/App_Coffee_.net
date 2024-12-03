@@ -1,14 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\Github\\App_Coffee_.net\\App_Coffee\\",
+  "WorkspaceRootPath": "D:\\Code Lung Tung\\C and C\u002B\u002B\\C#\\App_Coffee_.net\\App_Coffee\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3A2C7DAA-F7F1-4481-98F2-EDA6F6670D0E}|App_Coffee\\App_Coffee.csproj|e:\\github\\app_coffee_.net\\app_coffee\\app_coffee\\controller\\connection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3A2C7DAA-F7F1-4481-98F2-EDA6F6670D0E}|App_Coffee\\App_Coffee.csproj|d:\\code lung tung\\c and c\u002B\u002B\\c#\\app_coffee_.net\\app_coffee\\app_coffee\\controller\\connection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3A2C7DAA-F7F1-4481-98F2-EDA6F6670D0E}|App_Coffee\\App_Coffee.csproj|solutionrelative:app_coffee\\controller\\connection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3A2C7DAA-F7F1-4481-98F2-EDA6F6670D0E}|App_Coffee\\App_Coffee.csproj|e:\\github\\app_coffee_.net\\app_coffee\\app_coffee\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3A2C7DAA-F7F1-4481-98F2-EDA6F6670D0E}|App_Coffee\\App_Coffee.csproj|d:\\code lung tung\\c and c\u002B\u002B\\c#\\app_coffee_.net\\app_coffee\\app_coffee\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3A2C7DAA-F7F1-4481-98F2-EDA6F6670D0E}|App_Coffee\\App_Coffee.csproj|solutionrelative:app_coffee\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A2C7DAA-F7F1-4481-98F2-EDA6F6670D0E}|App_Coffee\\App_Coffee.csproj|d:\\code lung tung\\c and c\u002B\u002B\\c#\\app_coffee_.net\\app_coffee\\app_coffee\\view\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{3A2C7DAA-F7F1-4481-98F2-EDA6F6670D0E}|App_Coffee\\App_Coffee.csproj|solutionrelative:app_coffee\\view\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,29 +30,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "E:\\Github\\App_Coffee_.net\\App_Coffee\\App_Coffee\\Program.cs",
-              "RelativeDocumentMoniker": "App_Coffee\\Program.cs",
-              "ToolTip": "E:\\Github\\App_Coffee_.net\\App_Coffee\\App_Coffee\\Program.cs",
-              "RelativeToolTip": "App_Coffee\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAATAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "connection.cs",
+              "DocumentMoniker": "D:\\Code Lung Tung\\C and C\u002B\u002B\\C#\\App_Coffee_.net\\App_Coffee\\App_Coffee\\controller\\connection.cs",
+              "RelativeDocumentMoniker": "App_Coffee\\controller\\connection.cs",
+              "ToolTip": "D:\\Code Lung Tung\\C and C\u002B\u002B\\C#\\App_Coffee_.net\\App_Coffee\\App_Coffee\\controller\\connection.cs",
+              "RelativeToolTip": "App_Coffee\\controller\\connection.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABsAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-03T03:48:17.694Z",
+              "WhenOpened": "2024-12-03T03:59:02.799Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "connection.cs",
-              "DocumentMoniker": "E:\\Github\\App_Coffee_.net\\App_Coffee\\App_Coffee\\controller\\connection.cs",
-              "RelativeDocumentMoniker": "App_Coffee\\controller\\connection.cs",
-              "ToolTip": "E:\\Github\\App_Coffee_.net\\App_Coffee\\App_Coffee\\controller\\connection.cs",
-              "RelativeToolTip": "App_Coffee\\controller\\connection.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAYwCsAAAAaAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Code Lung Tung\\C and C\u002B\u002B\\C#\\App_Coffee_.net\\App_Coffee\\App_Coffee\\Program.cs",
+              "RelativeDocumentMoniker": "App_Coffee\\Program.cs",
+              "ToolTip": "D:\\Code Lung Tung\\C and C\u002B\u002B\\C#\\App_Coffee_.net\\App_Coffee\\App_Coffee\\Program.cs",
+              "RelativeToolTip": "App_Coffee\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-03T03:47:34.255Z",
+              "WhenOpened": "2024-12-03T03:58:48.592Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "D:\\Code Lung Tung\\C and C\u002B\u002B\\C#\\App_Coffee_.net\\App_Coffee\\App_Coffee\\view\\Form1.cs",
+              "RelativeDocumentMoniker": "App_Coffee\\view\\Form1.cs",
+              "ToolTip": "D:\\Code Lung Tung\\C and C\u002B\u002B\\C#\\App_Coffee_.net\\App_Coffee\\App_Coffee\\view\\Form1.cs [Design]",
+              "RelativeToolTip": "App_Coffee\\view\\Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T03:58:47.786Z",
+              "EditorCaption": " [Design]"
             }
           ]
         },

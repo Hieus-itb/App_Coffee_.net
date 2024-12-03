@@ -9,7 +9,7 @@ namespace App_Coffee.controller
 {
     public class connection
     {
-        private SqlConnection conn; 
+        private SqlConnection conn;
         private string connectionString;
 
         

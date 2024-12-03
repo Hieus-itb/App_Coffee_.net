@@ -1,0 +1,24 @@
+﻿# Tệp cấu hình của Visual Studio
+.vs/            # Thư mục cấu hình của Visual Studio
+.vscode/         # Cấu hình của Visual Studio Code
+.idea/           # Thư mục của IntelliJ IDEA hoặc WebStorm
+*.user           # Tệp cấu hình người dùng của Visual Studio
+*.suo            # Tệp trạng thái dự án Visual Studio
+*.userosscache   # Tệp cache của Visual Studio
+*.sln.docstates  # Tệp trạng thái của solution
+
+# Các thư mục build
+bin/             # Thư mục chứa tệp biên dịch của ứng dụng
+obj/             # Các tệp tạm thời khi biên dịch
+
+# Các thư mục hoặc tệp liên quan đến dependency
+node_modules/    # Thư mục chứa các package của Node.js
+packages/        # Các thư mục hoặc tệp không cần thiết của package manager
+
+# Các tệp nhật ký và tạm thời
+*.log            # Tệp nhật ký
+*.tmp            # Tệp tạm thời
+
+# Thư mục và tệp khác không cần thiết
+Thumbs.db        # Tệp của Windows chứa thumbnail cache
+Desktop.ini      # Tệp cấu hình desktop của Windows

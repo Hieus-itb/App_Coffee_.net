@@ -11,7 +11,10 @@
   <ItemGroup>
     <Folder Include="model\" />
     <Folder Include="resources\" />
-    <Folder Include="view\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
   </ItemGroup>
 
 </Project>

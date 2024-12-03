@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\App_Coffee",
+    "\\App_Coffee\\App_Coffee",
+    "\\App_Coffee\\App_Coffee\\controller"
   ],
+  "SelectedNode": "\\App_Coffee\\App_Coffee\\controller\\connection.cs",
   "PreviewInSolutionExplorer": false
 }

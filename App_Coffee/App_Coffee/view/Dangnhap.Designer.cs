@@ -65,7 +65,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(80, 435);
+            label2.Location = new Point(80, 408);
             label2.Name = "label2";
             label2.Size = new Size(139, 20);
             label2.TabIndex = 5;
@@ -74,7 +74,7 @@
             // btnDangky
             // 
             btnDangky.AutoSize = true;
-            btnDangky.Location = new Point(223, 435);
+            btnDangky.Location = new Point(214, 408);
             btnDangky.Name = "btnDangky";
             btnDangky.Size = new Size(63, 20);
             btnDangky.TabIndex = 4;
@@ -85,7 +85,7 @@
             // btnDangnhap
             // 
             btnDangnhap.BackColor = Color.FromArgb(204, 102, 0);
-            btnDangnhap.Location = new Point(80, 322);
+            btnDangnhap.Location = new Point(80, 312);
             btnDangnhap.Name = "btnDangnhap";
             btnDangnhap.Size = new Size(331, 46);
             btnDangnhap.TabIndex = 3;

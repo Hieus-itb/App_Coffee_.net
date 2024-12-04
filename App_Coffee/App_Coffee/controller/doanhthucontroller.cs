@@ -104,25 +104,33 @@ namespace App_Coffee.Controller
         {
             try
             {
-                string sql = "SELECT SUM(TONGTIEN) AS TotalTien, SUM(TONGCHIPHI) AS TotalChiPhi FROM DOANHTHU";
+                // Kiểm tra dữ liệu trong bảng DOANHTHU
+                string checkDataSql = "SELECT COUNT(*) FROM DOANHTHU";
+                using (SqlCommand checkCmd = new SqlCommand(checkDataSql, conn))
+                {
+                    int rowCount = (int)checkCmd.ExecuteScalar();
+                }
+
+                // Truy vấn tính tổng tiền và chi phí
+                string sql = "SELECT SUM(TONGTIEN) - SUM(TONGCHIPHI) FROM DOANHTHU";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    object result = cmd.ExecuteScalar();
+                    if (result != DBNull.Value)
                     {
-                        if (reader.Read())
-                        {
-                            float totalTien = reader.IsDBNull(0) ? 0 : reader.GetFloat(0);
-                            float totalChiPhi = reader.IsDBNull(1) ? 0 : reader.GetFloat(1);
-                            return totalTien - totalChiPhi;
-                        }
+                        return Convert.ToSingle(result);
+                    }
+                    else
+                    {
+                        return 0;
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error calculating profit: {ex.Message}");
+                MessageBox.Show($"Lỗi khi tính toán lãi: {ex.Message}", "Lỗi");
+                return 0;
             }
-            return 0;
         }
 
         // Lấy tổng chi phí

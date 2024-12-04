@@ -23,7 +23,7 @@ namespace App_Coffee.view
         }
         private void LoadDataToTable()
         {
-            List <Ban> bans = bancontroller.GetAllBan();
+            List<Ban> bans = bancontroller.GetAllBan();
             dataGridView1.DataSource = bans;
         }
 
@@ -39,7 +39,7 @@ namespace App_Coffee.view
             else
             {
                 btnNhanvien.Visible = false;
-                btnDouong.Visible = false; 
+                btnDouong.Visible = false;
             }
         }
 
@@ -108,16 +108,16 @@ namespace App_Coffee.view
 
         private void btnDatmon_Click(object sender, EventArgs e)
         {
-            //bool hasBanDaDat = banController.IsAnyBanDaDat();
-            //if (!hasBanDaDat)
-            //{
-            //    MessageBox.Show("Không có bàn nào đang được đặt. Vui lòng đặt bàn trước!");
-            //    return;
-            //}
+            bool hasBanDaDat = bancontroller.IsAnyBanDaDat();
+            if (!hasBanDaDat)
+            {
+                MessageBox.Show("Không có bàn nào đang được đặt. Vui lòng đặt bàn trước!");
+                return;
+            }
 
-            //Goimon goiMonUI = new Goimon();
-            //goiMonUI.Show();
-            //this.Hide();
+            Goimon goiMonUI = new Goimon();
+            goiMonUI.Show();
+            this.Hide();
         }
 
         private void btnDoanhthu_Click(object sender, EventArgs e)
@@ -144,6 +144,13 @@ namespace App_Coffee.view
                 frm.Show();
                 this.Hide();
             }
+        }
+
+        private void btnDouong_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Quanlydouong d = new Quanlydouong();
+            d.Show();
         }
     }
 }

@@ -46,6 +46,42 @@ namespace App_Coffee.controller
                 }
             }
         }
+        //Lấy chi phí
+        public double getChiphi(string maDouong)
+        {
+            string sql = "SELECT CHIPHI FROM DOUONG WHERE MADOUONG = @maDouong";
+            conn.Open();
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
+            {
+                // Thêm tham số @maBan vào câu lệnh SQL
+                cmd.Parameters.AddWithValue("@maDouong", maDouong);
+
+                try
+                {
+                    // Thực thi câu lệnh và lấy giá trị từ cột CHIPHI
+                    object result = cmd.ExecuteScalar();
+
+                    // Nếu result là null hoặc không phải kiểu số, trả về 0
+                    if (result != null && result is decimal)
+                    {
+                        // Chuyển kết quả thành kiểu decimal và sau đó về kiểu double
+                        decimal chiphi = Convert.ToDecimal(result);
+                        return Convert.ToDouble(chiphi); // Trả về chi phí dưới dạng double
+                    }
+                    return 0; // Nếu không có giá trị hoặc giá trị không hợp lệ, trả về 0
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi truy vấn chi phí: " + ex.Message);
+                    return 0; // Trả về 0 nếu có lỗi
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+
 
         // Sửa
         public bool Update(Douong douong)

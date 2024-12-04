@@ -63,7 +63,7 @@ namespace App_Coffee.controller
 
             return result;
         }
-    
+        
         public bool editEmployee(Nhansumodel employee)
         {
             try
@@ -98,27 +98,60 @@ namespace App_Coffee.controller
             }
         }
 
-        public bool addEmployee(Nhansumodel nhansumodel)
+        public bool AddEmployee(Nhansumodel nhansumodel, string taikhoan, string matkhau, string role)
         {
             try
             {
-                string sql = @"
-                INSERT INTO NHAN_SU (HO_VA_TEN, GIOI_TINH, NAM_SINH, CHUC_VU, QUE_QUAN, SO_DIEN_THOAI) 
-                VALUES (@HO_VA_TEN, @GIOI_TINH, @NAM_SINH, @CHUC_VU, @QUE_QUAN, @SO_DIEN_THOAI)";
+                string insertNhanSuSql = @"
+                    INSERT INTO NHAN_SU (HO_VA_TEN, GIOI_TINH, NAM_SINH, CHUC_VU, QUE_QUAN, SO_DIEN_THOAI) 
+                    VALUES (@HoVaTen, @GioiTinh, @NamSinh, @ChucVu, @QueQuan, @SoDienThoai);
+                    SELECT SCOPE_IDENTITY();";
 
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                using (SqlCommand cmd = new SqlCommand(insertNhanSuSql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@HO_VA_TEN", nhansumodel.HoVaTen);
-                    cmd.Parameters.AddWithValue("@GIOI_TINH", nhansumodel.GioiTinh);
-                    cmd.Parameters.AddWithValue("@NAM_SINH", nhansumodel.NamSinh);
-                    cmd.Parameters.AddWithValue("@CHUC_VU", nhansumodel.ChucVu);
-                    cmd.Parameters.AddWithValue("@QUE_QUAN", nhansumodel.QueQuan);
-                    cmd.Parameters.AddWithValue("@SO_DIEN_THOAI", nhansumodel.SoDienThoai);
+                    cmd.Parameters.AddWithValue("@HoVaTen", nhansumodel.HoVaTen);
+                    cmd.Parameters.AddWithValue("@GioiTinh", nhansumodel.GioiTinh);
+                    cmd.Parameters.AddWithValue("@NamSinh", nhansumodel.NamSinh);
+                    cmd.Parameters.AddWithValue("@ChucVu", nhansumodel.ChucVu);
+                    cmd.Parameters.AddWithValue("@QueQuan", nhansumodel.QueQuan);
+                    cmd.Parameters.AddWithValue("@SoDienThoai", nhansumodel.SoDienThoai);
 
-                    conn.Open();
+                    OpenConnection();
+                    int idNhanSu = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    return AddAccount(idNhanSu, taikhoan, matkhau, role);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+
+
+        public bool AddAccount(int idNhanSu, string taikhoan, string matkhau, string role)
+        {
+            try
+            {
+                string insertAccountSql = @"
+                    INSERT INTO ACCOUNT (ID_NHAN_SU, TAIKHOAN, MATKHAU, CHUC_VU) 
+                    VALUES (@IDNhanSu, @TaiKhoan, @MatKhau, @ChucVu)";
+
+                using (SqlCommand cmd = new SqlCommand(insertAccountSql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@IDNhanSu", idNhanSu);
+                    cmd.Parameters.AddWithValue("@TaiKhoan", taikhoan);  
+                    cmd.Parameters.AddWithValue("@MatKhau", matkhau);  
+                    cmd.Parameters.AddWithValue("@ChucVu", role);
+
+                    OpenConnection();
                     int rowsAffected = cmd.ExecuteNonQuery();
-                    conn.Close();
-
                     return rowsAffected > 0;
                 }
             }
@@ -127,8 +160,12 @@ namespace App_Coffee.controller
                 Console.WriteLine(ex.Message);
                 return false;
             }
+            finally
+            {
+                CloseConnection();
+            }
         }
-        
+
         public bool DeleteEmployee(int id)
         {
             try
@@ -158,6 +195,13 @@ namespace App_Coffee.controller
                 Console.WriteLine(ex.Message);
                 return false;
             }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
         }
 
         public DataTable SearchNhanSu(string searchTerm)
@@ -182,9 +226,48 @@ namespace App_Coffee.controller
                 Console.WriteLine(ex.Message);
                 return null;
             }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
         }
 
+        public int GetIDNhanvien()
+        {
+            int idNV = 0;  // Giá trị mặc định nếu không tìm thấy ID_NHAN_SU
+            string sql = "SELECT MAX(ID_NHAN_SU) FROM NHAN_SU";
 
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    
+                    object result = cmd.ExecuteScalar();
+                    conn.Close();
+
+                    
+                    if (result != DBNull.Value)
+                    {
+                        idNV = Convert.ToInt32(result);
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+            }
+            finally
+                {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+            return idNV + 1;
+        }
 
         //----------------------------------------------------------------------------------------------
         //Được chỉnh sửa
@@ -207,6 +290,7 @@ namespace App_Coffee.controller
                 Console.WriteLine(ex.Message);
                 return false;
             }
+
         }
 
     }

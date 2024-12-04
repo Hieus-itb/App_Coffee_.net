@@ -18,6 +18,7 @@ namespace App_Coffee.view
         private Douongcontroller controller;
         private Bancontroller bancontroller;
         private Ordercontroller ordercontroller;
+
         private string maBan = "";
         public Goimon()
         {
@@ -26,6 +27,7 @@ namespace App_Coffee.view
             controller = new Douongcontroller();
             ordercontroller = new Ordercontroller();
             loadDouong();
+            LoadDataDouongdagoi(maBan);
             UpdateStatus("B01");
             UpdateStatus("B02");
             UpdateStatus("B03");
@@ -33,7 +35,8 @@ namespace App_Coffee.view
             UpdateStatus("B05");
             UpdateStatus("B06");
         }
-        private void UpdateStatus(string maBan)
+      
+        public void UpdateStatus(string maBan)
         {
             bool trangThaiBan = bancontroller.GetTrangThai(maBan);
 
@@ -61,7 +64,49 @@ namespace App_Coffee.view
                     break;
             }
         }
-        private void UpdateLabelColor(string maBan, Label lbl)
+        private void DeleteSelectedRow()
+        {
+            if (dataGridView2.SelectedRows.Count > 0)
+            {
+                // Lấy model của DataGridView
+                DataGridViewRow selectedRow = dataGridView2.SelectedRows[0];
+                string maban = maBan; // Biến selectedTable được khai báo từ trước
+                string maDoUong = selectedRow.Cells[0].Value?.ToString(); // Lấy giá trị cột đầu tiên (giả sử là Mã Đồ Uống)
+
+                if (!string.IsNullOrEmpty(maBan) && !string.IsNullOrEmpty(maDoUong))
+                {
+                    // Gọi hàm xóa trong database
+                    bool isDeleted = ordercontroller.DeleteFromDatabase(maBan, maDoUong);
+                    if (isDeleted)
+                    {
+                        // Xóa dòng khỏi DataGridView
+                        dataGridView2.Rows.Remove(selectedRow);
+
+                        // Tải lại dữ liệu
+                        LoadDataDouongdagoi(maBan);
+
+                        // Cập nhật tổng số tiền
+                        UpdateTotalAmountLabel();
+
+                        MessageBox.Show("Xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không thể xóa dữ liệu từ cơ sở dữ liệu.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Dữ liệu không hợp lệ, không thể xóa.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một dòng để xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        public void UpdateLabelColor(string maBan, Label lbl)
         {
             bool trangThaiBan = bancontroller.GetTrangThai(maBan);
 
@@ -74,6 +119,29 @@ namespace App_Coffee.view
                 lbl.ForeColor = Color.Green;
             }
         }
+        public void UpdateLabels()
+        {
+           
+            Label[] lbBans = { lbBan1, lbBan2, lbBan3, lbBan4, lbBan5, lbBan6 };
+
+            
+            bool[] trangthaiBans = bancontroller.Trangthai();
+
+            
+            for (int i = 0; i < lbBans.Length; i++)
+            {
+                if (trangthaiBans[i])
+                {
+                    lbBans[i].ForeColor = Color.Green; 
+                }
+                else
+                {
+                    lbBans[i].ForeColor = Color.Red;
+                }
+            }
+        }
+
+
         public void loadDouong()
         {
             List<Douong> douongList = controller.GetAllDouong();
@@ -156,6 +224,7 @@ namespace App_Coffee.view
             else
             {
                 HandleBanSelection(maBan);
+
             }
         }
 
@@ -247,7 +316,7 @@ namespace App_Coffee.view
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            double sum = 0;
+            
 
             int selectedRow = dataGridView1.SelectedRows.Count > 0 ? dataGridView1.SelectedRows[0].Index : -1;
             if (selectedRow != -1)
@@ -262,8 +331,7 @@ namespace App_Coffee.view
                 int soluong = 1;
                 double tongtien = gia * soluong;
                 string maban = maBan;
-                sum += controller.getChiphi(madouong);
-                double chiphi = sum;
+                double chiphi = controller.getChiphi(madouong);
 
                 bool isUpdated = ordercontroller.AddDrinkToTable(maban, madouong, tendouong, soluong, gia, chiphi);
 
@@ -285,8 +353,20 @@ namespace App_Coffee.view
 
         private void btnThanhtoan_Click(object sender, EventArgs e)
         {
-            Hoadon frm = new Hoadon();
+            this.Close();
+            Hoadon frm = new Hoadon(maBan);
             frm.Show();
+            
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            DeleteSelectedRow();
+        }
+
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridView2.Rows[e.RowIndex].Selected = true;
         }
     }
 }

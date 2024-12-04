@@ -23,12 +23,19 @@ namespace App_Coffee.controller
             var danhSachDoUong = new List<object[]>();
             string sql = "SELECT MADOUONG, TENDOUONG, SOLUONG, GIA FROM ORDER_ WHERE MABAN = @MaBan";
 
+            // Đảm bảo kết nối được mở trước khi thực hiện truy vấn
+            if (conn.State != ConnectionState.Open)
+            {
+                conn.Open();
+            }
+
             using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
                 cmd.Parameters.AddWithValue("@MaBan", maBan);
 
                 try
                 {
+                    // Đảm bảo sử dụng using để tự động đóng DataReader
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -46,10 +53,19 @@ namespace App_Coffee.controller
                 {
                     Console.WriteLine("Error: " + ex.Message);
                 }
+                finally
+                {
+                    // Đảm bảo đóng kết nối khi hoàn tất
+                    if (conn.State == ConnectionState.Open)
+                    {
+                        conn.Close();
+                    }
+                }
             }
 
             return danhSachDoUong;
         }
+
         public List<object[]> GetDanhSachMonCuaBan(string maBan)
         {
             List<object[]> danhSachMon = new List<object[]>();
@@ -116,22 +132,121 @@ namespace App_Coffee.controller
         {
             string deleteSql = "DELETE FROM ORDER_ WHERE MABAN = @MaBan";
 
-            using (SqlCommand cmd = new SqlCommand(deleteSql, conn))
+            try
             {
-                cmd.Parameters.AddWithValue("@MaBan", maBan);
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open(); 
+                }
+
+                using (SqlCommand cmd = new SqlCommand(deleteSql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@MaBan", maBan);
+
+                    
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+             
+                    return rowsAffected > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+          
+                Console.WriteLine("Error: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        public bool DeleteFromDatabase(string maBan, string maDoUong)
+        {
+            string sql = "DELETE FROM ORDER_ WHERE MABAN = @MABAN AND MADOUONG = @MADOUONG";
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    // Thêm tham số vào câu lệnh SQL
+                    cmd.Parameters.AddWithValue("@MABAN", maBan);
+                    cmd.Parameters.AddWithValue("@MADOUONG", maDoUong);
+
+                    // Mở kết nối
+                    if (conn.State == ConnectionState.Closed)
+                    {
+                        conn.Open();
+                    }
+
+                    // Thực thi câu lệnh xóa
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    // Kiểm tra số dòng bị ảnh hưởng (xóa thành công sẽ trả về > 0 dòng)
+                    if (rowsAffected > 0)
+                    {
+                        Console.WriteLine("Dữ liệu đã được xóa thành công.");
+                        return true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Không có dữ liệu nào được xóa.");
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // In lỗi ra console nếu có lỗi
+                Console.WriteLine("Lỗi: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                // Đảm bảo đóng kết nối sau khi thực hiện
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        public bool InsertDoanhThu(double tongChiPhi, double tongTien)
+        {
+            string insertDoanhThuSql = "INSERT INTO DOANHTHU (TONGCHIPHI, TONGTIEN) VALUES (@TongChiPhi, @TongTien)";
+            using (SqlCommand cmd = new SqlCommand(insertDoanhThuSql, conn))
+            {
+                cmd.Parameters.AddWithValue("@TongChiPhi", tongChiPhi);
+                cmd.Parameters.AddWithValue("@TongTien", tongTien);
 
                 try
                 {
+                    if (conn.State == System.Data.ConnectionState.Closed)
+                    {
+                        conn.Open();
+                    }
+
                     int rowsAffected = cmd.ExecuteNonQuery();
-                    return rowsAffected > 0;
+                    return rowsAffected > 0; // Trả về true nếu thêm thành công
                 }
-                catch (Exception ex)
+                catch (SqlException ex)
                 {
-                    Console.WriteLine("Error: " + ex.Message);
+                    Console.WriteLine("Lỗi khi thêm doanh thu: " + ex.Message);
+                    return false;
+                }
+                finally
+                {
+                    if (conn.State == System.Data.ConnectionState.Open)
+                    {
+                        conn.Close();
+                    }
                 }
             }
-
-            return false;
         }
 
         public bool AddDrinkToTable(string maBan, string maDouong, string tenDouong, int soLuong, double gia, double chiPhi)

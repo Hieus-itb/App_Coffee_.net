@@ -117,10 +117,6 @@ namespace App_Coffee.controller
             return trangThai;
         }
 
-
-
-
-
         public bool[] Trangthai()
         {
             bool[] trangThaiBans = new bool[6];
@@ -154,24 +150,50 @@ namespace App_Coffee.controller
 
         public bool UpdateBanStatus(string maBan, string trangThai)
         {
+            // Kiểm tra giá trị trạng thái hợp lệ
             if (trangThai != "Trống" && trangThai != "Đã đặt")
             {
                 Console.WriteLine("Giá trị trạng thái không hợp lệ: " + trangThai);
                 return false;
             }
+
             try
             {
+                // Đảm bảo kết nối đã được mở
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+
+                // Chuẩn bị câu lệnh SQL để cập nhật trạng thái bàn
                 string sql = "UPDATE BAN SET TRANGTHAI = @trangThai WHERE MABAN = @maBan";
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@trangThai", trangThai);
-                cmd.Parameters.AddWithValue("@maBan", maBan);
-                int rowsAffected = cmd.ExecuteNonQuery();
-                return rowsAffected > 0;
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    // Thêm tham số vào câu lệnh SQL
+                    cmd.Parameters.AddWithValue("@trangThai", trangThai);
+                    cmd.Parameters.AddWithValue("@maBan", maBan);
+
+                    // Thực thi câu lệnh và lấy số dòng bị ảnh hưởng
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    // Trả về true nếu có ít nhất một dòng bị ảnh hưởng
+                    return rowsAffected > 0;
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                // Xử lý lỗi và in thông báo
+                Console.WriteLine("Lỗi: " + ex.Message);
                 return false;
+            }
+            finally
+            {
+                // Đảm bảo đóng kết nối nếu nó đang mở
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
             }
         }
 
@@ -179,22 +201,46 @@ namespace App_Coffee.controller
         {
             string tenBan = "";
             string sql = "SELECT TENBAN FROM BAN WHERE MABAN = @id";
+
             try
             {
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@id", id);
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
+                // Kiểm tra và mở kết nối nếu chưa mở
+                if (conn.State != ConnectionState.Open)
                 {
-                    tenBan = reader["TENBAN"].ToString();
+                    conn.Open();
+                }
+
+                // Thực thi câu lệnh SQL
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+
+                    // Đọc dữ liệu
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            tenBan = reader["TENBAN"].ToString();
+                        }
+                    }
                 }
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine("Lỗi: " + e.Message);
             }
+            finally
+            {
+                // Đảm bảo kết nối sẽ được đóng sau khi sử dụng
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+
             return tenBan;
         }
+
 
         public string GetID(string tenBan)
         {

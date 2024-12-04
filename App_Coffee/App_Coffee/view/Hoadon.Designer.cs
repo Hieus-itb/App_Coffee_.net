@@ -30,12 +30,12 @@
         {
             label1 = new Label();
             label2 = new Label();
-            label3 = new Label();
+            lbBan = new Label();
             label4 = new Label();
-            label5 = new Label();
+            lbNgay = new Label();
             label6 = new Label();
             dataGridView1 = new DataGridView();
-            button1 = new Button();
+            btnThanhtoan = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -58,12 +58,12 @@
             label2.TabIndex = 1;
             label2.Text = "Bàn:";
             // 
-            // label3
+            // lbBan
             // 
-            label3.Location = new Point(120, 84);
-            label3.Name = "label3";
-            label3.Size = new Size(501, 20);
-            label3.TabIndex = 2;
+            lbBan.Location = new Point(120, 84);
+            lbBan.Name = "lbBan";
+            lbBan.Size = new Size(501, 20);
+            lbBan.TabIndex = 2;
             // 
             // label4
             // 
@@ -74,12 +74,12 @@
             label4.TabIndex = 3;
             label4.Text = "Ngày đặt:";
             // 
-            // label5
+            // lbNgay
             // 
-            label5.Location = new Point(120, 134);
-            label5.Name = "label5";
-            label5.Size = new Size(533, 20);
-            label5.TabIndex = 4;
+            lbNgay.Location = new Point(120, 134);
+            lbNgay.Name = "lbNgay";
+            lbNgay.Size = new Size(533, 20);
+            lbNgay.TabIndex = 4;
             // 
             // label6
             // 
@@ -93,6 +93,7 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(29, 232);
             dataGridView1.Name = "dataGridView1";
@@ -100,26 +101,27 @@
             dataGridView1.Size = new Size(864, 188);
             dataGridView1.TabIndex = 6;
             // 
-            // button1
+            // btnThanhtoan
             // 
-            button1.Location = new Point(799, 451);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 7;
-            button1.Text = "Thanh toán";
-            button1.UseVisualStyleBackColor = true;
+            btnThanhtoan.Location = new Point(799, 451);
+            btnThanhtoan.Name = "btnThanhtoan";
+            btnThanhtoan.Size = new Size(94, 29);
+            btnThanhtoan.TabIndex = 7;
+            btnThanhtoan.Text = "Thanh toán";
+            btnThanhtoan.UseVisualStyleBackColor = true;
+            btnThanhtoan.Click += btnThanhtoan_Click;
             // 
             // Hoadon
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(935, 514);
-            Controls.Add(button1);
+            Controls.Add(btnThanhtoan);
             Controls.Add(dataGridView1);
             Controls.Add(label6);
-            Controls.Add(label5);
+            Controls.Add(lbNgay);
             Controls.Add(label4);
-            Controls.Add(label3);
+            Controls.Add(lbBan);
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "Hoadon";
@@ -133,11 +135,11 @@
 
         private Label label1;
         private Label label2;
-        private Label label3;
+        private Label lbBan;
         private Label label4;
-        private Label label5;
+        private Label lbNgay;
         private Label label6;
         private DataGridView dataGridView1;
-        private Button button1;
+        private Button btnThanhtoan;
     }
 }

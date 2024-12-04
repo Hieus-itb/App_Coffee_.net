@@ -1,6 +1,7 @@
 ﻿using App_Coffee.model;
 using App_Coffee.model.App_Coffee.model;
 using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Security.Cryptography;
 using System.Text;
@@ -15,33 +16,31 @@ namespace App_Coffee.Controller
         {
             conn = Connection.GetInstance().GetConnection();
         }
-        public bool addAccount(string username, string password, string chucvu)
+        public bool AddAccount(string taikhoan, string matkhau, int idNhansu, string chucvu)
         {
-            string sql = "INSERT INTO ACCOUNT (TAIKHOAN, MATKHAU, CHUC_VU) VALUES (@username, @password, @chucvu)";
-
             try
             {
-                using (SqlCommand command = new SqlCommand(sql, conn))
+                string sql = "INSERT INTO ACCOUNT(TAIKHOAN, MATKHAU, ID_NHAN_SU, CHUC_VU) VALUES (@TaiKhoan, @MatKhau, @IdNhanSu, @ChucVu)";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    // Băm mật khẩu trước khi lưu vào cơ sở dữ liệu
-                    string hashedPassword = HashPassword(password); // Mã hóa mật khẩu
+                    // Thêm tham số vào câu lệnh SQL
+                    cmd.Parameters.AddWithValue("@TaiKhoan", taikhoan);
+                    cmd.Parameters.AddWithValue("@MatKhau", matkhau);
+                    cmd.Parameters.AddWithValue("@IdNhanSu", idNhansu);
+                    cmd.Parameters.AddWithValue("@ChucVu", chucvu);
 
-                    // Thêm tham số để tránh SQL Injection
-                    command.Parameters.AddWithValue("@username", username);
-                    command.Parameters.AddWithValue("@password", hashedPassword); // Lưu mật khẩu đã băm
-                    command.Parameters.AddWithValue("@chucvu", chucvu);
+                    // Mở kết nối, thực thi câu lệnh và trả về kết quả
+                    conn.Open();
+                    int rowAffected = cmd.ExecuteNonQuery();
+                    conn.Close();
 
-                    // Thực thi câu lệnh
-                    int rowsAffected = command.ExecuteNonQuery();
-
-                    // Kiểm tra xem có hàng nào được thêm hay không
-                    return rowsAffected > 0;
+                    // Kiểm tra xem có bản ghi nào được thêm vào không
+                    return rowAffected > 0;
                 }
             }
-            catch (Exception ex)
+            catch (SqlException e)
             {
-                // Ghi log hoặc xử lý ngoại lệ
-                Console.WriteLine("Lỗi khi thêm tài khoản: " + ex.Message);
+                Console.WriteLine("Error: " + e.Message);
                 return false;
             }
         }
@@ -77,6 +76,33 @@ namespace App_Coffee.Controller
             return false; // Đăng nhập thất bại
         }
 
+        public bool CheckAccountExists(string taikhoan)
+        {
+            string sql = "SELECT COUNT(*) FROM ACCOUNT WHERE Taikhoan = @Taikhoan";
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Taikhoan", taikhoan);
+                    conn.Open();
+                    int count = (int)cmd.ExecuteScalar();
+                    conn.Close();
+                    return count > 0; // Nếu count > 0 thì tài khoản đã tồn tại
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+        }
 
 
         public bool IsAdmin(string username)

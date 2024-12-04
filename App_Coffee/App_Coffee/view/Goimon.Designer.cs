@@ -323,6 +323,7 @@
             btnXoa.TabIndex = 7;
             btnXoa.Text = "Xóa";
             btnXoa.UseVisualStyleBackColor = true;
+            btnXoa.Click += btnXoa_Click;
             // 
             // label3
             // 
@@ -343,6 +344,7 @@
             dataGridView2.RowHeadersWidth = 51;
             dataGridView2.Size = new Size(624, 188);
             dataGridView2.TabIndex = 9;
+            dataGridView2.CellClick += dataGridView2_CellClick;
             // 
             // btnThanhtoan
             // 

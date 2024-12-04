@@ -1,4 +1,6 @@
-﻿using App_Coffee.Controller;
+﻿using App_Coffee.controller;
+using App_Coffee.Controller;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,10 +16,12 @@ namespace App_Coffee.view
     public partial class Dangky : Form
     {
         private Accountcontroller accountController;
+        private nhansucontroller Nhansucontroller;
         public Dangky()
         {
             InitializeComponent();
             accountController = new Accountcontroller();
+            Nhansucontroller = new nhansucontroller();
             lbCaptcha.Text = GenerateCaptcha();
         }
         private string GenerateCaptcha()
@@ -32,8 +36,14 @@ namespace App_Coffee.view
             string taikhoan = txtTaikhoan.Text.Trim();
             string matkhau = txtMatkhau.Text.Trim();
             string nhaplai = txtNhaplai.Text.Trim();
+            string hoten = txtHoten.Text.Trim();
+            string quequan = txtQuequan.Text.Trim();
+            string gioitinh = txtGioitinh.Text.Trim();
+            int namsinh = Convert.ToInt32(txtNamsinh.Text.Trim());
+            string sdt = txtSdt.Text.Trim();
             string captcha = txtCaptcha.Text.Trim();
             string role = cbRole.Text.Trim();
+
             // Kiểm tra các trường đầu vào
             if (string.IsNullOrEmpty(taikhoan))
             {
@@ -85,22 +95,28 @@ namespace App_Coffee.view
                 return;
             }
 
-            // Thêm tài khoản vào hệ thống
-            bool add = accountController.addAccount(taikhoan, matkhau, role);
-            if (add)
+            // Tạo đối tượng nhân viên mới
+            Nhansumodel model = new Nhansumodel(0, hoten, gioitinh, namsinh, role, quequan, sdt);
+
+            // Thêm nhân viên vào cơ sở dữ liệu
+            bool addEmployee = Nhansucontroller.AddEmployee(model, taikhoan, matkhau, role );
+            if (addEmployee)
             {
-                MessageBox.Show("Thêm tài khoản thành công!");
+                MessageBox.Show("Thêm nhân viên thành công!");
             }
             else
             {
-                MessageBox.Show("Thêm tài khoản thất bại!");
+                MessageBox.Show("Thêm nhân viên thất bại!");
+                return;
             }
+            MessageBox.Show("Thêm tài khoản thành công!");
         }
+
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Dangnhap frm = new Dangnhap(); 
+            Dangnhap frm = new Dangnhap();
             frm.ShowDialog();
         }
     }

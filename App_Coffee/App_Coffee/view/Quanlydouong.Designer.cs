@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            btnDouong = new Button();
             btnDangxuat = new Button();
             btnNhanvien = new Button();
             btnDoanhthu = new Button();
             btnDatmon = new Button();
             btnDatban = new Button();
             txtUser = new Label();
-            btnDouong = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -52,6 +52,15 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(259, 639);
             panel1.TabIndex = 2;
+            // 
+            // btnDouong
+            // 
+            btnDouong.Location = new Point(0, 446);
+            btnDouong.Name = "btnDouong";
+            btnDouong.Size = new Size(259, 61);
+            btnDouong.TabIndex = 6;
+            btnDouong.Text = "Đồ uống";
+            btnDouong.UseVisualStyleBackColor = true;
             // 
             // btnDangxuat
             // 
@@ -107,20 +116,11 @@
             txtUser.TabIndex = 0;
             txtUser.Text = "Name";
             // 
-            // btnDouong
-            // 
-            btnDouong.Location = new Point(0, 446);
-            btnDouong.Name = "btnDouong";
-            btnDouong.Size = new Size(259, 61);
-            btnDouong.TabIndex = 6;
-            btnDouong.Text = "Đồ uống";
-            btnDouong.UseVisualStyleBackColor = true;
-            // 
             // Quanlydouong
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(970, 649);
+            ClientSize = new Size(1140, 649);
             Controls.Add(panel1);
             Name = "Quanlydouong";
             Text = "Form1";

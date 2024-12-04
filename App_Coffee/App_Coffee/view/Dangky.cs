@@ -103,19 +103,22 @@ namespace App_Coffee.view
             if (addEmployee)
             {
                 MessageBox.Show("Thêm nhân viên thành công!");
+                this.Close();
+                Dangnhap frm = new Dangnhap();
+                frm.Show();
             }
             else
             {
                 MessageBox.Show("Thêm nhân viên thất bại!");
                 return;
             }
-            MessageBox.Show("Thêm tài khoản thành công!");
+           
         }
 
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
             Dangnhap frm = new Dangnhap();
             frm.ShowDialog();
         }

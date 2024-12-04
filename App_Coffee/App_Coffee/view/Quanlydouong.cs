@@ -176,8 +176,36 @@ namespace App_Coffee.view
             txtMadouong.Clear();
             txtGia.Clear();
             txtTendouong.Clear();
-            txtChiphinhaplieu.Clear(); 
+            txtChiphinhaplieu.Clear();
             loadDouong();
+        }
+
+        private void btnDatban_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Datban form = new Datban();
+            form.Show();
+        }
+
+        private void btnDatmon_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Goimon form = new Goimon();
+            form.Show();
+        }
+
+        private void btnDoanhthu_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Doanhthu form = new Doanhthu();
+            form.Show();
+        }
+
+        private void btnNhanvien_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            QuanlyNhansu form = new QuanlyNhansu();
+            form.Show();
         }
     }
 }

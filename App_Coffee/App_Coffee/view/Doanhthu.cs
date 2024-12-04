@@ -32,7 +32,7 @@ namespace App_Coffee.view
 
         private void CheckAdminRole()
         {
-            btnNhanvien.Visible = currentUserRole == "Admin";
+            btnNhanvien.Visible = btnDouong.Visible = currentUserRole == "Admin";
         }
 
         // Tải dữ liệu vào DataGridView

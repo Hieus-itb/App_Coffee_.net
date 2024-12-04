@@ -1,45 +1,69 @@
 ﻿using App_Coffee;
-using App_Coffee.model;
 using Model;
 using System;
 using System.Data;
-using System.Data.Common;
 using System.Data.SqlClient;
-namespace Controller
+
+namespace App_Coffee.controller
 {
-    public class Nhansucontroller
+    public class nhansucontroller
     {
         private SqlConnection conn;
-        public Nhansucontroller() 
+        public nhansucontroller()
         {
             conn = Connection.GetInstance().GetConnection();
         }
-        public DataTable getALL()
+
+        private void OpenConnection()
         {
-            try
+            if (conn.State == ConnectionState.Closed)
             {
-                string sql = @"
+                conn.Open();
+            }
+        }
+
+        private void CloseConnection()
+        {
+            if (conn.State == ConnectionState.Open)
+            {
+                conn.Close();
+            }
+        }
+
+        //------------------------QUAN LY NHAN SU---------------------------------------
+        //Không chỉnh sửa thêm
+        public DataTable GetAllNhanSu()
+        {
+            DataTable result = new DataTable();
+            string sql = @"
                 SELECT NS.ID_NHAN_SU, NS.HO_VA_TEN, A.TAIKHOAN, A.MATKHAU, 
                        NS.NAM_SINH, NS.GIOI_TINH, A.CHUC_VU, NS.QUE_QUAN, NS.SO_DIEN_THOAI
                 FROM NHAN_SU NS
                 LEFT JOIN ACCOUNT A ON NS.ID_NHAN_SU = A.ID_NHAN_SU";
 
+            try
+            {
+                OpenConnection();
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                     {
-                        DataTable result = new DataTable();
                         adapter.Fill(result);
-                        return result;
                     }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return null;
+                Console.WriteLine("Lỗi: " + ex.Message);
             }
+            finally
+            {
+                CloseConnection();
+            }
+
+            return result;
         }
+    
         public bool editEmployee(Nhansumodel employee)
         {
             try
@@ -73,26 +97,7 @@ namespace Controller
                 return false;
             }
         }
-        public bool CheckEmployeeExists(int idNhanSu)
-        {
-            string sql = "SELECT COUNT(*) FROM NHAN_SU WHERE ID_NHAN_SU = @ID_NHAN_SU";
-            try
-            {
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
-                {
-                    cmd.Parameters.AddWithValue("@ID_NHAN_SU", idNhanSu);
-                    conn.Open();
-                    int count = (int)cmd.ExecuteScalar();
-                    conn.Close();
-                    return count > 0;
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return false;
-            }
-        }
+
         public bool addEmployee(Nhansumodel nhansumodel)
         {
             try
@@ -123,6 +128,7 @@ namespace Controller
                 return false;
             }
         }
+        
         public bool DeleteEmployee(int id)
         {
             try
@@ -134,7 +140,7 @@ namespace Controller
                 {
                     cmdAccount.Parameters.AddWithValue("@ID", id);
                     conn.Open();
-                    cmdAccount.ExecuteNonQuery();
+                    cmdAccount.ExecuteNonQuery(); 
                     conn.Close();
                 }
 
@@ -142,9 +148,8 @@ namespace Controller
                 {
                     cmdEmployee.Parameters.AddWithValue("@ID", id);
                     conn.Open();
-                    int rowsAffected = cmdEmployee.ExecuteNonQuery();
+                    int rowsAffected = cmdEmployee.ExecuteNonQuery(); 
                     conn.Close();
-
                     return rowsAffected > 0;
                 }
             }
@@ -154,5 +159,55 @@ namespace Controller
                 return false;
             }
         }
+
+        public DataTable SearchNhanSu(string searchTerm)
+        {
+            string sql = "SELECT * FROM NHAN_SU WHERE ID_NHAN_SU LIKE @SearchTerm";
+
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@SearchTerm", "%" + searchTerm + "%");
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable resultTable = new DataTable();
+                    adapter.Fill(resultTable);  
+
+                    return resultTable;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+
+
+        //----------------------------------------------------------------------------------------------
+        //Được chỉnh sửa
+        public bool CheckEmployeeExists(int idNhanSu)
+        {
+            string sql = "SELECT COUNT(*) FROM NHAN_SU WHERE ID_NHAN_SU = @ID_NHAN_SU";
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID_NHAN_SU", idNhanSu);
+                    conn.Open();
+                    int count = (int)cmd.ExecuteScalar();
+                    conn.Close();
+                    return count > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
     }
 }

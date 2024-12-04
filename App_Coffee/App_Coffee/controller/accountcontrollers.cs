@@ -1,5 +1,9 @@
-﻿using System;
+﻿using App_Coffee.model;
+using App_Coffee.model.App_Coffee.model;
+using System;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace App_Coffee.Controller
 {
@@ -14,15 +18,19 @@ namespace App_Coffee.Controller
         public bool addAccount(string username, string password, string chucvu)
         {
             string sql = "INSERT INTO ACCOUNT (TAIKHOAN, MATKHAU, CHUC_VU) VALUES (@username, @password, @chucvu)";
-           
+
             try
             {
                 using (SqlCommand command = new SqlCommand(sql, conn))
                 {
+                    // Băm mật khẩu trước khi lưu vào cơ sở dữ liệu
+                    string hashedPassword = HashPassword(password); // Mã hóa mật khẩu
+
                     // Thêm tham số để tránh SQL Injection
                     command.Parameters.AddWithValue("@username", username);
-                    command.Parameters.AddWithValue("@password", password);
+                    command.Parameters.AddWithValue("@password", hashedPassword); // Lưu mật khẩu đã băm
                     command.Parameters.AddWithValue("@chucvu", chucvu);
+
                     // Thực thi câu lệnh
                     int rowsAffected = command.ExecuteNonQuery();
 
@@ -37,20 +45,26 @@ namespace App_Coffee.Controller
                 return false;
             }
         }
+
         public bool CheckUserCredentials(string username, string password)
         {
             try
             {
-                string sql = "SELECT * FROM ACCOUNT WHERE TAIKHOAN = @taikhoan AND MATKHAU = @matkhau";
+                string sql = "SELECT TAIKHOAN, MATKHAU, CHUC_VU FROM ACCOUNT WHERE TAIKHOAN = @taikhoan AND MATKHAU = @matkhau";
+                string hashedPassword = HashPassword(password);
+
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@taikhoan", username);
-                    cmd.Parameters.AddWithValue("@matkhau", password);
+                    cmd.Parameters.AddWithValue("@matkhau", hashedPassword);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
                         {
+                            // Lưu tên người dùng vào lớp AccountModel
+                            AccountModel.SetLoggedInUser(reader["TAIKHOAN"].ToString());
+
                             return true; // Đăng nhập thành công
                         }
                     }
@@ -62,6 +76,8 @@ namespace App_Coffee.Controller
             }
             return false; // Đăng nhập thất bại
         }
+
+
 
         public bool IsAdmin(string username)
         {
@@ -87,6 +103,33 @@ namespace App_Coffee.Controller
                 Console.WriteLine(ex.Message);
             }
             return false;
+        }
+
+        public static string HashPassword(string password)
+        {
+            if (password == null)
+            {
+                return null;
+            }
+
+            try
+            {
+                using (SHA256 sha256 = SHA256.Create()) // Sử dụng SHA-256 để băm
+                {
+                    byte[] hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password)); // Băm mật khẩu
+                    StringBuilder sb = new StringBuilder();
+                    foreach (byte b in hashedBytes)
+                    {
+                        sb.AppendFormat("{0:x2}", b); // Chuyển đổi byte thành định dạng hex
+                    }
+                    return sb.ToString();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message); // In lỗi nếu có
+                return null;
+            }
         }
 
 

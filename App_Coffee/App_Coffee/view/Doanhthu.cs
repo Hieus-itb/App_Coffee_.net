@@ -1,6 +1,7 @@
 ﻿using App_Coffee.controller;
 using App_Coffee.Controller;
 using App_Coffee.model;
+using App_Coffee.model.App_Coffee.model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,11 +29,32 @@ namespace App_Coffee.view
 
             LoadDataToTable();
             CheckAdminRole();
+            DisplayLoggedInUser();
         }
-
+        private void DisplayLoggedInUser()
+        {
+            string username = AccountModel.LoggedInUsername;  // Lấy tên người dùng từ lớp AccountModel
+            if (!string.IsNullOrEmpty(username))
+            {
+                txtUser.Text = username;  // Hiển thị tên người dùng lên TextBox
+            }
+            else
+            {
+                txtUser.Text = "Chưa đăng nhập";  // Nếu không có tên người dùng, hiển thị thông báo
+            }
+        }
         private void CheckAdminRole()
         {
-            btnNhanvien.Visible = btnDouong.Visible = currentUserRole == "Admin";
+            if (currentUserRole == "Admin")
+            {
+                btnNhanvien.Visible = true;
+                btnDouong.Visible = true;
+            }
+            else
+            {
+                btnNhanvien.Visible = false;
+                btnDouong.Visible = false;
+            }
         }
 
         // Tải dữ liệu vào DataGridView
@@ -42,18 +64,24 @@ namespace App_Coffee.view
             {
                 // Lấy danh sách hóa đơn từ Controller
                 List<HoaDon> hoaDonList = doanhThuController.GetAllHoadon();
-                dataGridView1.DataSource = hoaDonList;
 
-                // Tính tổng và hiển thị
-                float totalChiphi = 0;
-                float totalTien = 0;
-
-                foreach (HoaDon hoaDon in hoaDonList)
+                // Kiểm tra xem danh sách có dữ liệu hay không
+                if (hoaDonList.Count > 0)
                 {
-                    totalChiphi += hoaDon.TongChiPhi;
-                    totalTien += hoaDon.TongTien;
+                    dataGridView1.DataSource = hoaDonList;
+                }
+                else
+                {
+                    MessageBox.Show("Không có dữ liệu để hiển thị.");
                 }
 
+                dataGridView1.DataSource = hoaDonList;
+
+                // Lấy tổng chi phí và tổng tiền từ database thông qua Controller
+                float totalChiphi = doanhThuController.GetTotalChiPhi(); // Cập nhật phương thức GetTotalChiPhi() trong Controller
+                float totalTien = doanhThuController.GetTotalTien(); // Cập nhật phương thức GetTotalTien() trong Controller
+
+                // Hiển thị các thông tin lên UI
                 txtChiphi.Text = totalChiphi.ToString("N2");
                 txtLai.Text = doanhThuController.GetProfit().ToString("N2");
                 txtSodon.Text = doanhThuController.GetInvoiceCount().ToString();
@@ -63,6 +91,8 @@ namespace App_Coffee.view
                 MessageBox.Show($"Lỗi khi tải dữ liệu: {ex.Message}");
             }
         }
+
+
 
         private void btnDangxuat_Click(object sender, EventArgs e)
         {
@@ -91,12 +121,31 @@ namespace App_Coffee.view
 
         private void btnDoanhthu_Click(object sender, EventArgs e)
         {
+            this.Hide();
 
+            QuanlyNhansu ql = new QuanlyNhansu();
+            ql.Show();
         }
 
         private void btnNhanvien_Click(object sender, EventArgs e)
         {
+            this.Hide();
 
+            QuanlyNhansu ql = new QuanlyNhansu();
+            ql.Show();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnDouong_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            Quanlydouong qldu = new Quanlydouong();
+            qldu.Show();
         }
     }
 }

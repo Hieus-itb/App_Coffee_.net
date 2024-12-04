@@ -3,6 +3,7 @@ using System.Data;
 using System.Windows.Forms;
 using App_Coffee.controller;
 using App_Coffee.model;
+using App_Coffee.model.App_Coffee.model;
 //using static Azure.Core.HttpHeader;
 
 
@@ -20,12 +21,28 @@ namespace App_Coffee.view
 
             LoadDataToTable();
             CheckAdminRole();
+            DisplayLoggedInUser();
         }
         private void LoadDataToTable()
         {
             List<Ban> bans = bancontroller.GetAllBan();
             dataGridView1.DataSource = bans;
         }
+
+        private void DisplayLoggedInUser()
+        {
+            string username = AccountModel.LoggedInUsername;  // Lấy tên người dùng từ lớp AccountModel
+            if (!string.IsNullOrEmpty(username))
+            {
+                txtUser.Text = username;  // Hiển thị tên người dùng lên TextBox
+            }
+            else
+            {
+                txtUser.Text = "Chưa đăng nhập";  // Nếu không có tên người dùng, hiển thị thông báo
+            }
+        }
+
+
 
 
         // Kiểm tra quyền admin để hiển thị nút Nhân viên
@@ -130,9 +147,9 @@ namespace App_Coffee.view
 
         private void btnNhanvien_Click(object sender, EventArgs e)
         {
-            //QuanLy ql = new QuanLy();
-            //ql.Show();
-            //this.Hide();
+            QuanlyNhansu ql = new QuanlyNhansu();
+            ql.Show();
+            this.Hide();
         }
 
         private void btnDangxuat_Click(object sender, EventArgs e)

@@ -69,7 +69,7 @@
             btnDouong.TabIndex = 7;
             btnDouong.Text = "Đồ uống";
             btnDouong.UseVisualStyleBackColor = true;
-            btnDouong.Click += btnDouong_Click;
+
             // 
             // btnDangxuat
             // 
@@ -173,6 +173,7 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(57, 80);
             dataGridView1.Name = "dataGridView1";

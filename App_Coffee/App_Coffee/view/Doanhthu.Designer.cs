@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            btnDouong = new Button();
             btnDangxuat = new Button();
             btnNhanvien = new Button();
             btnDoanhthu = new Button();
@@ -45,7 +46,6 @@
             txtLai = new Label();
             label3 = new Label();
             dataGridView1 = new DataGridView();
-            btnDouong = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -66,6 +66,16 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(259, 639);
             panel1.TabIndex = 1;
+            // 
+            // btnDouong
+            // 
+            btnDouong.Location = new Point(0, 444);
+            btnDouong.Name = "btnDouong";
+            btnDouong.Size = new Size(259, 61);
+            btnDouong.TabIndex = 7;
+            btnDouong.Text = "Đồ uống";
+            btnDouong.UseVisualStyleBackColor = true;
+            btnDouong.Click += btnDouong_Click;
             // 
             // btnDangxuat
             // 
@@ -209,21 +219,14 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(306, 165);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(779, 481);
             dataGridView1.TabIndex = 4;
-            // 
-            // btnDouong
-            // 
-            btnDouong.Location = new Point(0, 444);
-            btnDouong.Name = "btnDouong";
-            btnDouong.Size = new Size(259, 61);
-            btnDouong.TabIndex = 7;
-            btnDouong.Text = "Đồ uống";
-            btnDouong.UseVisualStyleBackColor = true;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // Doanhthu
             // 

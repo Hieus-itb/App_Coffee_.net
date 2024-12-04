@@ -1,4 +1,6 @@
-﻿using System;
+﻿using App_Coffee.model;
+using App_Coffee.model.App_Coffee.model;
+using System;
 using System.Data.SqlClient;
 using System.Security.Cryptography;
 using System.Text;
@@ -48,20 +50,21 @@ namespace App_Coffee.Controller
         {
             try
             {
-                string sql = "SELECT * FROM ACCOUNT WHERE TAIKHOAN = @taikhoan AND MATKHAU = @matkhau";
-
-                // Băm mật khẩu trước khi kiểm tra
+                string sql = "SELECT TAIKHOAN, MATKHAU, CHUC_VU FROM ACCOUNT WHERE TAIKHOAN = @taikhoan AND MATKHAU = @matkhau";
                 string hashedPassword = HashPassword(password);
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@taikhoan", username);
-                    cmd.Parameters.AddWithValue("@matkhau", hashedPassword); // Dùng mật khẩu đã băm
+                    cmd.Parameters.AddWithValue("@matkhau", hashedPassword);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
                         {
+                            // Lưu tên người dùng vào lớp AccountModel
+                            AccountModel.SetLoggedInUser(reader["TAIKHOAN"].ToString());
+
                             return true; // Đăng nhập thành công
                         }
                     }
@@ -73,6 +76,7 @@ namespace App_Coffee.Controller
             }
             return false; // Đăng nhập thất bại
         }
+
 
 
         public bool IsAdmin(string username)

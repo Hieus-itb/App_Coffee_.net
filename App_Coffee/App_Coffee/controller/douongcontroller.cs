@@ -1,4 +1,5 @@
 ﻿using App_Coffee.model;
+using System.Collections.Specialized;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -107,50 +108,82 @@ namespace App_Coffee.controller
                     }
                 }
             }
+            
         }
 
+
         // Lấy tất cả đồ uống
+        
+
         public List<Douong> GetAllDouong()
         {
             List<Douong> douongs = new List<Douong>();
             string query = "SELECT * FROM DOUONG";
 
-            try
+            using (SqlCommand cmd = new SqlCommand(query, conn))
             {
-                // Mở kết nối
-                conn.Open();
-
-                // Dùng using để đảm bảo SqlDataReader được đóng tự động
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                try
                 {
-                    while (reader.Read())
+                    // Đảm bảo kết nối được mở một lần
+                    if (conn.State == ConnectionState.Closed)
                     {
-                        Douong u = new Douong
+                        conn.Open();
+                    }
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
                         {
-                            MaDouong = reader["MaDouong"].ToString(),
-                            TenDouong = reader["TenDouong"].ToString(),
-                            Chiphi = Convert.ToSingle(reader["Gia"]),
-                            Gia = Convert.ToSingle(reader["Chiphi"])
-                        };
-                        // Thêm vào danh sách
-                        douongs.Add(u);
+                            Douong douong = new Douong
+                            {
+                                MaDouong = reader["MaDouong"].ToString(),
+                                TenDouong = reader["TenDouong"].ToString(),
+                                Gia = reader["Gia"] != DBNull.Value && double.TryParse(reader["Gia"].ToString(), out double gia) ? gia : 0,
+                                Chiphi = reader["Chiphi"] != DBNull.Value && double.TryParse(reader["Chiphi"].ToString(), out double chiphi) ? chiphi : 0
+                            };
+
+                            douongs.Add(douong);
+                        }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Lỗi: " + ex.Message);
-            }
-            finally
-            {
-                if (conn.State == ConnectionState.Open)
+                catch (Exception ex)
                 {
-                    conn.Close();
+                    Console.WriteLine("Lỗi: " + ex.Message);
+                }
+                finally
+                {
+                    if (conn.State == ConnectionState.Open)
+                    {
+                        conn.Close();
+                    }
                 }
             }
 
             return douongs;
         }
+        public bool IsDouongExists(string maDouong)
+        {
+            try
+            {
+                string query = "SELECT COUNT(*) FROM Douong WHERE MaDouong = @MaDouong";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@MaDouong", maDouong);
+
+                    conn.Open();
+                    int count = (int)cmd.ExecuteScalar();
+                    conn.Close();
+
+                    return count > 0; // Nếu có ít nhất 1 món có Mã Đồ Uống này, trả về true (tồn tại)
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi kiểm tra món: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
     }
 }

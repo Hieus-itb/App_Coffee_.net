@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            btnDouong = new Button();
             btnDangxuat = new Button();
             btnNhanvien = new Button();
             btnDoanhthu = new Button();
@@ -56,7 +57,6 @@
             label3 = new Label();
             dataGridView2 = new DataGridView();
             btnThanhtoan = new Button();
-            btnDouong = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -76,6 +76,15 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(259, 639);
             panel1.TabIndex = 2;
+            // 
+            // btnDouong
+            // 
+            btnDouong.Location = new Point(0, 443);
+            btnDouong.Name = "btnDouong";
+            btnDouong.Size = new Size(259, 61);
+            btnDouong.TabIndex = 11;
+            btnDouong.Text = "Đồ uống";
+            btnDouong.UseVisualStyleBackColor = true;
             // 
             // btnDangxuat
             // 
@@ -281,15 +290,16 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(282, 64);
+            dataGridView1.Location = new Point(282, 66);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(384, 188);
+            dataGridView1.Size = new Size(491, 188);
             dataGridView1.TabIndex = 5;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // btnThem
             // 
-            btnThem.Location = new Point(734, 116);
+            btnThem.Location = new Point(812, 105);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(94, 29);
             btnThem.TabIndex = 6;
@@ -298,7 +308,7 @@
             // 
             // btnXoa
             // 
-            btnXoa.Location = new Point(734, 188);
+            btnXoa.Location = new Point(812, 198);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(94, 29);
             btnXoa.TabIndex = 7;
@@ -332,15 +342,6 @@
             btnThanhtoan.TabIndex = 10;
             btnThanhtoan.Text = "Thanh Toán";
             btnThanhtoan.UseVisualStyleBackColor = true;
-            // 
-            // btnDouong
-            // 
-            btnDouong.Location = new Point(0, 443);
-            btnDouong.Name = "btnDouong";
-            btnDouong.Size = new Size(259, 61);
-            btnDouong.TabIndex = 11;
-            btnDouong.Text = "Đồ uống";
-            btnDouong.UseVisualStyleBackColor = true;
             // 
             // Goimon
             // 

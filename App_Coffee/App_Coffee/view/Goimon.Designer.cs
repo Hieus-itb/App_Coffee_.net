@@ -36,6 +36,7 @@
             btnDatban = new Button();
             txtUser = new Label();
             panel2 = new Panel();
+            label1 = new Label();
             lbBan6 = new Label();
             lbBan5 = new Label();
             lbBan4 = new Label();
@@ -48,7 +49,6 @@
             btnBan3 = new Button();
             btnBan2 = new Button();
             btnBan1 = new Button();
-            label1 = new Label();
             label2 = new Label();
             dataGridView1 = new DataGridView();
             btnThem = new Button();
@@ -56,6 +56,7 @@
             label3 = new Label();
             dataGridView2 = new DataGridView();
             btnThanhtoan = new Button();
+            btnDouong = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -64,6 +65,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(btnDouong);
             panel1.Controls.Add(btnDangxuat);
             panel1.Controls.Add(btnNhanvien);
             panel1.Controls.Add(btnDoanhthu);
@@ -148,6 +150,15 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(296, 638);
             panel2.TabIndex = 3;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(22, 508);
+            label1.Name = "label1";
+            label1.Size = new Size(239, 60);
+            label1.TabIndex = 12;
+            label1.Text = "Lưu ý:\r\n+ Chữ xanh: Bàn hiện đang trống.\r\n+ Chữ đỏ: Bàn hiện đang có người.\r\n";
             // 
             // lbBan6
             // 
@@ -257,15 +268,6 @@
             btnBan1.TabIndex = 0;
             btnBan1.UseVisualStyleBackColor = true;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(22, 508);
-            label1.Name = "label1";
-            label1.Size = new Size(239, 60);
-            label1.TabIndex = 12;
-            label1.Text = "Lưu ý:\r\n+ Chữ xanh: Bàn hiện đang trống.\r\n+ Chữ đỏ: Bàn hiện đang có người.\r\n";
-            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -331,6 +333,15 @@
             btnThanhtoan.Text = "Thanh Toán";
             btnThanhtoan.UseVisualStyleBackColor = true;
             // 
+            // btnDouong
+            // 
+            btnDouong.Location = new Point(0, 443);
+            btnDouong.Name = "btnDouong";
+            btnDouong.Size = new Size(259, 61);
+            btnDouong.TabIndex = 11;
+            btnDouong.Text = "Đồ uống";
+            btnDouong.UseVisualStyleBackColor = true;
+            // 
             // Goimon
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -387,5 +398,6 @@
         private Label label3;
         private DataGridView dataGridView2;
         private Button btnThanhtoan;
+        private Button btnDouong;
     }
 }

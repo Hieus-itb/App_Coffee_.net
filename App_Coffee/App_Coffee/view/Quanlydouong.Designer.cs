@@ -1,6 +1,6 @@
 ﻿namespace App_Coffee.view
 {
-    partial class Datban
+    partial class Quanlydouong
     {
         /// <summary>
         /// Required designer variable.
@@ -35,15 +35,8 @@
             btnDatmon = new Button();
             btnDatban = new Button();
             txtUser = new Label();
-            panel2 = new Panel();
-            btnHuy = new Button();
-            btnDat = new Button();
-            label1 = new Label();
-            dataGridView1 = new DataGridView();
             btnDouong = new Button();
             panel1.SuspendLayout();
-            panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -55,11 +48,10 @@
             panel1.Controls.Add(btnDatmon);
             panel1.Controls.Add(btnDatban);
             panel1.Controls.Add(txtUser);
-            panel1.Location = new Point(12, 12);
+            panel1.Location = new Point(3, -2);
             panel1.Name = "panel1";
             panel1.Size = new Size(259, 639);
-            panel1.TabIndex = 0;
-            panel1.Paint += panel1_Paint;
+            panel1.TabIndex = 2;
             // 
             // btnDangxuat
             // 
@@ -69,7 +61,6 @@
             btnDangxuat.TabIndex = 5;
             btnDangxuat.Text = "Đăng xuất";
             btnDangxuat.UseVisualStyleBackColor = true;
-            btnDangxuat.Click += btnDangxuat_Click;
             // 
             // btnNhanvien
             // 
@@ -79,7 +70,6 @@
             btnNhanvien.TabIndex = 4;
             btnNhanvien.Text = "Nhân viên";
             btnNhanvien.UseVisualStyleBackColor = true;
-            btnNhanvien.Click += btnNhanvien_Click;
             // 
             // btnDoanhthu
             // 
@@ -89,7 +79,6 @@
             btnDoanhthu.TabIndex = 3;
             btnDoanhthu.Text = "Doanh thu";
             btnDoanhthu.UseVisualStyleBackColor = true;
-            btnDoanhthu.Click += btnDoanhthu_Click;
             // 
             // btnDatmon
             // 
@@ -99,7 +88,6 @@
             btnDatmon.TabIndex = 2;
             btnDatmon.Text = "Đặt món";
             btnDatmon.UseVisualStyleBackColor = true;
-            btnDatmon.Click += btnDatmon_Click;
             // 
             // btnDatban
             // 
@@ -109,7 +97,6 @@
             btnDatban.TabIndex = 1;
             btnDatban.Text = "Đặt bàn";
             btnDatban.UseVisualStyleBackColor = true;
-            btnDatban.Click += btnDatban_Click;
             // 
             // txtUser
             // 
@@ -120,97 +107,37 @@
             txtUser.TabIndex = 0;
             txtUser.Text = "Name";
             // 
-            // panel2
-            // 
-            panel2.Controls.Add(btnHuy);
-            panel2.Controls.Add(btnDat);
-            panel2.Controls.Add(label1);
-            panel2.Controls.Add(dataGridView1);
-            panel2.Location = new Point(277, 12);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(923, 639);
-            panel2.TabIndex = 1;
-            // 
-            // btnHuy
-            // 
-            btnHuy.Location = new Point(778, 179);
-            btnHuy.Name = "btnHuy";
-            btnHuy.Size = new Size(114, 43);
-            btnHuy.TabIndex = 3;
-            btnHuy.Text = "Hủy bàn";
-            btnHuy.UseVisualStyleBackColor = true;
-            btnHuy.Click += btnHuy_Click;
-            // 
-            // btnDat
-            // 
-            btnDat.Location = new Point(778, 103);
-            btnDat.Name = "btnDat";
-            btnDat.Size = new Size(114, 54);
-            btnDat.TabIndex = 2;
-            btnDat.Text = "Đặt bàn";
-            btnDat.UseVisualStyleBackColor = true;
-            btnDat.Click += btnDat_Click;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(394, 19);
-            label1.Name = "label1";
-            label1.Size = new Size(108, 41);
-            label1.TabIndex = 1;
-            label1.Text = "Coffee";
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(57, 80);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(679, 514);
-            dataGridView1.TabIndex = 0;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            // 
             // btnDouong
             // 
             btnDouong.Location = new Point(0, 446);
             btnDouong.Name = "btnDouong";
             btnDouong.Size = new Size(259, 61);
-            btnDouong.TabIndex = 7;
+            btnDouong.TabIndex = 6;
             btnDouong.Text = "Đồ uống";
             btnDouong.UseVisualStyleBackColor = true;
             // 
-            // Datban
+            // Quanlydouong
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1203, 663);
-            Controls.Add(panel2);
+            ClientSize = new Size(970, 649);
             Controls.Add(panel1);
-            Name = "Datban";
+            Name = "Quanlydouong";
             Text = "Form1";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel panel1;
-        private Button btnDatban;
-        private Label txtUser;
+        private Button btnDouong;
+        private Button btnDangxuat;
         private Button btnNhanvien;
         private Button btnDoanhthu;
         private Button btnDatmon;
-        private Button btnDangxuat;
-        private Panel panel2;
-        private Button btnHuy;
-        private Button btnDat;
-        private Label label1;
-        private DataGridView dataGridView1;
-        private Button btnDouong;
+        private Button btnDatban;
+        private Label txtUser;
     }
 }

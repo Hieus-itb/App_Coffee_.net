@@ -60,12 +60,14 @@
             btnXoa = new Button();
             btnLuu = new Button();
             btnKLuu = new Button();
+            btnDouong = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.Controls.Add(btnDouong);
             panel1.Controls.Add(btnDangxuat);
             panel1.Controls.Add(btnNhanvien);
             panel1.Controls.Add(btnDoanhthu);
@@ -339,6 +341,15 @@
             btnKLuu.Text = "Không Lưu";
             btnKLuu.UseVisualStyleBackColor = true;
             // 
+            // btnDouong
+            // 
+            btnDouong.Location = new Point(0, 445);
+            btnDouong.Name = "btnDouong";
+            btnDouong.Size = new Size(259, 61);
+            btnDouong.TabIndex = 7;
+            btnDouong.Text = "Đồ uống";
+            btnDouong.UseVisualStyleBackColor = true;
+            // 
             // QuanlyNhansu
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -413,5 +424,6 @@
         private Button btnXoa;
         private Button btnLuu;
         private Button btnKLuu;
+        private Button btnDouong;
     }
 }

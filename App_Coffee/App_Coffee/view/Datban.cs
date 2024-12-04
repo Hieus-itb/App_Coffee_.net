@@ -34,10 +34,12 @@ namespace App_Coffee.view
             if (currentUserRole == "Admin")
             {
                 btnNhanvien.Visible = true;
+                btnDouong.Visible = true;
             }
             else
             {
                 btnNhanvien.Visible = false;
+                btnDouong.Visible = false; 
             }
         }
 

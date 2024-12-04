@@ -8,5 +8,9 @@ namespace App_Coffee.controller
 {
     internal class Douongcontroller
     {
+        public Douongcontroller() 
+        {
+
+        }
     }
 }

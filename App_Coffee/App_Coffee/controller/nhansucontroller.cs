@@ -40,6 +40,39 @@ namespace Controller
                 return null;
             }
         }
+        public bool editEmployee(Nhansumodel employee)
+        {
+            try
+            {
+                string sql = @"
+                UPDATE NHAN_SU 
+                SET HO_VA_TEN = @HO_VA_TEN, GIOI_TINH = @GIOI_TINH, NAM_SINH = @NAM_SINH, 
+                    CHUC_VU = @CHUC_VU, QUE_QUAN = @QUE_QUAN, SO_DIEN_THOAI = @SO_DIEN_THOAI 
+                WHERE ID_NHAN_SU = @ID_NHAN_SU";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@HO_VA_TEN", employee.HoVaTen);
+                    cmd.Parameters.AddWithValue("@GIOI_TINH", employee.GioiTinh);
+                    cmd.Parameters.AddWithValue("@NAM_SINH", employee.NamSinh);
+                    cmd.Parameters.AddWithValue("@CHUC_VU", employee.ChucVu);
+                    cmd.Parameters.AddWithValue("@QUE_QUAN", employee.QueQuan);
+                    cmd.Parameters.AddWithValue("@SO_DIEN_THOAI", employee.SoDienThoai);
+                    cmd.Parameters.AddWithValue("@ID_NHAN_SU", employee.Id);
+
+                    conn.Open();
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    conn.Close();
+
+                    return rowsAffected > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
         public bool CheckEmployeeExists(int idNhanSu)
         {
             string sql = "SELECT COUNT(*) FROM NHAN_SU WHERE ID_NHAN_SU = @ID_NHAN_SU";

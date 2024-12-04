@@ -45,6 +45,7 @@
             txtLai = new Label();
             label3 = new Label();
             dataGridView1 = new DataGridView();
+            btnDouong = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -54,6 +55,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(btnDouong);
             panel1.Controls.Add(btnDangxuat);
             panel1.Controls.Add(btnNhanvien);
             panel1.Controls.Add(btnDoanhthu);
@@ -214,6 +216,15 @@
             dataGridView1.Size = new Size(779, 481);
             dataGridView1.TabIndex = 4;
             // 
+            // btnDouong
+            // 
+            btnDouong.Location = new Point(0, 444);
+            btnDouong.Name = "btnDouong";
+            btnDouong.Size = new Size(259, 61);
+            btnDouong.TabIndex = 7;
+            btnDouong.Text = "Đồ uống";
+            btnDouong.UseVisualStyleBackColor = true;
+            // 
             // Doanhthu
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -257,5 +268,6 @@
         private Label txtChiphi;
         private Label txtLai;
         private Label label3;
+        private Button btnDouong;
     }
 }

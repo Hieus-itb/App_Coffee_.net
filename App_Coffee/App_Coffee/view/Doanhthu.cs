@@ -57,41 +57,32 @@ namespace App_Coffee.view
             }
         }
 
-        // Tải dữ liệu vào DataGridView
         private void LoadDataToTable()
         {
             try
             {
-                // Lấy danh sách hóa đơn từ Controller
                 List<HoaDon> hoaDonList = doanhThuController.GetAllHoadon();
 
-                // Kiểm tra xem danh sách có dữ liệu hay không
                 if (hoaDonList.Count > 0)
                 {
                     dataGridView1.DataSource = hoaDonList;
                 }
-                else
-                {
-                    MessageBox.Show("Không có dữ liệu để hiển thị.");
-                }
+                
 
-                dataGridView1.DataSource = hoaDonList;
+                float totalChiphi = doanhThuController.GetTotalChiPhi();
+                float totalTien = doanhThuController.GetTotalTien();
+                float profit = doanhThuController.GetProfit();
 
-                // Lấy tổng chi phí và tổng tiền từ database thông qua Controller
-                float totalChiphi = doanhThuController.GetTotalChiPhi(); // Cập nhật phương thức GetTotalChiPhi() trong Controller
-                float totalTien = doanhThuController.GetTotalTien(); // Cập nhật phương thức GetTotalTien() trong Controller
 
-                // Hiển thị các thông tin lên UI
                 txtChiphi.Text = totalChiphi.ToString("N2");
-                txtLai.Text = doanhThuController.GetProfit().ToString("N2");
+                txtLai.Text = profit.ToString("N2");
                 txtSodon.Text = doanhThuController.GetInvoiceCount().ToString();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Lỗi khi tải dữ liệu: {ex.Message}");
+                MessageBox.Show($"Lỗi khi tải dữ liệu: {ex.Message}", "Lỗi");
             }
         }
-
 
 
         private void btnDangxuat_Click(object sender, EventArgs e)

@@ -37,22 +37,22 @@
             btnDatban = new Button();
             txtUser = new Label();
             label1 = new Label();
-            dataGridView1 = new DataGridView();
+            dataGridViewDouong = new DataGridView();
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
+            txtMadouong = new TextBox();
+            txtTendouong = new TextBox();
+            txtGia = new TextBox();
             btnThem = new Button();
             btnSua = new Button();
             btnXoa = new Button();
             btnLuu = new Button();
             btnKluu = new Button();
             label5 = new Label();
-            textBox4 = new TextBox();
+            txtChiphinhaplieu = new TextBox();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewDouong).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -142,13 +142,15 @@
             label1.TabIndex = 3;
             label1.Text = "DANH SÁCH ĐỒ UỐNG";
             // 
-            // dataGridView1
+            // dataGridViewDouong
             // 
-            dataGridView1.Location = new Point(316, 329);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(668, 203);
-            dataGridView1.TabIndex = 4;
+            dataGridViewDouong.ColumnHeadersHeight = 29;
+            dataGridViewDouong.Location = new Point(316, 329);
+            dataGridViewDouong.Name = "dataGridViewDouong";
+            dataGridViewDouong.RowHeadersWidth = 51;
+            dataGridViewDouong.Size = new Size(668, 203);
+            dataGridViewDouong.TabIndex = 4;
+            dataGridViewDouong.CellClick += dataGridViewDouong_CellClick;
             // 
             // label2
             // 
@@ -177,26 +179,26 @@
             label4.TabIndex = 7;
             label4.Text = "Giá bán: ";
             // 
-            // textBox1
+            // txtMadouong
             // 
-            textBox1.Location = new Point(415, 124);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(44, 27);
-            textBox1.TabIndex = 8;
+            txtMadouong.Location = new Point(415, 124);
+            txtMadouong.Name = "txtMadouong";
+            txtMadouong.Size = new Size(44, 27);
+            txtMadouong.TabIndex = 8;
             // 
-            // textBox2
+            // txtTendouong
             // 
-            textBox2.Location = new Point(415, 187);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(328, 27);
-            textBox2.TabIndex = 9;
+            txtTendouong.Location = new Point(415, 187);
+            txtTendouong.Name = "txtTendouong";
+            txtTendouong.Size = new Size(328, 27);
+            txtTendouong.TabIndex = 9;
             // 
-            // textBox3
+            // txtGia
             // 
-            textBox3.Location = new Point(415, 234);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(163, 27);
-            textBox3.TabIndex = 10;
+            txtGia.Location = new Point(415, 234);
+            txtGia.Name = "txtGia";
+            txtGia.Size = new Size(163, 27);
+            txtGia.TabIndex = 10;
             // 
             // btnThem
             // 
@@ -206,6 +208,7 @@
             btnThem.TabIndex = 11;
             btnThem.Text = "Thêm món";
             btnThem.UseVisualStyleBackColor = true;
+            btnThem.Click += btnThem_Click;
             // 
             // btnSua
             // 
@@ -215,6 +218,7 @@
             btnSua.TabIndex = 12;
             btnSua.Text = "Sửa món";
             btnSua.UseVisualStyleBackColor = true;
+            btnSua.Click += btnSua_Click;
             // 
             // btnXoa
             // 
@@ -224,6 +228,7 @@
             btnXoa.TabIndex = 13;
             btnXoa.Text = "Xóa món";
             btnXoa.UseVisualStyleBackColor = true;
+            btnXoa.Click += btnXoa_Click;
             // 
             // btnLuu
             // 
@@ -233,6 +238,7 @@
             btnLuu.TabIndex = 14;
             btnLuu.Text = "Lưu";
             btnLuu.UseVisualStyleBackColor = true;
+            btnLuu.Click += btnLuu_Click;
             // 
             // btnKluu
             // 
@@ -242,6 +248,7 @@
             btnKluu.TabIndex = 15;
             btnKluu.Text = "Không lưu";
             btnKluu.UseVisualStyleBackColor = true;
+            btnKluu.Click += btnKluu_Click;
             // 
             // label5
             // 
@@ -252,39 +259,39 @@
             label5.TabIndex = 16;
             label5.Text = "Giá nhập liệu:";
             // 
-            // textBox4
+            // txtChiphinhaplieu
             // 
-            textBox4.Location = new Point(415, 284);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(163, 27);
-            textBox4.TabIndex = 17;
+            txtChiphinhaplieu.Location = new Point(415, 284);
+            txtChiphinhaplieu.Name = "txtChiphinhaplieu";
+            txtChiphinhaplieu.Size = new Size(163, 27);
+            txtChiphinhaplieu.TabIndex = 17;
             // 
             // Quanlydouong
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1059, 649);
-            Controls.Add(textBox4);
+            Controls.Add(txtChiphinhaplieu);
             Controls.Add(label5);
             Controls.Add(btnKluu);
             Controls.Add(btnLuu);
             Controls.Add(btnXoa);
             Controls.Add(btnSua);
             Controls.Add(btnThem);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(txtGia);
+            Controls.Add(txtTendouong);
+            Controls.Add(txtMadouong);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(dataGridView1);
+            Controls.Add(dataGridViewDouong);
             Controls.Add(label1);
             Controls.Add(panel1);
             Name = "Quanlydouong";
             Text = "Form1";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewDouong).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -300,19 +307,19 @@
         private Button btnDatban;
         private Label txtUser;
         private Label label1;
-        private DataGridView dataGridView1;
+        private DataGridView dataGridViewDouong;
         private Label label2;
         private Label label3;
         private Label label4;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
+        private TextBox txtMadouong;
+        private TextBox txtTendouong;
+        private TextBox txtGia;
         private Button btnThem;
         private Button btnSua;
         private Button btnXoa;
         private Button btnLuu;
         private Button btnKluu;
         private Label label5;
-        private TextBox textBox4;
+        private TextBox txtChiphinhaplieu;
     }
 }

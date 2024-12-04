@@ -77,25 +77,49 @@ namespace App_Coffee.controller
             }
         }
 
-        public string GetTrangThai(string maBan)
+        public bool GetTrangThai(string maBan)
         {
+            bool trangThai = false;
+
+            if (conn.State != ConnectionState.Open)
+            {
+                try
+                {
+                    conn.Open();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi kết nối cơ sở dữ liệu: " + ex.Message);
+                    return false;
+                }
+            }
+
             string sql = "SELECT TRANGTHAI FROM BAN WHERE MABAN = @maBan";
             try
             {
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@maBan", maBan);
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    return reader["TRANGTHAI"].ToString();
+                    if (reader.Read())
+                    {
+                        // So sánh và loại bỏ khoảng trắng thừa nếu có
+                        trangThai = reader["TRANGTHAI"].ToString().Trim() == "Đã đặt";
+                    }
                 }
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                MessageBox.Show("Lỗi truy vấn: " + e.Message);
             }
-            return null;
+
+            return trangThai;
         }
+
+
+
+
 
         public bool[] Trangthai()
         {

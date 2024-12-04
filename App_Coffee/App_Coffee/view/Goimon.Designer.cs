@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            btnDouong = new Button();
             btnDangxuat = new Button();
             btnNhanvien = new Button();
             btnDoanhthu = new Button();
@@ -42,7 +43,7 @@
             lbBan4 = new Label();
             lbBan3 = new Label();
             lbBan2 = new Label();
-            lbBai1 = new Label();
+            lbBan1 = new Label();
             btnBan6 = new Button();
             btnBan5 = new Button();
             btnBan4 = new Button();
@@ -56,7 +57,7 @@
             label3 = new Label();
             dataGridView2 = new DataGridView();
             btnThanhtoan = new Button();
-            btnDouong = new Button();
+            lbThanhtien = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -76,6 +77,15 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(259, 639);
             panel1.TabIndex = 2;
+            // 
+            // btnDouong
+            // 
+            btnDouong.Location = new Point(0, 443);
+            btnDouong.Name = "btnDouong";
+            btnDouong.Size = new Size(259, 61);
+            btnDouong.TabIndex = 11;
+            btnDouong.Text = "Đồ uống";
+            btnDouong.UseVisualStyleBackColor = true;
             // 
             // btnDangxuat
             // 
@@ -139,7 +149,7 @@
             panel2.Controls.Add(lbBan4);
             panel2.Controls.Add(lbBan3);
             panel2.Controls.Add(lbBan2);
-            panel2.Controls.Add(lbBai1);
+            panel2.Controls.Add(lbBan1);
             panel2.Controls.Add(btnBan6);
             panel2.Controls.Add(btnBan5);
             panel2.Controls.Add(btnBan4);
@@ -156,9 +166,9 @@
             label1.AutoSize = true;
             label1.Location = new Point(22, 508);
             label1.Name = "label1";
-            label1.Size = new Size(239, 60);
+            label1.Size = new Size(251, 60);
             label1.TabIndex = 12;
-            label1.Text = "Lưu ý:\r\n+ Chữ xanh: Bàn hiện đang trống.\r\n+ Chữ đỏ: Bàn hiện đang có người.\r\n";
+            label1.Text = "Lưu ý:\r\n+ Chữ xanh: Bàn hiện đang trống.\r\n+ Chữ đỏ   : Bàn hiện đang có người.\r\n";
             // 
             // lbBan6
             // 
@@ -205,14 +215,14 @@
             lbBan2.TabIndex = 7;
             lbBan2.Text = "Bàn 2";
             // 
-            // lbBai1
+            // lbBan1
             // 
-            lbBai1.AutoSize = true;
-            lbBai1.Location = new Point(53, 146);
-            lbBai1.Name = "lbBai1";
-            lbBai1.Size = new Size(46, 20);
-            lbBai1.TabIndex = 6;
-            lbBai1.Text = "Bàn 1";
+            lbBan1.AutoSize = true;
+            lbBan1.Location = new Point(53, 146);
+            lbBan1.Name = "lbBan1";
+            lbBan1.Size = new Size(46, 20);
+            lbBan1.TabIndex = 6;
+            lbBan1.Text = "Bàn 1";
             // 
             // btnBan6
             // 
@@ -222,6 +232,7 @@
             btnBan6.Size = new Size(106, 105);
             btnBan6.TabIndex = 5;
             btnBan6.UseVisualStyleBackColor = true;
+            btnBan6.Click += btnBan6_Click;
             // 
             // btnBan5
             // 
@@ -231,6 +242,7 @@
             btnBan5.Size = new Size(106, 105);
             btnBan5.TabIndex = 4;
             btnBan5.UseVisualStyleBackColor = true;
+            btnBan5.Click += btnBan5_Click;
             // 
             // btnBan4
             // 
@@ -240,6 +252,7 @@
             btnBan4.Size = new Size(106, 105);
             btnBan4.TabIndex = 3;
             btnBan4.UseVisualStyleBackColor = true;
+            btnBan4.Click += btnBan4_Click;
             // 
             // btnBan3
             // 
@@ -249,6 +262,7 @@
             btnBan3.Size = new Size(106, 105);
             btnBan3.TabIndex = 2;
             btnBan3.UseVisualStyleBackColor = true;
+            btnBan3.Click += btnBan3_Click;
             // 
             // btnBan2
             // 
@@ -258,6 +272,7 @@
             btnBan2.Size = new Size(106, 105);
             btnBan2.TabIndex = 1;
             btnBan2.UseVisualStyleBackColor = true;
+            btnBan2.Click += btnBan2_Click;
             // 
             // btnBan1
             // 
@@ -267,6 +282,7 @@
             btnBan1.Size = new Size(106, 105);
             btnBan1.TabIndex = 0;
             btnBan1.UseVisualStyleBackColor = true;
+            btnBan1.Click += btnBan1_Click;
             // 
             // label2
             // 
@@ -280,25 +296,28 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(282, 64);
+            dataGridView1.Location = new Point(282, 66);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(384, 188);
+            dataGridView1.Size = new Size(491, 188);
             dataGridView1.TabIndex = 5;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // btnThem
             // 
-            btnThem.Location = new Point(734, 116);
+            btnThem.Location = new Point(812, 105);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(94, 29);
             btnThem.TabIndex = 6;
             btnThem.Text = "Thêm";
             btnThem.UseVisualStyleBackColor = true;
+            btnThem.Click += btnThem_Click;
             // 
             // btnXoa
             // 
-            btnXoa.Location = new Point(734, 188);
+            btnXoa.Location = new Point(812, 198);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(94, 29);
             btnXoa.TabIndex = 7;
@@ -309,14 +328,15 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(426, 278);
+            label3.Location = new Point(389, 278);
             label3.Name = "label3";
-            label3.Size = new Size(393, 41);
+            label3.Size = new Size(460, 41);
             label3.TabIndex = 8;
-            label3.Text = "DANH SÁCH MÓN ĐÃ GỌI";
+            label3.Text = "DANH SÁCH ĐỒ UỐNG ĐÃ GỌI";
             // 
             // dataGridView2
             // 
+            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Location = new Point(282, 332);
             dataGridView2.Name = "dataGridView2";
@@ -332,21 +352,24 @@
             btnThanhtoan.TabIndex = 10;
             btnThanhtoan.Text = "Thanh Toán";
             btnThanhtoan.UseVisualStyleBackColor = true;
+            btnThanhtoan.Click += btnThanhtoan_Click;
             // 
-            // btnDouong
+            // lbThanhtien
             // 
-            btnDouong.Location = new Point(0, 443);
-            btnDouong.Name = "btnDouong";
-            btnDouong.Size = new Size(259, 61);
-            btnDouong.TabIndex = 11;
-            btnDouong.Text = "Đồ uống";
-            btnDouong.UseVisualStyleBackColor = true;
+            lbThanhtien.AutoSize = true;
+            lbThanhtien.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbThanhtien.ImageAlign = ContentAlignment.TopCenter;
+            lbThanhtien.Location = new Point(296, 561);
+            lbThanhtien.Name = "lbThanhtien";
+            lbThanhtien.Size = new Size(0, 31);
+            lbThanhtien.TabIndex = 11;
             // 
             // Goimon
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1226, 645);
+            Controls.Add(lbThanhtien);
             Controls.Add(btnThanhtoan);
             Controls.Add(dataGridView2);
             Controls.Add(label3);
@@ -383,7 +406,7 @@
         private Label lbBan4;
         private Label lbBan3;
         private Label lbBan2;
-        private Label lbBai1;
+        private Label lbBan1;
         private Button btnBan6;
         private Button btnBan5;
         private Button btnBan4;
@@ -399,5 +422,6 @@
         private DataGridView dataGridView2;
         private Button btnThanhtoan;
         private Button btnDouong;
+        private Label lbThanhtien;
     }
 }

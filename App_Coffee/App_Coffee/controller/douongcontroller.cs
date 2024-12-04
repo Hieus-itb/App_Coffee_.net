@@ -1,4 +1,5 @@
 ﻿using App_Coffee.model;
+using System.Collections.Specialized;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -45,6 +46,42 @@ namespace App_Coffee.controller
                 }
             }
         }
+        //Lấy chi phí
+        public double getChiphi(string maDouong)
+        {
+            string sql = "SELECT CHIPHI FROM DOUONG WHERE MADOUONG = @maDouong";
+            conn.Open();
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
+            {
+                // Thêm tham số @maBan vào câu lệnh SQL
+                cmd.Parameters.AddWithValue("@maDouong", maDouong);
+
+                try
+                {
+                    // Thực thi câu lệnh và lấy giá trị từ cột CHIPHI
+                    object result = cmd.ExecuteScalar();
+
+                    // Nếu result là null hoặc không phải kiểu số, trả về 0
+                    if (result != null && result is decimal)
+                    {
+                        // Chuyển kết quả thành kiểu decimal và sau đó về kiểu double
+                        decimal chiphi = Convert.ToDecimal(result);
+                        return Convert.ToDouble(chiphi); // Trả về chi phí dưới dạng double
+                    }
+                    return 0; // Nếu không có giá trị hoặc giá trị không hợp lệ, trả về 0
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi truy vấn chi phí: " + ex.Message);
+                    return 0; // Trả về 0 nếu có lỗi
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+
 
         // Sửa
         public bool Update(Douong douong)
@@ -107,50 +144,82 @@ namespace App_Coffee.controller
                     }
                 }
             }
+            
         }
 
+
         // Lấy tất cả đồ uống
+        
+
         public List<Douong> GetAllDouong()
         {
             List<Douong> douongs = new List<Douong>();
             string query = "SELECT * FROM DOUONG";
 
-            try
+            using (SqlCommand cmd = new SqlCommand(query, conn))
             {
-                // Mở kết nối
-                conn.Open();
-
-                // Dùng using để đảm bảo SqlDataReader được đóng tự động
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                try
                 {
-                    while (reader.Read())
+                    // Đảm bảo kết nối được mở một lần
+                    if (conn.State == ConnectionState.Closed)
                     {
-                        Douong u = new Douong
+                        conn.Open();
+                    }
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
                         {
-                            MaDouong = reader["MaDouong"].ToString(),
-                            TenDouong = reader["TenDouong"].ToString(),
-                            Chiphi = Convert.ToSingle(reader["Gia"]),
-                            Gia = Convert.ToSingle(reader["Chiphi"])
-                        };
-                        // Thêm vào danh sách
-                        douongs.Add(u);
+                            Douong douong = new Douong
+                            {
+                                MaDouong = reader["MaDouong"].ToString(),
+                                TenDouong = reader["TenDouong"].ToString(),
+                                Gia = reader["Gia"] != DBNull.Value && double.TryParse(reader["Gia"].ToString(), out double gia) ? gia : 0,
+                                Chiphi = reader["Chiphi"] != DBNull.Value && double.TryParse(reader["Chiphi"].ToString(), out double chiphi) ? chiphi : 0
+                            };
+
+                            douongs.Add(douong);
+                        }
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Lỗi: " + ex.Message);
-            }
-            finally
-            {
-                if (conn.State == ConnectionState.Open)
+                catch (Exception ex)
                 {
-                    conn.Close();
+                    Console.WriteLine("Lỗi: " + ex.Message);
+                }
+                finally
+                {
+                    if (conn.State == ConnectionState.Open)
+                    {
+                        conn.Close();
+                    }
                 }
             }
 
             return douongs;
         }
+        public bool IsDouongExists(string maDouong)
+        {
+            try
+            {
+                string query = "SELECT COUNT(*) FROM Douong WHERE MaDouong = @MaDouong";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@MaDouong", maDouong);
+
+                    conn.Open();
+                    int count = (int)cmd.ExecuteScalar();
+                    conn.Close();
+
+                    return count > 0; // Nếu có ít nhất 1 món có Mã Đồ Uống này, trả về true (tồn tại)
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi kiểm tra món: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
     }
 }

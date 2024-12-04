@@ -69,6 +69,7 @@
             btnDouong.TabIndex = 7;
             btnDouong.Text = "Đồ uống";
             btnDouong.UseVisualStyleBackColor = true;
+
             // 
             // btnDangxuat
             // 

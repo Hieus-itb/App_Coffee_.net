@@ -147,9 +147,9 @@ namespace App_Coffee.view
 
         private void btnNhanvien_Click(object sender, EventArgs e)
         {
-            //QuanLy ql = new QuanLy();
-            //ql.Show();
-            //this.Hide();
+            QuanlyNhansu ql = new QuanlyNhansu();
+            ql.Show();
+            this.Hide();
         }
 
         private void btnDangxuat_Click(object sender, EventArgs e)

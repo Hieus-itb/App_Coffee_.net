@@ -6,13 +6,13 @@ namespace Model
     public class Nhansumodel
     {
         // Properties
-        public int Id { get; set; } // ID_NHAN_SU
-        public string HoVaTen { get; set; } // HO_VA_TEN
-        public string GioiTinh { get; set; } // GIOI_TINH
-        public int NamSinh { get; set; } // NAM_SINH
-        public string ChucVu { get; set; } // CHUC_VU
-        public string QueQuan { get; set; } // QUE_QUAN
-        public string SoDienThoai { get; set; } // SO_DIEN_THOAI
+        public int Id { get; set; }
+        public string HoVaTen { get; set; }
+        public string GioiTinh { get; set; }
+        public int NamSinh { get; set; }
+        public string ChucVu { get; set; }
+        public string QueQuan { get; set; }
+        public string SoDienThoai { get; set; }
 
         // Default Constructor
         public Nhansumodel() { }

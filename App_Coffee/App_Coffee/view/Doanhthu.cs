@@ -121,17 +121,31 @@ namespace App_Coffee.view
 
         private void btnDoanhthu_Click(object sender, EventArgs e)
         {
+            this.Hide();
 
+            QuanlyNhansu ql = new QuanlyNhansu();
+            ql.Show();
         }
 
         private void btnNhanvien_Click(object sender, EventArgs e)
         {
+            this.Hide();
 
+            QuanlyNhansu ql = new QuanlyNhansu();
+            ql.Show();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void btnDouong_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            Quanlydouong qldu = new Quanlydouong();
+            qldu.Show();
         }
     }
 }

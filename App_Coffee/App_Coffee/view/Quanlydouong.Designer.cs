@@ -95,6 +95,7 @@
             btnNhanvien.TabIndex = 4;
             btnNhanvien.Text = "Nhân viên";
             btnNhanvien.UseVisualStyleBackColor = true;
+            btnNhanvien.Click += btnNhanvien_Click;
             // 
             // btnDoanhthu
             // 
@@ -104,6 +105,7 @@
             btnDoanhthu.TabIndex = 3;
             btnDoanhthu.Text = "Doanh thu";
             btnDoanhthu.UseVisualStyleBackColor = true;
+            btnDoanhthu.Click += btnDoanhthu_Click;
             // 
             // btnDatmon
             // 
@@ -113,6 +115,7 @@
             btnDatmon.TabIndex = 2;
             btnDatmon.Text = "Đặt món";
             btnDatmon.UseVisualStyleBackColor = true;
+            btnDatmon.Click += btnDatmon_Click;
             // 
             // btnDatban
             // 
@@ -122,6 +125,7 @@
             btnDatban.TabIndex = 1;
             btnDatban.Text = "Đặt bàn";
             btnDatban.UseVisualStyleBackColor = true;
+            btnDatban.Click += btnDatban_Click;
             // 
             // txtUser
             // 

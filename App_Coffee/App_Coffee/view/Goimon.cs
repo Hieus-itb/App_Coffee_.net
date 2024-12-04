@@ -35,7 +35,7 @@ namespace App_Coffee.view
             UpdateStatus("B05");
             UpdateStatus("B06");
         }
-      
+
         public void UpdateStatus(string maBan)
         {
             bool trangThaiBan = bancontroller.GetTrangThai(maBan);
@@ -121,18 +121,18 @@ namespace App_Coffee.view
         }
         public void UpdateLabels()
         {
-           
+
             Label[] lbBans = { lbBan1, lbBan2, lbBan3, lbBan4, lbBan5, lbBan6 };
 
-            
+
             bool[] trangthaiBans = bancontroller.Trangthai();
 
-            
+
             for (int i = 0; i < lbBans.Length; i++)
             {
                 if (trangthaiBans[i])
                 {
-                    lbBans[i].ForeColor = Color.Green; 
+                    lbBans[i].ForeColor = Color.Green;
                 }
                 else
                 {
@@ -316,7 +316,7 @@ namespace App_Coffee.view
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            
+
 
             int selectedRow = dataGridView1.SelectedRows.Count > 0 ? dataGridView1.SelectedRows[0].Index : -1;
             if (selectedRow != -1)
@@ -356,7 +356,7 @@ namespace App_Coffee.view
             this.Close();
             Hoadon frm = new Hoadon(maBan);
             frm.Show();
-            
+
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
@@ -367,6 +367,34 @@ namespace App_Coffee.view
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             dataGridView2.Rows[e.RowIndex].Selected = true;
+        }
+
+        private void btnDatban_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Datban form = new Datban();
+            form.Show();
+        }
+
+        private void btnDoanhthu_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Doanhthu form = new Doanhthu();
+            form.Show();
+        }
+
+        private void btnNhanvien_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            QuanlyNhansu form = new QuanlyNhansu();
+            form.Show();
+        }
+
+        private void btnDouong_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Quanlydouong form = new Quanlydouong();
+            form.Show();
         }
     }
 }

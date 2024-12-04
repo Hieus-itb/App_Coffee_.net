@@ -7,21 +7,25 @@ namespace App_Coffee.controller
 {
     internal class Bancontroller
     {
-        private SqlConnection conn; 
+        private SqlConnection conn;
         public Bancontroller()
         {
-            conn = Connection.GetInstance().GetConnection(); 
+            conn = Connection.GetInstance().GetConnection();
             OpenConnection(); // Mở kết nối khi khởi tạo controller
-        } 
-        private void OpenConnection() 
-        { if (conn.State == ConnectionState.Closed) { 
-                conn.Open(); 
-            } 
-        } 
-        private void CloseConnection() { 
-            if (conn.State == ConnectionState.Open) { 
-                conn.Close(); 
-            } 
+        }
+        private void OpenConnection()
+        {
+            if (conn.State == ConnectionState.Closed)
+            {
+                conn.Open();
+            }
+        }
+        private void CloseConnection()
+        {
+            if (conn.State == ConnectionState.Open)
+            {
+                conn.Close();
+            }
         }
         public List<Ban> GetAllBan()
         {
@@ -51,7 +55,8 @@ namespace App_Coffee.controller
             {
                 Console.WriteLine("Lỗi: " + ex.Message);
             }
-            finally { 
+            finally
+            {
             }
             return listBan;
         }

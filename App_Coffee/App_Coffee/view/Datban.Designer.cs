@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            btnDouong = new Button();
             btnDangxuat = new Button();
             btnNhanvien = new Button();
             btnDoanhthu = new Button();
@@ -40,7 +41,6 @@
             btnDat = new Button();
             label1 = new Label();
             dataGridView1 = new DataGridView();
-            btnDouong = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -60,6 +60,15 @@
             panel1.Size = new Size(259, 639);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
+            // 
+            // btnDouong
+            // 
+            btnDouong.Location = new Point(0, 446);
+            btnDouong.Name = "btnDouong";
+            btnDouong.Size = new Size(259, 61);
+            btnDouong.TabIndex = 7;
+            btnDouong.Text = "Đồ uống";
+            btnDouong.UseVisualStyleBackColor = true;
             // 
             // btnDangxuat
             // 
@@ -163,6 +172,7 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(57, 80);
             dataGridView1.Name = "dataGridView1";
@@ -170,15 +180,6 @@
             dataGridView1.Size = new Size(679, 514);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            // 
-            // btnDouong
-            // 
-            btnDouong.Location = new Point(0, 446);
-            btnDouong.Name = "btnDouong";
-            btnDouong.Size = new Size(259, 61);
-            btnDouong.TabIndex = 7;
-            btnDouong.Text = "Đồ uống";
-            btnDouong.UseVisualStyleBackColor = true;
             // 
             // Datban
             // 

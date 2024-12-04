@@ -99,6 +99,7 @@
             txtMatkhau.Name = "txtMatkhau";
             txtMatkhau.Size = new Size(331, 27);
             txtMatkhau.TabIndex = 2;
+            txtMatkhau.UseSystemPasswordChar = true;
             // 
             // txtTaikhoan
             // 

@@ -1,102 +1,156 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using App_Coffee.model;
+using System.Data;
 using System.Data.SqlClient;
-using System.Drawing.Text;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace App_Coffee.controller
 {
     internal class Douongcontroller
     {
         private SqlConnection conn;
-        public Douongcontroller() 
+
+        public Douongcontroller()
         {
             conn = Connection.GetInstance().GetConnection();
         }
-        //thêm
-        public bool Insert(string maDouong, string tenDouong, double gia, double chiPhi)
-        {
-            try
-            {
-                string query = "INSERT INTO DOUONG (MADOUONG, TENDOUONG, GIA, CHIPHI) VALUES (@MADOUONG, @TENDOUONG, @GIA, @CHIPHI)";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@MADOUONG", maDouong);
-                    cmd.Parameters.AddWithValue("@TENDOUONG", tenDouong);
-                    cmd.Parameters.AddWithValue("@GIA", gia);
-                    cmd.Parameters.AddWithValue("@CHIPHI", chiPhi);
 
+        // Thêm
+        public bool Insert(Douong douong)
+        {
+            string query = "INSERT INTO DOUONG (MADOUONG, TENDOUONG, GIA, CHIPHI) VALUES (@MADOUONG, @TENDOUONG, @GIA, @CHIPHI)";
+
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@MADOUONG", douong.MaDouong);
+                cmd.Parameters.AddWithValue("@TENDOUONG", douong.TenDouong);
+                cmd.Parameters.AddWithValue("@GIA", douong.Gia);
+                cmd.Parameters.AddWithValue("@CHIPHI", douong.Chiphi);
+
+                try
+                {
                     conn.Open();
                     int rowsAffected = cmd.ExecuteNonQuery();
-                    conn.Close();
-
-                    return rowsAffected > 0;
+                    return rowsAffected > 0; // Trả về true nếu thêm thành công
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Lỗi: " + ex.Message);
+                    return false;
+                }
+                finally
+                {
+                    if (conn.State == ConnectionState.Open)
+                    {
+                        conn.Close();
+                    }
                 }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-                conn.Close();
-                return false;
-            }
         }
+
         // Sửa
-        public bool Update(string maDouong, string tenDouong, double gia, double chiPhi)
+        public bool Update(Douong douong)
         {
-            try
-            {
-                string query = "UPDATE DOUONG SET TENDOUONG = @TENDOUONG, GIA = @GIA, CHIPHI = @CHIPHI WHERE MADOUONG = @MADOUONG";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@MADOUONG", maDouong);
-                    cmd.Parameters.AddWithValue("@TENDOUONG", tenDouong);
-                    cmd.Parameters.AddWithValue("@GIA", gia);
-                    cmd.Parameters.AddWithValue("@CHIPHI", chiPhi);
+            string query = "UPDATE DOUONG SET TENDOUONG = @TENDOUONG, GIA = @GIA, CHIPHI = @CHIPHI WHERE MADOUONG = @MADOUONG";
 
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@MADOUONG", douong.MaDouong);
+                cmd.Parameters.AddWithValue("@TENDOUONG", douong.TenDouong);
+                cmd.Parameters.AddWithValue("@GIA", douong.Gia);
+                cmd.Parameters.AddWithValue("@CHIPHI", douong.Chiphi);
+
+                try
+                {
                     conn.Open();
                     int rowsAffected = cmd.ExecuteNonQuery();
-                    conn.Close();
-
-                    return rowsAffected > 0;
+                    return rowsAffected > 0; // Trả về true nếu cập nhật thành công
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Lỗi: " + ex.Message);
+                    return false;
+                }
+                finally
+                {
+                    if (conn.State == ConnectionState.Open)
+                    {
+                        conn.Close();
+                    }
                 }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-                conn.Close();
-                return false;
-            }
         }
-        //Xóa
+
+        // Xóa
         public bool Delete(string maDouong)
         {
-            try
-            {
-                string query = "DELETE FROM DOUONG WHERE MADOUONG = @MADOUONG";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@MADOUONG", maDouong);
+            string query = "DELETE FROM DOUONG WHERE MADOUONG = @MADOUONG";
 
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@MADOUONG", maDouong);
+
+                try
+                {
                     conn.Open();
                     int rowsAffected = cmd.ExecuteNonQuery();
-                    conn.Close();
+                    return rowsAffected > 0; // Trả về true nếu xóa thành công
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Lỗi: " + ex.Message);
+                    return false;
+                }
+                finally
+                {
+                    if (conn.State == ConnectionState.Open)
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+        }
 
-                    return rowsAffected > 0;
+        // Lấy tất cả đồ uống
+        public List<Douong> GetAllDouong()
+        {
+            List<Douong> douongs = new List<Douong>();
+            string query = "SELECT * FROM DOUONG";
+
+            try
+            {
+                // Mở kết nối
+                conn.Open();
+
+                // Dùng using để đảm bảo SqlDataReader được đóng tự động
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Douong u = new Douong
+                        {
+                            MaDouong = reader["MaDouong"].ToString(),
+                            TenDouong = reader["TenDouong"].ToString(),
+                            Chiphi = Convert.ToSingle(reader["Gia"]),
+                            Gia = Convert.ToSingle(reader["Chiphi"])
+                        };
+                        // Thêm vào danh sách
+                        douongs.Add(u);
+                    }
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex.Message);
-                conn.Close();
-                return false;
+                Console.WriteLine("Lỗi: " + ex.Message);
             }
-        }
-        public List<Douong> douongs()
-        {
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
 
+            return douongs;
         }
-
     }
 }

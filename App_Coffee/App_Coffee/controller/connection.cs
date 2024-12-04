@@ -28,7 +28,7 @@ namespace App_Coffee
         public static Connection GetInstance()
         {
             if (instance == null)
-            {
+            { 
                 instance = new Connection();
             }
             return instance;

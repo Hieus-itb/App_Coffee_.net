@@ -50,6 +50,7 @@
             // 
             // panel2
             // 
+            panel2.BackColor = SystemColors.Window;
             panel2.Controls.Add(label2);
             panel2.Controls.Add(btnDangky);
             panel2.Controls.Add(btnDangnhap);
@@ -95,17 +96,15 @@
             // txtMatkhau
             // 
             txtMatkhau.Location = new Point(80, 247);
-            txtMatkhau.Multiline = true;
             txtMatkhau.Name = "txtMatkhau";
-            txtMatkhau.Size = new Size(331, 49);
+            txtMatkhau.Size = new Size(331, 27);
             txtMatkhau.TabIndex = 2;
             // 
             // txtTaikhoan
             // 
             txtTaikhoan.Location = new Point(80, 180);
-            txtTaikhoan.Multiline = true;
             txtTaikhoan.Name = "txtTaikhoan";
-            txtTaikhoan.Size = new Size(331, 50);
+            txtTaikhoan.Size = new Size(331, 27);
             txtTaikhoan.TabIndex = 1;
             // 
             // label1

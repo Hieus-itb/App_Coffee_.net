@@ -39,7 +39,6 @@ namespace App_Coffee.view
                 this.Hide();
 
                 Datban frm = new Datban(); // Chuyển sang form Datban
-                frm.ShowDialog();
                 frm.Show();
             }
             else

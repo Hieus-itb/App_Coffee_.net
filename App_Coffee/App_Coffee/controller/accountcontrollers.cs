@@ -51,7 +51,7 @@ namespace App_Coffee.Controller
             {
                 string sql = "SELECT TAIKHOAN, MATKHAU, CHUC_VU FROM ACCOUNT WHERE TAIKHOAN = @taikhoan AND MATKHAU = @matkhau";
                 string hashedPassword = HashPassword(password);
-
+                
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@taikhoan", username);

@@ -149,6 +149,7 @@
             // 
             // dataGridViewDouong
             // 
+            dataGridViewDouong.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewDouong.ColumnHeadersHeight = 29;
             dataGridViewDouong.Location = new Point(316, 329);
             dataGridViewDouong.Name = "dataGridViewDouong";

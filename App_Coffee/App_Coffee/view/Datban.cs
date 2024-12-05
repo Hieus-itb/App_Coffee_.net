@@ -169,5 +169,12 @@ namespace App_Coffee.view
             Quanlydouong d = new Quanlydouong();
             d.Show();
         }
+
+        private void btnDouong_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            Quanlydouong douong = new Quanlydouong();
+            douong.Show();
+        }
     }
 }

@@ -7,14 +7,15 @@ using System.Data.SqlClient;
 
 namespace App_Coffee.controller
 {
+    
     public class nhansucontroller
     {
         private SqlConnection conn;
-
+        private Accountcontroller accountcontroller;
         public nhansucontroller()
         {
             conn = Connection.GetInstance().GetConnection();
-            
+            accountcontroller = new Accountcontroller();
         }
 
         private void OpenConnection()
@@ -122,41 +123,7 @@ namespace App_Coffee.controller
                     OpenConnection();
                     int idNhanSu = Convert.ToInt32(cmd.ExecuteScalar());
 
-                    return AddAccount(idNhanSu, taikhoan, matkhau, role);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return false;
-            }
-            finally
-            {
-                CloseConnection();
-            }
-        }
-
-
-
-        public bool AddAccount(int idNhanSu, string taikhoan, string matkhau, string role)
-        {
-            try
-            {
-                string hashedPassword = Accountcontroller.HashPassword(matkhau);
-                string insertAccountSql = @"
-                    INSERT INTO ACCOUNT (ID_NHAN_SU, TAIKHOAN, MATKHAU, CHUC_VU) 
-                    VALUES (@IDNhanSu, @TaiKhoan, @MatKhau, @ChucVu)";
-
-                using (SqlCommand cmd = new SqlCommand(insertAccountSql, conn))
-                {
-                    cmd.Parameters.AddWithValue("@IDNhanSu", idNhanSu);
-                    cmd.Parameters.AddWithValue("@TaiKhoan", taikhoan);  
-                    cmd.Parameters.AddWithValue("@MatKhau", hashedPassword);  
-                    cmd.Parameters.AddWithValue("@ChucVu", role);
-
-                    OpenConnection();
-                    int rowsAffected = cmd.ExecuteNonQuery();
-                    return rowsAffected > 0;
+                    return accountcontroller.AddAccount(idNhanSu, taikhoan, matkhau, role);
                 }
             }
             catch (Exception ex)

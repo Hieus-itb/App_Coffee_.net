@@ -1,4 +1,5 @@
 ﻿using App_Coffee;
+using App_Coffee.Controller;
 using Model;
 using System;
 using System.Data;
@@ -9,9 +10,11 @@ namespace App_Coffee.controller
     public class nhansucontroller
     {
         private SqlConnection conn;
+
         public nhansucontroller()
         {
             conn = Connection.GetInstance().GetConnection();
+            
         }
 
         private void OpenConnection()
@@ -139,6 +142,7 @@ namespace App_Coffee.controller
         {
             try
             {
+                string hashedPassword = Accountcontroller.HashPassword(matkhau);
                 string insertAccountSql = @"
                     INSERT INTO ACCOUNT (ID_NHAN_SU, TAIKHOAN, MATKHAU, CHUC_VU) 
                     VALUES (@IDNhanSu, @TaiKhoan, @MatKhau, @ChucVu)";
@@ -147,7 +151,7 @@ namespace App_Coffee.controller
                 {
                     cmd.Parameters.AddWithValue("@IDNhanSu", idNhanSu);
                     cmd.Parameters.AddWithValue("@TaiKhoan", taikhoan);  
-                    cmd.Parameters.AddWithValue("@MatKhau", matkhau);  
+                    cmd.Parameters.AddWithValue("@MatKhau", hashedPassword);  
                     cmd.Parameters.AddWithValue("@ChucVu", role);
 
                     OpenConnection();

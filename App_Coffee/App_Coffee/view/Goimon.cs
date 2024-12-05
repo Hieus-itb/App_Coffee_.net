@@ -18,7 +18,7 @@ namespace App_Coffee.view
         private Douongcontroller controller;
         private Bancontroller bancontroller;
         private Ordercontroller ordercontroller;
-
+        private string currentUserRole;
         private string maBan = "";
         public Goimon()
         {
@@ -26,8 +26,13 @@ namespace App_Coffee.view
             bancontroller = new Bancontroller();
             controller = new Douongcontroller();
             ordercontroller = new Ordercontroller();
+            currentUserRole = Dangnhap.userRole;
+
+
+            CheckAdminRole();
             loadDouong();
             LoadDataDouongdagoi(maBan);
+
             UpdateStatus("B01");
             UpdateStatus("B02");
             UpdateStatus("B03");
@@ -36,6 +41,19 @@ namespace App_Coffee.view
             UpdateStatus("B06");
         }
 
+        private void CheckAdminRole()
+        {
+            if (currentUserRole == "Admin")
+            {
+                btnNhanvien.Visible = true;
+                btnDouong.Visible = true;
+            }
+            else
+            {
+                btnNhanvien.Visible = false;
+                btnDouong.Visible = false;
+            }
+        }
         public void UpdateStatus(string maBan)
         {
             bool trangThaiBan = bancontroller.GetTrangThai(maBan);
@@ -386,6 +404,7 @@ namespace App_Coffee.view
         private void btnNhanvien_Click(object sender, EventArgs e)
         {
             this.Close();
+
             QuanlyNhansu form = new QuanlyNhansu();
             form.Show();
         }
@@ -395,6 +414,19 @@ namespace App_Coffee.view
             this.Close();
             Quanlydouong form = new Quanlydouong();
             form.Show();
+        }
+
+        
+
+        private void btnDangxuat_Click(object sender, EventArgs e)
+        {
+            var confirmResult = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Xác nhận", MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                Dangnhap frm = new Dangnhap();
+                frm.Show();
+                this.Hide();
+            }
         }
     }
 }

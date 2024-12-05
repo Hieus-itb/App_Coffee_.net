@@ -207,5 +207,16 @@ namespace App_Coffee.view
             QuanlyNhansu form = new QuanlyNhansu();
             form.Show();
         }
+
+        private void btnDangxuat_Click(object sender, EventArgs e)
+        {
+            var confirmResult = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Xác nhận", MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                Dangnhap frm = new Dangnhap();
+                frm.Show();
+                this.Hide();
+            }
+        }
     }
 }

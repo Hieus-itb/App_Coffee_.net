@@ -1,4 +1,5 @@
 ﻿using App_Coffee.controller;
+using App_Coffee.Controller;
 using App_Coffee.model;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace App_Coffee.view
         private Douongcontroller controller;
         private Bancontroller bancontroller;
         private Ordercontroller ordercontroller;
+        private Doanhthucontroller doanhthucontroller;
         private string currentUserRole;
         private string maBan = "";
         public Goimon()
@@ -26,6 +28,7 @@ namespace App_Coffee.view
             bancontroller = new Bancontroller();
             controller = new Douongcontroller();
             ordercontroller = new Ordercontroller();
+            doanhthucontroller = new Doanhthucontroller();  
             currentUserRole = Dangnhap.userRole;
 
 
@@ -334,38 +337,65 @@ namespace App_Coffee.view
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-
-
-            int selectedRow = dataGridView1.SelectedRows.Count > 0 ? dataGridView1.SelectedRows[0].Index : -1;
-            if (selectedRow != -1)
+            try
             {
-                string tendouong = dataGridView1.Rows[selectedRow].Cells[1].Value.ToString();
-                string madouong = dataGridView1.Rows[selectedRow].Cells[0].Value.ToString();
-                double gia = 0;
-                if (dataGridView1.Rows[selectedRow].Cells[2].Value != null)
+                // Kiểm tra xem người dùng đã chọn dòng nào trong DataGridView hay chưa
+                if (dataGridView1.SelectedRows.Count == 0)
                 {
-                    gia = Convert.ToDouble(dataGridView1.Rows[selectedRow].Cells[2].Value);
+                    MessageBox.Show("Vui lòng chọn món trước khi thêm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
+
+                // Lấy chỉ số của dòng được chọn
+                int selectedRow = dataGridView1.SelectedRows[0].Index;
+
+                // Lấy thông tin đồ uống từ dòng được chọn
+                string madouong = dataGridView1.Rows[selectedRow].Cells[0].Value?.ToString();
+                string tendouong = dataGridView1.Rows[selectedRow].Cells[1].Value?.ToString();
+
+                if (string.IsNullOrEmpty(madouong) || string.IsNullOrEmpty(tendouong))
+                {
+                    MessageBox.Show("Dữ liệu không hợp lệ, vui lòng kiểm tra lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Lấy giá và kiểm tra hợp lệ
+                if (!double.TryParse(dataGridView1.Rows[selectedRow].Cells[2].Value?.ToString(), out double gia))
+                {
+                    MessageBox.Show("Giá trị không hợp lệ, vui lòng kiểm tra lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Thiết lập thông tin món
                 int soluong = 1;
-                double tongtien = gia * soluong;
+                double tongtien;
+
+                // Lấy mã bàn hiện tại (giả định bạn đã gán `maBan` từ trước)
                 string maban = maBan;
-                double chiphi = controller.getChiphi(madouong);
 
-                bool isUpdated = ordercontroller.AddDrinkToTable(maban, madouong, tendouong, soluong, gia, chiphi);
+                // Tính chi phí dựa trên mã đồ uống
+                double chiphiDouong = controller.getChiphi(madouong);
+                double chiphiMoi = soluong * chiphiDouong;
 
-                LoadDataDouongdagoi(maBan);
+                // Gọi phương thức thêm món vào bàn
+                bool isUpdated = ordercontroller.AddDrinkToTable(maban, madouong, tendouong, soluong, gia, chiphiMoi);
+
+                // Tải lại dữ liệu để hiển thị món đã gọi
+                LoadDataDouongdagoi(maban);
+
+                // Thông báo kết quả
                 if (isUpdated)
                 {
-                    MessageBox.Show("Số lượng món đã được cập nhật!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Món đã được thêm vào bàn!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Cập nhật không thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Thêm món không thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Vui lòng chọn món trước khi thêm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

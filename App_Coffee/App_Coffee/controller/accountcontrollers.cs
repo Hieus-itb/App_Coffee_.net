@@ -16,35 +16,41 @@ namespace App_Coffee.Controller
         {
             conn = Connection.GetInstance().GetConnection();
         }
-        public bool AddAccount(string taikhoan, string matkhau, int idNhansu, string chucvu)
+        public bool AddAccount(int idNhanSu, string taikhoan, string matkhau, string role)
         {
             try
             {
-                string sql = "INSERT INTO ACCOUNT(TAIKHOAN, MATKHAU, ID_NHAN_SU, CHUC_VU) VALUES (@TaiKhoan, @MatKhau, @IdNhanSu, @ChucVu)";
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                if (conn.State == ConnectionState.Closed)
                 {
-                    // Thêm tham số vào câu lệnh SQL
-                    cmd.Parameters.AddWithValue("@TaiKhoan", taikhoan);
-                    cmd.Parameters.AddWithValue("@MatKhau", matkhau);
-                    cmd.Parameters.AddWithValue("@IdNhanSu", idNhansu);
-                    cmd.Parameters.AddWithValue("@ChucVu", chucvu);
-
-                    // Mở kết nối, thực thi câu lệnh và trả về kết quả
                     conn.Open();
-                    int rowAffected = cmd.ExecuteNonQuery();
-                    conn.Close();
+                }
+                string hashedPassword = HashPassword(matkhau);
+                string insertAccountSql = @"
+                    INSERT INTO ACCOUNT (ID_NHAN_SU, TAIKHOAN, MATKHAU, CHUC_VU) 
+                    VALUES (@IDNhanSu, @TaiKhoan, @MatKhau, @ChucVu)";
 
-                    // Kiểm tra xem có bản ghi nào được thêm vào không
-                    return rowAffected > 0;
+                using (SqlCommand cmd = new SqlCommand(insertAccountSql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@IDNhanSu", idNhanSu);
+                    cmd.Parameters.AddWithValue("@TaiKhoan", taikhoan);
+                    cmd.Parameters.AddWithValue("@MatKhau", hashedPassword);
+                    cmd.Parameters.AddWithValue("@ChucVu", role);
+
+                    
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
                 }
             }
-            catch (SqlException e)
+            catch (Exception ex)
             {
-                Console.WriteLine("Error: " + e.Message);
+                Console.WriteLine(ex.Message);
                 return false;
             }
+            finally
+            {
+                conn.Close();
+            }
         }
-
         public bool CheckUserCredentials(string username, string password)
         {
             try

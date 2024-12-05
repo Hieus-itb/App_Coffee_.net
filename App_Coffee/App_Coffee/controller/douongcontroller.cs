@@ -50,37 +50,43 @@ namespace App_Coffee.controller
         public double getChiphi(string maDouong)
         {
             string sql = "SELECT CHIPHI FROM DOUONG WHERE MADOUONG = @maDouong";
-            conn.Open();
-            using (SqlCommand cmd = new SqlCommand(sql, conn))
-            {
-                // Thêm tham số @maBan vào câu lệnh SQL
-                cmd.Parameters.AddWithValue("@maDouong", maDouong);
 
-                try
+            try
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
+                    // Thêm tham số @maDouong vào câu lệnh SQL
+                    cmd.Parameters.AddWithValue("@maDouong", maDouong);
+
                     // Thực thi câu lệnh và lấy giá trị từ cột CHIPHI
                     object result = cmd.ExecuteScalar();
 
-                    // Nếu result là null hoặc không phải kiểu số, trả về 0
-                    if (result != null && result is decimal)
+                    // Kiểm tra nếu result không null và chuyển đổi về kiểu double
+                    if (result != null && result != DBNull.Value)
                     {
-                        // Chuyển kết quả thành kiểu decimal và sau đó về kiểu double
-                        decimal chiphi = Convert.ToDecimal(result);
-                        return Convert.ToDouble(chiphi); // Trả về chi phí dưới dạng double
+                        return Convert.ToDouble(result); // Trả về chi phí dưới dạng double
                     }
-                    return 0; // Nếu không có giá trị hoặc giá trị không hợp lệ, trả về 0
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi khi truy vấn chi phí: " + ex.Message);
-                    return 0; // Trả về 0 nếu có lỗi
-                }
-                finally
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi truy vấn chi phí: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                // Đảm bảo kết nối luôn được đóng
+                if (conn.State == ConnectionState.Open)
                 {
                     conn.Close();
                 }
             }
+
+            return 0; // Trả về 0 nếu không có giá trị hợp lệ hoặc xảy ra lỗi
         }
+
+
 
 
         // Sửa

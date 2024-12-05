@@ -84,10 +84,11 @@ namespace App_Coffee.view
                     {
                         string maDoUong = row.Cells[0].Value.ToString();
                         int soLuong = int.Parse(row.Cells[2].Value.ToString());
+                        double gia = double.Parse(row.Cells[3].Value.ToString());
                         double chiPhi = douongcontroller.getChiphi(maDoUong);
                         tongChiPhi += chiPhi * soLuong;
 
-                        double gia = double.Parse(row.Cells[3].Value.ToString());
+                        
                         tongTien += gia * soLuong;
                     }
                 }

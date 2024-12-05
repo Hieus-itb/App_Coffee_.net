@@ -105,9 +105,9 @@ namespace App_Coffee.view
 
         private void btnDatmon_Click(object sender, EventArgs e)
         {
-            //Goimon goiMonForm = new Goimon();
-            //goiMonForm.Show();
-            //this.Dispose();
+            Goimon goiMonForm = new Goimon();
+            goiMonForm.Show();
+            this.Dispose();
         }
 
         private void btnDoanhthu_Click(object sender, EventArgs e)

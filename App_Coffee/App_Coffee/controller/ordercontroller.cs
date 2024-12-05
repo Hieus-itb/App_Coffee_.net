@@ -21,7 +21,7 @@ namespace App_Coffee.controller
         public List<object[]> DanhSachDoUongDaGoi(string maBan)
         {
             var danhSachDoUong = new List<object[]>();
-            string sql = "SELECT MADOUONG, TENDOUONG, SOLUONG, GIA FROM ORDER_ WHERE MABAN = @MaBan";
+            string sql = "SELECT MADOUONG, TENDOUONG, SOLUONG, TONGTIEN FROM ORDER_ WHERE MABAN = @MaBan";
 
             // Đảm bảo kết nối được mở trước khi thực hiện truy vấn
             if (conn.State != ConnectionState.Open)
@@ -43,7 +43,7 @@ namespace App_Coffee.controller
                             string maDouong = reader["MADOUONG"].ToString();
                             string tenDouong = reader["TENDOUONG"].ToString();
                             int soLuong = Convert.ToInt32(reader["SOLUONG"]);
-                            double gia = Convert.ToDouble(reader["GIA"]);
+                            double gia = Convert.ToDouble(reader["TONGTIEN"]);
 
                             danhSachDoUong.Add(new object[] { maDouong, tenDouong, soLuong, gia });
                         }
@@ -248,10 +248,43 @@ namespace App_Coffee.controller
                 }
             }
         }
+        public double TinhTongChiPhi(string maBan)
+        {
+            try
+            {
+                string sql = @"
+            SELECT SUM(CHIPHI) AS TongChiPhi
+            FROM ORDER_
+            WHERE MABAN = @MaBan";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@MaBan", maBan);
+                    conn.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return reader["TongChiPhi"] != DBNull.Value ? Convert.ToDouble(reader["TongChiPhi"]) : 0;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi: {ex.Message}");
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return 0; // Trả về 0 nếu không có dữ liệu hoặc xảy ra lỗi
+        }
 
         public bool AddDrinkToTable(string maBan, string maDouong, string tenDouong, int soLuong, double gia, double chiPhi)
         {
-            string sqlCheck = "SELECT SOLUONG, TONGTIEN FROM ORDER_ WHERE MABAN = @MaBan AND MADOUONG = @MaDouong";
+            string sqlCheck = "SELECT SOLUONG, TONGTIEN, CHIPHI FROM ORDER_ WHERE MABAN = @MaBan AND MADOUONG = @MaDouong";
             bool isUpdated = false;
 
             using (SqlCommand cmdCheck = new SqlCommand(sqlCheck, conn))
@@ -269,16 +302,22 @@ namespace App_Coffee.controller
                         {
                             int currentQuantity = Convert.ToInt32(reader["SOLUONG"]);
                             double currentTotal = Convert.ToDouble(reader["TONGTIEN"]);
+                            double currentChiPhi = Convert.ToDouble(reader["CHIPHI"]);
 
                             int newQuantity = currentQuantity + soLuong;
                             double newTotal = currentTotal + (soLuong * gia);
+                            double newChiPhi = currentChiPhi + chiPhi;
 
-                            string sqlUpdate = "UPDATE ORDER_ SET SOLUONG = @NewQuantity, TONGTIEN = @NewTotal WHERE MABAN = @MaBan AND MADOUONG = @MaDouong";
+                            string sqlUpdate = @"
+                        UPDATE ORDER_ 
+                        SET SOLUONG = @NewQuantity, TONGTIEN = @NewTotal, CHIPHI = @NewChiPhi 
+                        WHERE MABAN = @MaBan AND MADOUONG = @MaDouong";
 
                             using (SqlCommand cmdUpdate = new SqlCommand(sqlUpdate, conn))
                             {
                                 cmdUpdate.Parameters.AddWithValue("@NewQuantity", newQuantity);
                                 cmdUpdate.Parameters.AddWithValue("@NewTotal", newTotal);
+                                cmdUpdate.Parameters.AddWithValue("@NewChiPhi", newChiPhi);
                                 cmdUpdate.Parameters.AddWithValue("@MaBan", maBan);
                                 cmdUpdate.Parameters.AddWithValue("@MaDouong", maDouong);
 
@@ -286,14 +325,15 @@ namespace App_Coffee.controller
                                 cmdUpdate.ExecuteNonQuery();
                                 isUpdated = true;
 
-                                // Hiển thị thông báo cập nhật thành công
                                 MessageBox.Show("Đã cập nhật số lượng đồ uống trong bàn!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                         }
                         else // Nếu đồ uống chưa tồn tại trong order
                         {
                             reader.Close(); // Đóng reader trước khi thực thi lệnh INSERT
-                            string sqlInsert = "INSERT INTO ORDER_ (MABAN, MADOUONG, TENDOUONG, SOLUONG, TONGTIEN, CHIPHI) VALUES (@MaBan, @MaDouong, @TenDouong, @SoLuong, @TongTien, @ChiPhi)";
+                            string sqlInsert = @"
+                        INSERT INTO ORDER_ (MABAN, MADOUONG, TENDOUONG, SOLUONG, TONGTIEN, CHIPHI) 
+                        VALUES (@MaBan, @MaDouong, @TenDouong, @SoLuong, @TongTien, @ChiPhi)";
 
                             using (SqlCommand cmdInsert = new SqlCommand(sqlInsert, conn))
                             {
@@ -307,7 +347,6 @@ namespace App_Coffee.controller
                                 cmdInsert.ExecuteNonQuery();
                                 isUpdated = true;
 
-                                // Hiển thị thông báo thêm mới thành công
                                 MessageBox.Show("Đã thêm đồ uống mới vào bàn!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                         }
@@ -315,7 +354,6 @@ namespace App_Coffee.controller
                 }
                 catch (Exception ex)
                 {
-                    // Hiển thị thông báo lỗi
                     MessageBox.Show("Lỗi khi thêm đồ uống vào bàn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 finally
@@ -329,5 +367,6 @@ namespace App_Coffee.controller
 
             return isUpdated;
         }
+
     }
 }

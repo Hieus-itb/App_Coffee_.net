@@ -16,6 +16,15 @@ namespace App_Coffee
             ApplicationConfiguration.Initialize();
             Application.Run(new view.Dangnhap());
             Console.ReadLine();
+            //test
+            //test
+            //test
+            //test
+            //test
+            //test
+            //test
+            //test
+            //test//test//test//test//test//test//test//test//test//test//test//test//test//test//test//test//test//test
         }
     }
 }

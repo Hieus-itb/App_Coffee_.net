@@ -85,9 +85,46 @@ namespace App_Coffee.controller
 
             return 0; // Trả về 0 nếu không có giá trị hợp lệ hoặc xảy ra lỗi
         }
+        //lấy giá
 
+        public double getGia(string maDouong)
+        {
+            string sql = "SELECT GIA FROM DOUONG WHERE MADOUONG = @maDouong";
 
+            try
+            {
+                conn.Open();
 
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    // Thêm tham số @maDouong vào câu lệnh SQL
+                    cmd.Parameters.AddWithValue("@maDouong", maDouong);
+
+                    // Thực thi câu lệnh và lấy giá trị từ cột CHIPHI
+                    object result = cmd.ExecuteScalar();
+
+                    // Kiểm tra nếu result không null và chuyển đổi về kiểu double
+                    if (result != null && result != DBNull.Value)
+                    {
+                        return Convert.ToDouble(result); // Trả về chi phí dưới dạng double
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi truy vấn chi phí: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                // Đảm bảo kết nối luôn được đóng
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+
+            return 0; // Trả về 0 nếu không có giá trị hợp lệ hoặc xảy ra lỗi
+        }
 
         // Sửa
         public bool Update(Douong douong)
@@ -121,6 +158,7 @@ namespace App_Coffee.controller
                 }
             }
         }
+        
 
         // Xóa
         public bool Delete(string maDouong)

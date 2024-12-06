@@ -37,6 +37,11 @@
             btnDatban = new Button();
             txtUser = new Label();
             panel2 = new Panel();
+            label8 = new Label();
+            label7 = new Label();
+            label6 = new Label();
+            label5 = new Label();
+            label4 = new Label();
             label1 = new Label();
             lbBan6 = new Label();
             lbBan5 = new Label();
@@ -58,11 +63,6 @@
             dataGridView2 = new DataGridView();
             btnThanhtoan = new Button();
             lbThanhtien = new Label();
-            label4 = new Label();
-            label5 = new Label();
-            label6 = new Label();
-            label7 = new Label();
-            label8 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -186,6 +186,57 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(296, 638);
             panel2.TabIndex = 3;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(119, 568);
+            label8.Name = "label8";
+            label8.Size = new Size(170, 20);
+            label8.TabIndex = 17;
+            label8.Text = "Bàn hiện đang có người.";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.ForeColor = Color.Red;
+            label7.Location = new Point(22, 570);
+            label7.Name = "label7";
+            label7.Size = new Size(94, 20);
+            label7.TabIndex = 16;
+            label7.Text = "+ Chữ đỏ   : ";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(119, 541);
+            label6.Name = "label6";
+            label6.Size = new Size(147, 20);
+            label6.TabIndex = 15;
+            label6.Text = "Bàn hiện đang trống.";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.Green;
+            label5.Location = new Point(22, 541);
+            label5.Name = "label5";
+            label5.Size = new Size(98, 20);
+            label5.TabIndex = 14;
+            label5.Text = "+ Chữ xanh: ";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.Red;
+            label4.Location = new Point(22, 21);
+            label4.Name = "label4";
+            label4.Size = new Size(249, 20);
+            label4.TabIndex = 13;
+            label4.Text = "Vui lòng chọn bàn trước khi order!";
             // 
             // label1
             // 
@@ -393,57 +444,6 @@
             lbThanhtien.Size = new Size(0, 31);
             lbThanhtien.TabIndex = 11;
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.Red;
-            label4.Location = new Point(22, 21);
-            label4.Name = "label4";
-            label4.Size = new Size(249, 20);
-            label4.TabIndex = 13;
-            label4.Text = "Vui lòng chọn bàn trước khi order!";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.ForeColor = Color.Green;
-            label5.Location = new Point(22, 541);
-            label5.Name = "label5";
-            label5.Size = new Size(98, 20);
-            label5.TabIndex = 14;
-            label5.Text = "+ Chữ xanh: ";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(119, 541);
-            label6.Name = "label6";
-            label6.Size = new Size(147, 20);
-            label6.TabIndex = 15;
-            label6.Text = "Bàn hiện đang trống.";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.ForeColor = Color.Red;
-            label7.Location = new Point(22, 570);
-            label7.Name = "label7";
-            label7.Size = new Size(94, 20);
-            label7.TabIndex = 16;
-            label7.Text = "+ Chữ đỏ   : ";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(119, 568);
-            label8.Name = "label8";
-            label8.Size = new Size(170, 20);
-            label8.TabIndex = 17;
-            label8.Text = "Bàn hiện đang có người.";
-            // 
             // Goimon
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -461,6 +461,7 @@
             Controls.Add(panel1);
             Name = "Goimon";
             Text = "Form1";
+            Load += Goimon_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);

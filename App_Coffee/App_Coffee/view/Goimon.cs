@@ -408,7 +408,7 @@ namespace App_Coffee.view
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ấn vào bàn bên phải trước khi đặt món");
             }
         }
 
@@ -478,6 +478,11 @@ namespace App_Coffee.view
 
             Goimon gm = new Goimon();
             gm.Show();
+        }
+
+        private void Goimon_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

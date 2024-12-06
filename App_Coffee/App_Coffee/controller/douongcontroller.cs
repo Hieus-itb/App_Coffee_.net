@@ -72,7 +72,7 @@ namespace App_Coffee.controller
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi truy vấn chi phí: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
             }
             finally
             {

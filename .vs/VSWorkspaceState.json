@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\App_Coffee",
+    "\\App_Coffee\\App_Coffee"
   ],
+  "SelectedNode": "\\App_Coffee\\App_Coffee.sln",
   "PreviewInSolutionExplorer": false
 }

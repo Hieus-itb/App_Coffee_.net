@@ -1,6 +1,7 @@
 ﻿using App_Coffee.controller;
 using App_Coffee.Controller;
 using App_Coffee.model;
+using App_Coffee.model.App_Coffee.model;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -20,6 +21,7 @@ namespace App_Coffee.view
         private Bancontroller bancontroller;
         private Ordercontroller ordercontroller;
         private Doanhthucontroller doanhthucontroller;
+
         private string currentUserRole;
         private string maBan = "";
         public Goimon()
@@ -30,7 +32,7 @@ namespace App_Coffee.view
             ordercontroller = new Ordercontroller();
             doanhthucontroller = new Doanhthucontroller();  
             currentUserRole = Dangnhap.userRole;
-
+            DisplayLoggedInUser();
 
             CheckAdminRole();
             loadDouong();
@@ -43,7 +45,18 @@ namespace App_Coffee.view
             UpdateStatus("B05");
             UpdateStatus("B06");
         }
-
+        private void DisplayLoggedInUser()
+        {
+            string username = AccountModel.LoggedInUsername;  // Lấy tên người dùng từ lớp AccountModel
+            if (!string.IsNullOrEmpty(username))
+            {
+                txtUser.Text = username;  // Hiển thị tên người dùng lên TextBox
+            }
+            else
+            {
+                txtUser.Text = "Chưa đăng nhập";  // Nếu không có tên người dùng, hiển thị thông báo
+            }
+        }
         private void CheckAdminRole()
         {
             if (currentUserRole == "Admin")

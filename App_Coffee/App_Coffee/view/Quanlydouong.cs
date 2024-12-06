@@ -1,5 +1,6 @@
 ﻿using App_Coffee.controller;
 using App_Coffee.model;
+using App_Coffee.model.App_Coffee.model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,7 @@ namespace App_Coffee.view
             controller = new Douongcontroller();
             loadDouong();
             lockTxt();
+            DisplayLoggedInUser();
         }
         public void lockTxt()
         {
@@ -29,6 +31,18 @@ namespace App_Coffee.view
             txtTendouong.ReadOnly = true;
             txtGia.ReadOnly = true;
             txtChiphinhaplieu.ReadOnly = true;
+        }
+        private void DisplayLoggedInUser()
+        {
+            string username = AccountModel.LoggedInUsername;  // Lấy tên người dùng từ lớp AccountModel
+            if (!string.IsNullOrEmpty(username))
+            {
+                txtUser.Text = username;  // Hiển thị tên người dùng lên TextBox
+            }
+            else
+            {
+                txtUser.Text = "Chưa đăng nhập";  // Nếu không có tên người dùng, hiển thị thông báo
+            }
         }
         public bool unlockTxt()
         {

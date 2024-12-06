@@ -143,7 +143,7 @@
             // 
             // btnHuy
             // 
-            btnHuy.Location = new Point(778, 179);
+            btnHuy.Location = new Point(778, 197);
             btnHuy.Name = "btnHuy";
             btnHuy.Size = new Size(114, 43);
             btnHuy.TabIndex = 3;

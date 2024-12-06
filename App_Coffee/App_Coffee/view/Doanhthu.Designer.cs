@@ -138,6 +138,7 @@
             // 
             // panel2
             // 
+            panel2.BackColor = SystemColors.ActiveCaption;
             panel2.Controls.Add(txtSodon);
             panel2.Controls.Add(label1);
             panel2.Location = new Point(306, 12);

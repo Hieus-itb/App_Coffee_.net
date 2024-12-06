@@ -120,21 +120,18 @@ namespace App_Coffee.view
 
         private void btnDatban_Click(object sender, EventArgs e)
         {
+            this.Hide();
 
+            Datban db = new Datban();
+            db.Show();
         }
 
         private void btnDatmon_Click(object sender, EventArgs e)
         {
-            bool hasBanDaDat = bancontroller.IsAnyBanDaDat();
-            if (!hasBanDaDat)
-            {
-                MessageBox.Show("Không có bàn nào đang được đặt. Vui lòng đặt bàn trước!");
-                return;
-            }
-
-            Goimon goiMonUI = new Goimon();
-            goiMonUI.Show();
             this.Hide();
+
+            Goimon gm = new Goimon();
+            gm.Show();
         }
 
         private void btnDoanhthu_Click(object sender, EventArgs e)

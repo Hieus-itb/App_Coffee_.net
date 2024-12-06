@@ -15,6 +15,7 @@ namespace App_Coffee.view
 {
     public partial class QuanlyNhansu : Form
     {
+        private Bancontroller bancontroller;
         private nhansucontroller nhansucontroller;
         private string currentUserRole;
 
@@ -234,22 +235,16 @@ namespace App_Coffee.view
         {
             this.Hide();
 
-            Datban db = new Datban();  
+            Datban db = new Datban();
             db.Show();
         }
 
         private void btnDatmon_Click(object sender, EventArgs e)
         {
-            //bool hasBanDaDat = banController.IsAnyBanDaDat();
-            //if (!hasBanDaDat)
-            //{
-            //    MessageBox.Show("Không có bàn nào đang được đặt. Vui lòng đặt bàn trước!");
-            //    return;
-            //}
+            this.Hide();
 
-            //Goimon goiMonUI = new Goimon();
-            //goiMonUI.Show();
-            //this.Hide();
+            Goimon gm = new Goimon();
+            gm.Show();
         }
 
         private void btnDoanhthu_Click(object sender, EventArgs e)
@@ -285,6 +280,12 @@ namespace App_Coffee.view
                 frm.Show();
                 this.Hide();
             }
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            Dangky dk = new Dangky();
+            dk.Show();
         }
     }
 }

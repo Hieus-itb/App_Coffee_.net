@@ -232,5 +232,13 @@ namespace App_Coffee.view
                 this.Hide();
             }
         }
+
+        private void btnDouong_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            Quanlydouong qldu = new Quanlydouong();
+            qldu.Show();
+        }
     }
 }

@@ -324,7 +324,6 @@ namespace App_Coffee.controller
                                 cmdUpdate.ExecuteNonQuery();
                                 isUpdated = true;
 
-                                MessageBox.Show("Đã cập nhật số lượng đồ uống trong bàn!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                         }
                         else // Nếu đồ uống chưa tồn tại trong order
@@ -345,8 +344,6 @@ namespace App_Coffee.controller
 
                                 cmdInsert.ExecuteNonQuery();
                                 isUpdated = true;
-
-                                MessageBox.Show("Đã thêm đồ uống mới vào bàn!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                         }
                     }

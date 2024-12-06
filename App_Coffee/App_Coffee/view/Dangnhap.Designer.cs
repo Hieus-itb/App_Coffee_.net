@@ -37,6 +37,7 @@
             txtMatkhau = new TextBox();
             txtTaikhoan = new TextBox();
             label1 = new Label();
+            label3 = new Label();
             panel2.SuspendLayout();
             SuspendLayout();
             // 
@@ -51,6 +52,7 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.Window;
+            panel2.Controls.Add(label3);
             panel2.Controls.Add(label2);
             panel2.Controls.Add(btnDangky);
             panel2.Controls.Add(btnDangnhap);
@@ -74,9 +76,11 @@
             // btnDangky
             // 
             btnDangky.AutoSize = true;
+            btnDangky.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDangky.LinkColor = Color.FromArgb(255, 153, 51);
             btnDangky.Location = new Point(214, 408);
             btnDangky.Name = "btnDangky";
-            btnDangky.Size = new Size(63, 20);
+            btnDangky.Size = new Size(66, 20);
             btnDangky.TabIndex = 4;
             btnDangky.TabStop = true;
             btnDangky.Text = "Đăng ký";
@@ -112,11 +116,22 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(164, 49);
+            label1.Location = new Point(162, 111);
             label1.Name = "label1";
             label1.Size = new Size(175, 41);
             label1.TabIndex = 0;
             label1.Text = "Đăng nhập";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Snap ITC", 24F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.FromArgb(146, 73, 0);
+            label3.Location = new Point(125, 32);
+            label3.Name = "label3";
+            label3.Size = new Size(261, 51);
+            label3.TabIndex = 6;
+            label3.Text = "Coffee LD";
             // 
             // Dangnhap
             // 
@@ -142,5 +157,6 @@
         private TextBox txtMatkhau;
         private TextBox txtTaikhoan;
         private Label label1;
+        private Label label3;
     }
 }

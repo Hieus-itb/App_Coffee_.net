@@ -102,14 +102,14 @@ namespace App_Coffee.view
             bool addEmployee = Nhansucontroller.AddEmployee(model, taikhoan, matkhau, role );
             if (addEmployee)
             {
-                MessageBox.Show("Thêm nhân viên thành công!");
+                MessageBox.Show("Đăng ký thành công!");
                 this.Close();
                 Dangnhap frm = new Dangnhap();
                 frm.Show();
             }
             else
             {
-                MessageBox.Show("Thêm nhân viên thất bại!");
+                MessageBox.Show("Đăng ký thất bại!");
                 return;
             }
            
@@ -119,8 +119,6 @@ namespace App_Coffee.view
         private void btnHuy_Click(object sender, EventArgs e)
         {
             this.Close();
-            Dangnhap frm = new Dangnhap();
-            frm.ShowDialog();
         }
     }
 }

@@ -48,6 +48,7 @@
             // 
             // panel1
             // 
+            panel1.BackColor = Color.FromArgb(74, 48, 34);
             panel1.Controls.Add(btnDouong);
             panel1.Controls.Add(btnDangxuat);
             panel1.Controls.Add(btnNhanvien);
@@ -63,12 +64,15 @@
             // 
             // btnDouong
             // 
+            btnDouong.BackColor = Color.White;
+            btnDouong.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDouong.ForeColor = Color.Black;
             btnDouong.Location = new Point(0, 446);
             btnDouong.Name = "btnDouong";
             btnDouong.Size = new Size(259, 61);
             btnDouong.TabIndex = 7;
             btnDouong.Text = "Đồ uống";
-            btnDouong.UseVisualStyleBackColor = true;
+            btnDouong.UseVisualStyleBackColor = false;
             btnDouong.Click += btnDouong_Click_1;
             // 
             // btnDangxuat
@@ -83,50 +87,64 @@
             // 
             // btnNhanvien
             // 
+            btnNhanvien.BackColor = Color.White;
+            btnNhanvien.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnNhanvien.ForeColor = Color.Black;
             btnNhanvien.Location = new Point(0, 388);
             btnNhanvien.Name = "btnNhanvien";
             btnNhanvien.Size = new Size(259, 61);
             btnNhanvien.TabIndex = 4;
             btnNhanvien.Text = "Nhân viên";
-            btnNhanvien.UseVisualStyleBackColor = true;
+            btnNhanvien.UseVisualStyleBackColor = false;
             btnNhanvien.Click += btnNhanvien_Click;
             // 
             // btnDoanhthu
             // 
+            btnDoanhthu.BackColor = Color.White;
+            btnDoanhthu.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDoanhthu.ForeColor = Color.Black;
             btnDoanhthu.Location = new Point(0, 331);
             btnDoanhthu.Name = "btnDoanhthu";
             btnDoanhthu.Size = new Size(259, 61);
             btnDoanhthu.TabIndex = 3;
             btnDoanhthu.Text = "Doanh thu";
-            btnDoanhthu.UseVisualStyleBackColor = true;
+            btnDoanhthu.UseVisualStyleBackColor = false;
             btnDoanhthu.Click += btnDoanhthu_Click;
             // 
             // btnDatmon
             // 
+            btnDatmon.BackColor = Color.White;
+            btnDatmon.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDatmon.ForeColor = Color.Black;
             btnDatmon.Location = new Point(0, 277);
             btnDatmon.Name = "btnDatmon";
             btnDatmon.Size = new Size(259, 58);
             btnDatmon.TabIndex = 2;
             btnDatmon.Text = "Đặt món";
-            btnDatmon.UseVisualStyleBackColor = true;
+            btnDatmon.UseVisualStyleBackColor = false;
             btnDatmon.Click += btnDatmon_Click;
             // 
             // btnDatban
             // 
+            btnDatban.BackColor = Color.FromArgb(146, 73, 0);
+            btnDatban.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDatban.ForeColor = Color.White;
             btnDatban.Location = new Point(0, 218);
             btnDatban.Name = "btnDatban";
             btnDatban.Size = new Size(259, 63);
             btnDatban.TabIndex = 1;
             btnDatban.Text = "Đặt bàn";
-            btnDatban.UseVisualStyleBackColor = true;
+            btnDatban.UseVisualStyleBackColor = false;
             btnDatban.Click += btnDatban_Click;
             // 
             // txtUser
             // 
             txtUser.AutoSize = true;
-            txtUser.Location = new Point(107, 36);
+            txtUser.Font = new Font("Segoe UI", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            txtUser.ForeColor = Color.White;
+            txtUser.Location = new Point(76, 30);
             txtUser.Name = "txtUser";
-            txtUser.Size = new Size(49, 20);
+            txtUser.Size = new Size(103, 41);
             txtUser.TabIndex = 0;
             txtUser.Text = "Name";
             // 
@@ -143,9 +161,9 @@
             // 
             // btnHuy
             // 
-            btnHuy.Location = new Point(778, 197);
+            btnHuy.Location = new Point(778, 182);
             btnHuy.Name = "btnHuy";
-            btnHuy.Size = new Size(114, 43);
+            btnHuy.Size = new Size(114, 47);
             btnHuy.TabIndex = 3;
             btnHuy.Text = "Hủy bàn";
             btnHuy.UseVisualStyleBackColor = true;
@@ -155,7 +173,7 @@
             // 
             btnDat.Location = new Point(778, 103);
             btnDat.Name = "btnDat";
-            btnDat.Size = new Size(114, 54);
+            btnDat.Size = new Size(114, 47);
             btnDat.TabIndex = 2;
             btnDat.Text = "Đặt bàn";
             btnDat.UseVisualStyleBackColor = true;
@@ -164,12 +182,13 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(394, 19);
+            label1.Font = new Font("Segoe UI Black", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.FromArgb(146, 73, 0);
+            label1.Location = new Point(374, 12);
             label1.Name = "label1";
-            label1.Size = new Size(108, 41);
+            label1.Size = new Size(164, 41);
             label1.TabIndex = 1;
-            label1.Text = "Coffee";
+            label1.Text = "Coffee_LD";
             // 
             // dataGridView1
             // 

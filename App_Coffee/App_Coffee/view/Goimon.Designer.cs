@@ -58,6 +58,11 @@
             dataGridView2 = new DataGridView();
             btnThanhtoan = new Button();
             lbThanhtien = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            label6 = new Label();
+            label7 = new Label();
+            label8 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -66,6 +71,7 @@
             // 
             // panel1
             // 
+            panel1.BackColor = Color.FromArgb(74, 48, 34);
             panel1.Controls.Add(btnDouong);
             panel1.Controls.Add(btnDangxuat);
             panel1.Controls.Add(btnNhanvien);
@@ -80,6 +86,7 @@
             // 
             // btnDouong
             // 
+            btnDouong.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDouong.Location = new Point(0, 443);
             btnDouong.Name = "btnDouong";
             btnDouong.Size = new Size(259, 61);
@@ -100,6 +107,7 @@
             // 
             // btnNhanvien
             // 
+            btnNhanvien.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnNhanvien.Location = new Point(0, 388);
             btnNhanvien.Name = "btnNhanvien";
             btnNhanvien.Size = new Size(259, 61);
@@ -110,6 +118,7 @@
             // 
             // btnDoanhthu
             // 
+            btnDoanhthu.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDoanhthu.Location = new Point(0, 331);
             btnDoanhthu.Name = "btnDoanhthu";
             btnDoanhthu.Size = new Size(259, 61);
@@ -120,15 +129,20 @@
             // 
             // btnDatmon
             // 
+            btnDatmon.BackColor = Color.FromArgb(146, 73, 0);
+            btnDatmon.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDatmon.ForeColor = Color.White;
             btnDatmon.Location = new Point(0, 277);
             btnDatmon.Name = "btnDatmon";
             btnDatmon.Size = new Size(259, 58);
             btnDatmon.TabIndex = 2;
             btnDatmon.Text = "Đặt món";
-            btnDatmon.UseVisualStyleBackColor = true;
+            btnDatmon.UseVisualStyleBackColor = false;
+            btnDatmon.Click += btnDatmon_Click;
             // 
             // btnDatban
             // 
+            btnDatban.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDatban.Location = new Point(0, 218);
             btnDatban.Name = "btnDatban";
             btnDatban.Size = new Size(259, 63);
@@ -140,14 +154,21 @@
             // txtUser
             // 
             txtUser.AutoSize = true;
-            txtUser.Location = new Point(107, 36);
+            txtUser.Font = new Font("Segoe UI", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            txtUser.ForeColor = Color.White;
+            txtUser.Location = new Point(76, 29);
             txtUser.Name = "txtUser";
-            txtUser.Size = new Size(49, 20);
+            txtUser.Size = new Size(103, 41);
             txtUser.TabIndex = 0;
             txtUser.Text = "Name";
             // 
             // panel2
             // 
+            panel2.Controls.Add(label8);
+            panel2.Controls.Add(label7);
+            panel2.Controls.Add(label6);
+            panel2.Controls.Add(label5);
+            panel2.Controls.Add(label4);
             panel2.Controls.Add(label1);
             panel2.Controls.Add(lbBan6);
             panel2.Controls.Add(lbBan5);
@@ -171,9 +192,9 @@
             label1.AutoSize = true;
             label1.Location = new Point(22, 508);
             label1.Name = "label1";
-            label1.Size = new Size(251, 60);
+            label1.Size = new Size(47, 20);
             label1.TabIndex = 12;
-            label1.Text = "Lưu ý:\r\n+ Chữ xanh: Bàn hiện đang trống.\r\n+ Chữ đỏ   : Bàn hiện đang có người.\r\n";
+            label1.Text = "Lưu ý:";
             // 
             // lbBan6
             // 
@@ -196,7 +217,7 @@
             // lbBan4
             // 
             lbBan4.AutoSize = true;
-            lbBan4.Location = new Point(203, 304);
+            lbBan4.Location = new Point(203, 314);
             lbBan4.Name = "lbBan4";
             lbBan4.Size = new Size(42, 20);
             lbBan4.TabIndex = 9;
@@ -205,7 +226,7 @@
             // lbBan3
             // 
             lbBan3.AutoSize = true;
-            lbBan3.Location = new Point(53, 304);
+            lbBan3.Location = new Point(53, 314);
             lbBan3.Name = "lbBan3";
             lbBan3.Size = new Size(42, 20);
             lbBan3.TabIndex = 8;
@@ -214,7 +235,7 @@
             // lbBan2
             // 
             lbBan2.AutoSize = true;
-            lbBan2.Location = new Point(199, 146);
+            lbBan2.Location = new Point(199, 172);
             lbBan2.Name = "lbBan2";
             lbBan2.Size = new Size(46, 20);
             lbBan2.TabIndex = 7;
@@ -223,7 +244,7 @@
             // lbBan1
             // 
             lbBan1.AutoSize = true;
-            lbBan1.Location = new Point(53, 146);
+            lbBan1.Location = new Point(53, 172);
             lbBan1.Name = "lbBan1";
             lbBan1.Size = new Size(46, 20);
             lbBan1.TabIndex = 6;
@@ -252,7 +273,7 @@
             // btnBan4
             // 
             btnBan4.Image = Properties.Resources.table;
-            btnBan4.Location = new Point(171, 196);
+            btnBan4.Location = new Point(167, 206);
             btnBan4.Name = "btnBan4";
             btnBan4.Size = new Size(106, 105);
             btnBan4.TabIndex = 3;
@@ -262,7 +283,7 @@
             // btnBan3
             // 
             btnBan3.Image = Properties.Resources.table;
-            btnBan3.Location = new Point(22, 196);
+            btnBan3.Location = new Point(22, 206);
             btnBan3.Name = "btnBan3";
             btnBan3.Size = new Size(106, 105);
             btnBan3.TabIndex = 2;
@@ -272,7 +293,7 @@
             // btnBan2
             // 
             btnBan2.Image = Properties.Resources.table;
-            btnBan2.Location = new Point(171, 38);
+            btnBan2.Location = new Point(171, 64);
             btnBan2.Name = "btnBan2";
             btnBan2.Size = new Size(106, 105);
             btnBan2.TabIndex = 1;
@@ -282,7 +303,7 @@
             // btnBan1
             // 
             btnBan1.Image = Properties.Resources.table;
-            btnBan1.Location = new Point(22, 38);
+            btnBan1.Location = new Point(22, 64);
             btnBan1.Name = "btnBan1";
             btnBan1.Size = new Size(106, 105);
             btnBan1.TabIndex = 0;
@@ -372,6 +393,57 @@
             lbThanhtien.Size = new Size(0, 31);
             lbThanhtien.TabIndex = 11;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.Red;
+            label4.Location = new Point(22, 21);
+            label4.Name = "label4";
+            label4.Size = new Size(249, 20);
+            label4.TabIndex = 13;
+            label4.Text = "Vui lòng chọn bàn trước khi order!";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.Green;
+            label5.Location = new Point(22, 541);
+            label5.Name = "label5";
+            label5.Size = new Size(98, 20);
+            label5.TabIndex = 14;
+            label5.Text = "+ Chữ xanh: ";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(119, 541);
+            label6.Name = "label6";
+            label6.Size = new Size(147, 20);
+            label6.TabIndex = 15;
+            label6.Text = "Bàn hiện đang trống.";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.ForeColor = Color.Red;
+            label7.Location = new Point(22, 570);
+            label7.Name = "label7";
+            label7.Size = new Size(94, 20);
+            label7.TabIndex = 16;
+            label7.Text = "+ Chữ đỏ   : ";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(119, 568);
+            label8.Name = "label8";
+            label8.Size = new Size(170, 20);
+            label8.TabIndex = 17;
+            label8.Text = "Bàn hiện đang có người.";
+            // 
             // Goimon
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -431,5 +503,10 @@
         private Button btnThanhtoan;
         private Button btnDouong;
         private Label lbThanhtien;
+        private Label label4;
+        private Label label7;
+        private Label label6;
+        private Label label5;
+        private Label label8;
     }
 }

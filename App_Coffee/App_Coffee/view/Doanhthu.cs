@@ -67,7 +67,7 @@ namespace App_Coffee.view
                 {
                     dataGridView1.DataSource = hoaDonList;
                 }
-                
+
 
                 float totalChiphi = doanhThuController.GetTotalChiPhi();
                 float totalTien = doanhThuController.GetTotalTien();
@@ -105,9 +105,10 @@ namespace App_Coffee.view
 
         private void btnDatmon_Click(object sender, EventArgs e)
         {
-            Goimon goiMonForm = new Goimon();
-            goiMonForm.Show();
-            this.Dispose();
+            this.Hide();
+
+            Goimon gm = new Goimon();
+            gm.Show();
         }
 
         private void btnDoanhthu_Click(object sender, EventArgs e)
@@ -137,6 +138,11 @@ namespace App_Coffee.view
 
             Quanlydouong qldu = new Quanlydouong();
             qldu.Show();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

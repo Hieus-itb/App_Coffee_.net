@@ -30,7 +30,7 @@ namespace App_Coffee.view
             bancontroller = new Bancontroller();
             controller = new Douongcontroller();
             ordercontroller = new Ordercontroller();
-            doanhthucontroller = new Doanhthucontroller();  
+            doanhthucontroller = new Doanhthucontroller();
             currentUserRole = Dangnhap.userRole;
             DisplayLoggedInUser();
 
@@ -459,7 +459,7 @@ namespace App_Coffee.view
             form.Show();
         }
 
-        
+
 
         private void btnDangxuat_Click(object sender, EventArgs e)
         {
@@ -470,6 +470,14 @@ namespace App_Coffee.view
                 frm.Show();
                 this.Hide();
             }
+        }
+
+        private void btnDatmon_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+
+            Goimon gm = new Goimon();
+            gm.Show();
         }
     }
 }

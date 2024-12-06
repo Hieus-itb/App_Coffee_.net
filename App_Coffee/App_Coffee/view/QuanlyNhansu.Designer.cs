@@ -70,6 +70,7 @@
             // 
             // panel1
             // 
+            panel1.BackColor = Color.FromArgb(74, 48, 34);
             panel1.Controls.Add(btnDouong);
             panel1.Controls.Add(btnDangxuat);
             panel1.Controls.Add(btnNhanvien);
@@ -84,6 +85,7 @@
             // 
             // btnDouong
             // 
+            btnDouong.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDouong.Location = new Point(0, 445);
             btnDouong.Name = "btnDouong";
             btnDouong.Size = new Size(259, 61);
@@ -104,16 +106,20 @@
             // 
             // btnNhanvien
             // 
+            btnNhanvien.BackColor = Color.FromArgb(146, 73, 0);
+            btnNhanvien.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnNhanvien.ForeColor = Color.White;
             btnNhanvien.Location = new Point(0, 388);
             btnNhanvien.Name = "btnNhanvien";
             btnNhanvien.Size = new Size(259, 61);
             btnNhanvien.TabIndex = 4;
             btnNhanvien.Text = "Nhân viên";
-            btnNhanvien.UseVisualStyleBackColor = true;
+            btnNhanvien.UseVisualStyleBackColor = false;
             btnNhanvien.Click += btnNhanvien_Click;
             // 
             // btnDoanhthu
             // 
+            btnDoanhthu.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDoanhthu.Location = new Point(0, 331);
             btnDoanhthu.Name = "btnDoanhthu";
             btnDoanhthu.Size = new Size(259, 61);
@@ -124,6 +130,7 @@
             // 
             // btnDatmon
             // 
+            btnDatmon.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDatmon.Location = new Point(0, 277);
             btnDatmon.Name = "btnDatmon";
             btnDatmon.Size = new Size(259, 58);
@@ -134,6 +141,7 @@
             // 
             // btnDatban
             // 
+            btnDatban.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDatban.Location = new Point(0, 218);
             btnDatban.Name = "btnDatban";
             btnDatban.Size = new Size(259, 63);
@@ -145,9 +153,11 @@
             // txtUser
             // 
             txtUser.AutoSize = true;
-            txtUser.Location = new Point(107, 36);
+            txtUser.Font = new Font("Segoe UI", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            txtUser.ForeColor = Color.White;
+            txtUser.Location = new Point(76, 34);
             txtUser.Name = "txtUser";
-            txtUser.Size = new Size(49, 20);
+            txtUser.Size = new Size(103, 41);
             txtUser.TabIndex = 0;
             txtUser.Text = "Name";
             // 
@@ -328,6 +338,7 @@
             btnThem.TabIndex = 22;
             btnThem.Text = "Thêm";
             btnThem.UseVisualStyleBackColor = true;
+            btnThem.Click += btnThem_Click;
             // 
             // btnSua
             // 

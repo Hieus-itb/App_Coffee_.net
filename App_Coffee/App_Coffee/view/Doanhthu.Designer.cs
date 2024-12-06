@@ -55,6 +55,7 @@
             // 
             // panel1
             // 
+            panel1.BackColor = Color.FromArgb(74, 48, 34);
             panel1.Controls.Add(btnDouong);
             panel1.Controls.Add(btnDangxuat);
             panel1.Controls.Add(btnNhanvien);
@@ -69,6 +70,7 @@
             // 
             // btnDouong
             // 
+            btnDouong.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDouong.Location = new Point(0, 444);
             btnDouong.Name = "btnDouong";
             btnDouong.Size = new Size(259, 61);
@@ -89,6 +91,7 @@
             // 
             // btnNhanvien
             // 
+            btnNhanvien.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnNhanvien.Location = new Point(0, 388);
             btnNhanvien.Name = "btnNhanvien";
             btnNhanvien.Size = new Size(259, 61);
@@ -99,16 +102,20 @@
             // 
             // btnDoanhthu
             // 
+            btnDoanhthu.BackColor = Color.FromArgb(146, 73, 0);
+            btnDoanhthu.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDoanhthu.ForeColor = Color.White;
             btnDoanhthu.Location = new Point(0, 331);
             btnDoanhthu.Name = "btnDoanhthu";
             btnDoanhthu.Size = new Size(259, 61);
             btnDoanhthu.TabIndex = 3;
             btnDoanhthu.Text = "Doanh thu";
-            btnDoanhthu.UseVisualStyleBackColor = true;
+            btnDoanhthu.UseVisualStyleBackColor = false;
             btnDoanhthu.Click += btnDoanhthu_Click;
             // 
             // btnDatmon
             // 
+            btnDatmon.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDatmon.Location = new Point(0, 277);
             btnDatmon.Name = "btnDatmon";
             btnDatmon.Size = new Size(259, 58);
@@ -119,6 +126,7 @@
             // 
             // btnDatban
             // 
+            btnDatban.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDatban.Location = new Point(0, 218);
             btnDatban.Name = "btnDatban";
             btnDatban.Size = new Size(259, 63);
@@ -130,15 +138,17 @@
             // txtUser
             // 
             txtUser.AutoSize = true;
-            txtUser.Location = new Point(107, 36);
+            txtUser.Font = new Font("Segoe UI", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            txtUser.ForeColor = Color.White;
+            txtUser.Location = new Point(76, 30);
             txtUser.Name = "txtUser";
-            txtUser.Size = new Size(49, 20);
+            txtUser.Size = new Size(103, 41);
             txtUser.TabIndex = 0;
             txtUser.Text = "Name";
             // 
             // panel2
             // 
-            panel2.BackColor = SystemColors.ActiveCaption;
+            panel2.BackColor = Color.FromArgb(146, 73, 0);
             panel2.Controls.Add(txtSodon);
             panel2.Controls.Add(label1);
             panel2.Location = new Point(306, 12);
@@ -149,23 +159,28 @@
             // txtSodon
             // 
             txtSodon.AutoSize = true;
+            txtSodon.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            txtSodon.ForeColor = Color.White;
             txtSodon.Location = new Point(110, 70);
             txtSodon.Name = "txtSodon";
-            txtSodon.Size = new Size(17, 20);
+            txtSodon.Size = new Size(18, 20);
             txtSodon.TabIndex = 1;
             txtSodon.Text = "0";
             // 
             // label1
             // 
             label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.White;
             label1.Location = new Point(22, 13);
             label1.Name = "label1";
-            label1.Size = new Size(56, 20);
+            label1.Size = new Size(59, 20);
             label1.TabIndex = 0;
             label1.Text = "Số đơn";
             // 
             // panel3
             // 
+            panel3.BackColor = Color.FromArgb(136, 100, 81);
             panel3.Controls.Add(txtChiphi);
             panel3.Controls.Add(label2);
             panel3.Location = new Point(574, 12);
@@ -176,23 +191,28 @@
             // txtChiphi
             // 
             txtChiphi.AutoSize = true;
-            txtChiphi.Location = new Point(99, 70);
+            txtChiphi.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            txtChiphi.ForeColor = Color.White;
+            txtChiphi.Location = new Point(111, 70);
             txtChiphi.Name = "txtChiphi";
-            txtChiphi.Size = new Size(17, 20);
+            txtChiphi.Size = new Size(18, 20);
             txtChiphi.TabIndex = 2;
             txtChiphi.Text = "0";
             // 
             // label2
             // 
             label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.White;
             label2.Location = new Point(17, 18);
             label2.Name = "label2";
-            label2.Size = new Size(55, 20);
+            label2.Size = new Size(60, 20);
             label2.TabIndex = 0;
             label2.Text = "Chi phí";
             // 
             // panel4
             // 
+            panel4.BackColor = Color.FromArgb(202, 174, 136);
             panel4.Controls.Add(txtLai);
             panel4.Controls.Add(label3);
             panel4.Location = new Point(842, 12);
@@ -203,18 +223,22 @@
             // txtLai
             // 
             txtLai.AutoSize = true;
-            txtLai.Location = new Point(103, 70);
+            txtLai.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            txtLai.ForeColor = Color.White;
+            txtLai.Location = new Point(111, 70);
             txtLai.Name = "txtLai";
-            txtLai.Size = new Size(17, 20);
+            txtLai.Size = new Size(18, 20);
             txtLai.TabIndex = 3;
             txtLai.Text = "0";
             // 
             // label3
             // 
             label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.White;
             label3.Location = new Point(15, 15);
             label3.Name = "label3";
-            label3.Size = new Size(53, 20);
+            label3.Size = new Size(59, 20);
             label3.TabIndex = 0;
             label3.Text = "Lãi thu";
             // 
@@ -226,7 +250,7 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(779, 481);
+            dataGridView1.Size = new Size(779, 470);
             dataGridView1.TabIndex = 4;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 

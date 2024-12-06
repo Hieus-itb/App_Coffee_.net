@@ -307,7 +307,6 @@ namespace App_Coffee.controller
                             int newQuantity = currentQuantity + soLuong;
                             double newTotal = currentTotal + (soLuong * gia);
                             double newChiPhi = currentChiPhi + chiPhi;
-
                             string sqlUpdate = @"
                         UPDATE ORDER_ 
                         SET SOLUONG = @NewQuantity, TONGTIEN = @NewTotal, CHIPHI = @NewChiPhi 

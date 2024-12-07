@@ -350,7 +350,7 @@ namespace App_Coffee.controller
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi khi thêm đồ uống vào bàn: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Ấn vào bàn bên phải trước khi đặt món");
                 }
                 finally
                 {

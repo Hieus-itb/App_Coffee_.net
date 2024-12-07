@@ -39,61 +39,81 @@ namespace App_Coffee.view
             string hoten = txtHoten.Text.Trim();
             string quequan = txtQuequan.Text.Trim();
             string gioitinh = txtGioitinh.Text.Trim();
-            int namsinh = Convert.ToInt32(txtNamsinh.Text.Trim());
             string sdt = txtSdt.Text.Trim();
             string captcha = txtCaptcha.Text.Trim();
             string role = cbRole.Text.Trim();
+            int namsinh;
 
             // Kiểm tra các trường đầu vào
             if (string.IsNullOrEmpty(taikhoan))
             {
-                MessageBox.Show("Vui lòng nhập tài khoản!");
+                MessageBox.Show("Vui lòng nhập tài khoản!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (taikhoan.Length <= 6)
             {
-                MessageBox.Show("Tài khoản phải có độ dài lớn hơn 6 ký tự!");
+                MessageBox.Show("Tài khoản phải có độ dài lớn hơn 6 ký tự!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (string.IsNullOrEmpty(matkhau))
             {
-                MessageBox.Show("Vui lòng nhập mật khẩu!");
+                MessageBox.Show("Vui lòng nhập mật khẩu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (matkhau.Length <= 6)
             {
-                MessageBox.Show("Mật khẩu phải có độ dài lớn hơn 6 ký tự!");
+                MessageBox.Show("Mật khẩu phải có độ dài lớn hơn 6 ký tự!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (string.IsNullOrEmpty(nhaplai))
             {
-                MessageBox.Show("Vui lòng nhập lại mật khẩu!");
+                MessageBox.Show("Vui lòng nhập lại mật khẩu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (nhaplai != matkhau)
+            {
+                MessageBox.Show("Mật khẩu và nhập lại mật khẩu không trùng nhau!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtNamsinh.Text))
+            {
+                MessageBox.Show("Vui lòng nhập năm sinh!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!int.TryParse(txtNamsinh.Text.Trim(), out namsinh))
+            {
+                MessageBox.Show("Năm sinh phải là một số nguyên hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (namsinh < 1900 || namsinh > DateTime.Now.Year)
+            {
+                MessageBox.Show("Năm sinh không hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (string.IsNullOrEmpty(captcha))
             {
-                MessageBox.Show("Vui lòng nhập captcha!");
+                MessageBox.Show("Vui lòng nhập captcha!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Kiểm tra captcha
             if (captcha != lbCaptcha.Text)
             {
-                MessageBox.Show("Nhập captcha không chính xác!");
+                MessageBox.Show("Nhập captcha không chính xác!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Kiểm tra khớp mật khẩu
-            if (nhaplai != matkhau)
-            {
-                MessageBox.Show("Mật khẩu và nhập lại mật khẩu không trùng nhau!");
-                return;
-            }
+            // Hiển thị thông báo nếu kiểm tra thành công
+            MessageBox.Show("Thông tin nhập hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
 
             // Tạo đối tượng nhân viên mới
             Nhansumodel model = new Nhansumodel(0, hoten, gioitinh, namsinh, role, quequan, sdt);

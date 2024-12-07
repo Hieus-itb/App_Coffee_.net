@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static App_Coffee.model.ExcelExporter;
 
 namespace App_Coffee.view
 {
@@ -19,8 +20,8 @@ namespace App_Coffee.view
         private Ordercontroller ordercontroller;
         private Goimon goimon;
         private string maban;
+        private static InvoiceData currentInvoice;
 
-        
         public Hoadon(string _maban)
         {
             InitializeComponent();
@@ -66,64 +67,111 @@ namespace App_Coffee.view
                 model.Rows.Add(row);
             }
         }
-        private void btnThanhtoan_Click(object sender, EventArgs e)
-        {
 
+        private void ExportInvoice()
+        {
             try
             {
-                // Lấy dữ liệu từ DataGridView
-                DataGridView model = dataGridView1; 
+                DataTable dataTable = new DataTable();
+                dataTable.Columns.Add("Mã món");
+                dataTable.Columns.Add("Tên món");
+                dataTable.Columns.Add("Số lượng");
+                dataTable.Columns.Add("Giá");
+                dataTable.Columns.Add("Chi phí");
+
+                foreach (var item in currentInvoice.Items)
+                {
+                    dataTable.Rows.Add(item.MaMon, item.TenMon, item.SoLuong, item.Gia, item.ChiPhi);
+                }
+
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Excel Files|*.xlsx";
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = saveFileDialog.FileName;
+
+                    ExcelExporter.ExportDataTableToExcel(dataTable, filePath);
+                    MessageBox.Show("Hóa đơn đã được xuất thành công!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi xuất hóa đơn: {ex.Message}");
+            }
+        }
+        private void btnThanhtoan_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var confirmResult = MessageBox.Show("Bạn có chắc chắn muốn thanh toán không?", "Xác nhận thanh toán", MessageBoxButtons.YesNo);
+
+                if (confirmResult == DialogResult.No)
+                {
+                    return;
+                }
+
+                DataGridView model = dataGridView1;
                 double tongChiPhi = 0, tongTien = 0;
 
                 string tenBan = bancontroller.GetTenBan(maban);
 
-                // Duyệt qua các dòng trong DataGridView
+                currentInvoice = new InvoiceData
+                {
+                    MaBan = maban,
+                    TenBan = tenBan,
+                    NgayThanhToan = DateTime.Now
+                };
+
                 foreach (DataGridViewRow row in model.Rows)
                 {
                     if (row.Cells[0].Value != null && row.Cells[2].Value != null && row.Cells[3].Value != null)
                     {
                         string maDoUong = row.Cells[0].Value.ToString();
                         int soLuong = int.Parse(row.Cells[2].Value.ToString());
-                        double gia =douongcontroller.getGia(maDoUong);
+                        double gia = douongcontroller.getGia(maDoUong);
                         double chiPhi = douongcontroller.getChiphi(maDoUong);
-                        tongChiPhi += chiPhi * soLuong;
 
+                        currentInvoice.Items.Add(new HoaDonItem
+                        {
+                            MaMon = maDoUong,
+                            TenMon = row.Cells[1].Value.ToString(),
+                            SoLuong = soLuong,
+                            Gia = gia,
+                            ChiPhi = chiPhi
+                        });
+
+                        tongChiPhi += chiPhi * soLuong;
                         tongTien += gia * soLuong;
                     }
                 }
 
-                // Gọi phương thức insertDoanhThu và deleteAfterSucess
                 bool insertSuccess = ordercontroller.InsertDoanhThu(tongChiPhi, tongTien);
-                
 
-                // Hiển thị thông báo thanh toán thành công
                 MessageBox.Show("Thanh toán thành công!");
 
-                
+                var result = MessageBox.Show("Bạn có muốn xuất hóa đơn không?", "Xuất hóa đơn", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    ExportInvoice();
+                }
 
-                // Làm sạch bảng và thông tin bàn
                 model.Rows.Clear();
                 lbBan.Text = "";
                 lbNgay.Text = "";
-                // Cập nhật trạng thái bàn
+
                 bool updateStatusSuccess = bancontroller.UpdateBanStatus(maban, "Trống");
                 if (!updateStatusSuccess)
                 {
                     MessageBox.Show("Lỗi khi cập nhật trạng thái bàn!");
                     return;
                 }
-                else 
-                {
-                    goimon.UpdateLabels();
-                } 
-                
+
+                goimon.UpdateLabels();
+
                 bool deleteAfterSucess = ordercontroller.DeleteAfterSuccess(maban);
-                
-                
             }
             catch (Exception ex)
             {
-                // In lỗi ra console và hiển thị thông báo lỗi
                 Console.WriteLine(ex.StackTrace);
                 MessageBox.Show("Lỗi khi thanh toán: " + ex.Message);
             }
@@ -133,7 +181,6 @@ namespace App_Coffee.view
                 Goimon frm = new Goimon();
                 frm.Show();
             }
-
         }
     }
 }

@@ -144,5 +144,50 @@ namespace App_Coffee.view
         {
 
         }
+
+        private void btnXuatfile_Click(object sender, EventArgs e)
+        {
+            // Tạo DataTable từ dữ liệu trong DataGridView
+            DataTable dataTable = new DataTable();
+
+            // Thêm các cột từ DataGridView vào DataTable
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            {
+                dataTable.Columns.Add(column.Name);
+            }
+
+            // Thêm các dòng dữ liệu vào DataTable
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (!row.IsNewRow)
+                {
+                    DataRow dataRow = dataTable.NewRow();
+                    for (int i = 0; i < dataGridView1.Columns.Count; i++)
+                    {
+                        dataRow[i] = row.Cells[i].Value;
+                    }
+                    dataTable.Rows.Add(dataRow);
+                }
+            }
+
+            // Mở SaveFileDialog để chọn nơi lưu file
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel Files|*.xlsx";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = saveFileDialog.FileName;
+
+                try
+                {
+                    // Gọi phương thức xuất file Excel
+                    ExcelExporter.ExportDataTableToExcel(dataTable, filePath);
+                    MessageBox.Show("File Excel đã được xuất thành công!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Lỗi khi xuất file: {ex.Message}");
+                }
+            }
+        }
     }
 }

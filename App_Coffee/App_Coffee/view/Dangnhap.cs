@@ -16,7 +16,7 @@ namespace App_Coffee.view
     public partial class Dangnhap : Form
     {
         private Accountcontroller accController;
-        public static string userRole = ""; // Biến tĩnh lưu role của người dùng (Admin hay User)
+        public static string userRole = "";
 
         public Dangnhap()
         {
@@ -28,17 +28,14 @@ namespace App_Coffee.view
             string username = txtTaikhoan.Text.Trim();
             string password = txtMatkhau.Text.Trim();
 
-            // Kiểm tra tài khoản và mật khẩu
             if (accController.CheckUserCredentials(username, password))
             {
-                // Lưu role của người dùng (Admin hay User) vào biến tĩnh
                 userRole = accController.IsAdmin(username) ? "Admin" : "User";
 
-                // Hiển thị thông báo và chuyển đến form Datban
                 MessageBox.Show("Đăng nhập thành công!");
                 this.Hide();
 
-                Datban frm = new Datban(); // Chuyển sang form Datban
+                Datban frm = new Datban();
                 frm.Show();
             }
             else

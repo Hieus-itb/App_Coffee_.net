@@ -15,7 +15,6 @@ namespace App_Coffee.controller
 
         public Ordercontroller()
         {
-            // Kết nối cơ sở dữ liệu
             conn = Connection.GetInstance().GetConnection();
         }
         public List<object[]> DanhSachDoUongDaGoi(string maBan)
@@ -23,7 +22,6 @@ namespace App_Coffee.controller
             var danhSachDoUong = new List<object[]>();
             string sql = "SELECT MADOUONG, TENDOUONG, SOLUONG, TONGTIEN FROM ORDER_ WHERE MABAN = @MaBan";
 
-            // Đảm bảo kết nối được mở trước khi thực hiện truy vấn
             if (conn.State != ConnectionState.Open)
             {
                 conn.Open();
@@ -35,7 +33,6 @@ namespace App_Coffee.controller
 
                 try
                 {
-                    // Đảm bảo sử dụng using để tự động đóng DataReader
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -55,7 +52,6 @@ namespace App_Coffee.controller
                 }
                 finally
                 {
-                    // Đảm bảo đóng kết nối khi hoàn tất
                     if (conn.State == ConnectionState.Open)
                     {
                         conn.Close();
@@ -89,7 +85,6 @@ namespace App_Coffee.controller
                             int soLuong = Convert.ToInt32(reader["SOLUONG"]);
                             double tongTien = Convert.ToDouble(reader["TONGTIEN"]);
 
-                            // Thêm dữ liệu vào danh sách dưới dạng mảng object[]
                             danhSachMon.Add(new object[] { maDoUong, tenDoUong, soLuong, tongTien });
                         }
                     }
@@ -174,20 +169,16 @@ namespace App_Coffee.controller
             {
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    // Thêm tham số vào câu lệnh SQL
                     cmd.Parameters.AddWithValue("@MABAN", maBan);
                     cmd.Parameters.AddWithValue("@MADOUONG", maDoUong);
 
-                    // Mở kết nối
                     if (conn.State == ConnectionState.Closed)
                     {
                         conn.Open();
                     }
 
-                    // Thực thi câu lệnh xóa
                     int rowsAffected = cmd.ExecuteNonQuery();
 
-                    // Kiểm tra số dòng bị ảnh hưởng (xóa thành công sẽ trả về > 0 dòng)
                     if (rowsAffected > 0)
                     {
                         Console.WriteLine("Dữ liệu đã được xóa thành công.");
@@ -202,13 +193,11 @@ namespace App_Coffee.controller
             }
             catch (Exception ex)
             {
-                // In lỗi ra console nếu có lỗi
                 Console.WriteLine("Lỗi: " + ex.Message);
                 return false;
             }
             finally
             {
-                // Đảm bảo đóng kết nối sau khi thực hiện
                 if (conn.State == ConnectionState.Open)
                 {
                     conn.Close();
@@ -232,7 +221,7 @@ namespace App_Coffee.controller
                     }
 
                     int rowsAffected = cmd.ExecuteNonQuery();
-                    return rowsAffected > 0; // Trả về true nếu thêm thành công
+                    return rowsAffected > 0;
                 }
                 catch (SqlException ex)
                 {
@@ -279,7 +268,7 @@ namespace App_Coffee.controller
             {
                 conn.Close();
             }
-            return 0; // Trả về 0 nếu không có dữ liệu hoặc xảy ra lỗi
+            return 0;
         }
 
         public bool AddDrinkToTable(string maBan, string maDouong, string tenDouong, int soLuong, double gia, double chiPhi)
@@ -298,7 +287,7 @@ namespace App_Coffee.controller
 
                     using (SqlDataReader reader = cmdCheck.ExecuteReader())
                     {
-                        if (reader.Read()) // Nếu đồ uống đã tồn tại trong order
+                        if (reader.Read()) 
                         {
                             int currentQuantity = Convert.ToInt32(reader["SOLUONG"]);
                             double currentTotal = Convert.ToDouble(reader["TONGTIEN"]);
@@ -320,15 +309,15 @@ namespace App_Coffee.controller
                                 cmdUpdate.Parameters.AddWithValue("@MaBan", maBan);
                                 cmdUpdate.Parameters.AddWithValue("@MaDouong", maDouong);
 
-                                reader.Close(); // Đóng reader trước khi thực thi lệnh UPDATE
+                                reader.Close(); 
                                 cmdUpdate.ExecuteNonQuery();
                                 isUpdated = true;
 
                             }
                         }
-                        else // Nếu đồ uống chưa tồn tại trong order
+                        else 
                         {
-                            reader.Close(); // Đóng reader trước khi thực thi lệnh INSERT
+                            reader.Close(); 
                             string sqlInsert = @"
                         INSERT INTO ORDER_ (MABAN, MADOUONG, TENDOUONG, SOLUONG, TONGTIEN, CHIPHI) 
                         VALUES (@MaBan, @MaDouong, @TenDouong, @SoLuong, @TongTien, @ChiPhi)";

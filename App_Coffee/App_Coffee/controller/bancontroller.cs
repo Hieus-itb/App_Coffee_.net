@@ -11,7 +11,7 @@ namespace App_Coffee.controller
         public Bancontroller()
         {
             conn = Connection.GetInstance().GetConnection();
-            OpenConnection(); // Mở kết nối khi khởi tạo controller
+            OpenConnection(); 
         }
         private void OpenConnection()
         {

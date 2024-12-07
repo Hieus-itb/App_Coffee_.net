@@ -156,7 +156,7 @@
             txtUser.AutoSize = true;
             txtUser.Font = new Font("Segoe UI", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             txtUser.ForeColor = Color.White;
-            txtUser.Location = new Point(76, 29);
+            txtUser.Location = new Point(0, 22);
             txtUser.Name = "txtUser";
             txtUser.Size = new Size(103, 41);
             txtUser.TabIndex = 0;

@@ -46,6 +46,7 @@
             txtLai = new Label();
             label3 = new Label();
             dataGridView1 = new DataGridView();
+            btnXuatfile = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -140,7 +141,7 @@
             txtUser.AutoSize = true;
             txtUser.Font = new Font("Segoe UI", 18F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             txtUser.ForeColor = Color.White;
-            txtUser.Location = new Point(76, 30);
+            txtUser.Location = new Point(0, 33);
             txtUser.Name = "txtUser";
             txtUser.Size = new Size(103, 41);
             txtUser.TabIndex = 0;
@@ -246,19 +247,30 @@
             // 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(306, 165);
+            dataGridView1.Location = new Point(306, 195);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(779, 470);
+            dataGridView1.Size = new Size(779, 440);
             dataGridView1.TabIndex = 4;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            // 
+            // btnXuatfile
+            // 
+            btnXuatfile.Location = new Point(991, 150);
+            btnXuatfile.Name = "btnXuatfile";
+            btnXuatfile.Size = new Size(94, 29);
+            btnXuatfile.TabIndex = 5;
+            btnXuatfile.Text = "Xuất ";
+            btnXuatfile.UseVisualStyleBackColor = true;
+            btnXuatfile.Click += btnXuatfile_Click;
             // 
             // Doanhthu
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1097, 658);
+            Controls.Add(btnXuatfile);
             Controls.Add(dataGridView1);
             Controls.Add(panel4);
             Controls.Add(panel3);
@@ -298,5 +310,6 @@
         private Label txtLai;
         private Label label3;
         private Button btnDouong;
+        private Button btnXuatfile;
     }
 }

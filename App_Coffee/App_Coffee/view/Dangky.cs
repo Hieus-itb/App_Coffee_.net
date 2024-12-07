@@ -44,7 +44,6 @@ namespace App_Coffee.view
             string role = cbRole.Text.Trim();
             int namsinh;
 
-            // Kiểm tra các trường đầu vào
             if (string.IsNullOrEmpty(taikhoan))
             {
                 MessageBox.Show("Vui lòng nhập tài khoản!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -111,14 +110,11 @@ namespace App_Coffee.view
                 return;
             }
 
-            // Hiển thị thông báo nếu kiểm tra thành công
             MessageBox.Show("Thông tin nhập hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
-            // Tạo đối tượng nhân viên mới
             Nhansumodel model = new Nhansumodel(0, hoten, gioitinh, namsinh, role, quequan, sdt);
 
-            // Thêm nhân viên vào cơ sở dữ liệu
             bool addEmployee = Nhansucontroller.AddEmployee(model, taikhoan, matkhau, role );
             if (addEmployee)
             {

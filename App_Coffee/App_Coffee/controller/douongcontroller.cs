@@ -30,7 +30,7 @@ namespace App_Coffee.controller
                 {
                     conn.Open();
                     int rowsAffected = cmd.ExecuteNonQuery();
-                    return rowsAffected > 0; // Trả về true nếu thêm thành công
+                    return rowsAffected > 0;
                 }
                 catch (Exception ex)
                 {
@@ -57,16 +57,13 @@ namespace App_Coffee.controller
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    // Thêm tham số @maDouong vào câu lệnh SQL
                     cmd.Parameters.AddWithValue("@maDouong", maDouong);
 
-                    // Thực thi câu lệnh và lấy giá trị từ cột CHIPHI
                     object result = cmd.ExecuteScalar();
 
-                    // Kiểm tra nếu result không null và chuyển đổi về kiểu double
                     if (result != null && result != DBNull.Value)
                     {
-                        return Convert.ToDouble(result); // Trả về chi phí dưới dạng double
+                        return Convert.ToDouble(result); 
                     }
                 }
             }
@@ -76,14 +73,13 @@ namespace App_Coffee.controller
             }
             finally
             {
-                // Đảm bảo kết nối luôn được đóng
                 if (conn.State == ConnectionState.Open)
                 {
                     conn.Close();
                 }
             }
 
-            return 0; // Trả về 0 nếu không có giá trị hợp lệ hoặc xảy ra lỗi
+            return 0;
         }
         //lấy giá
 
@@ -97,16 +93,13 @@ namespace App_Coffee.controller
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    // Thêm tham số @maDouong vào câu lệnh SQL
                     cmd.Parameters.AddWithValue("@maDouong", maDouong);
 
-                    // Thực thi câu lệnh và lấy giá trị từ cột CHIPHI
                     object result = cmd.ExecuteScalar();
 
-                    // Kiểm tra nếu result không null và chuyển đổi về kiểu double
                     if (result != null && result != DBNull.Value)
                     {
-                        return Convert.ToDouble(result); // Trả về chi phí dưới dạng double
+                        return Convert.ToDouble(result); 
                     }
                 }
             }
@@ -116,14 +109,13 @@ namespace App_Coffee.controller
             }
             finally
             {
-                // Đảm bảo kết nối luôn được đóng
                 if (conn.State == ConnectionState.Open)
                 {
                     conn.Close();
                 }
             }
 
-            return 0; // Trả về 0 nếu không có giá trị hợp lệ hoặc xảy ra lỗi
+            return 0; 
         }
 
         // Sửa
@@ -142,7 +134,7 @@ namespace App_Coffee.controller
                 {
                     conn.Open();
                     int rowsAffected = cmd.ExecuteNonQuery();
-                    return rowsAffected > 0; // Trả về true nếu cập nhật thành công
+                    return rowsAffected > 0;
                 }
                 catch (Exception ex)
                 {
@@ -173,7 +165,7 @@ namespace App_Coffee.controller
                 {
                     conn.Open();
                     int rowsAffected = cmd.ExecuteNonQuery();
-                    return rowsAffected > 0; // Trả về true nếu xóa thành công
+                    return rowsAffected > 0; 
                 }
                 catch (Exception ex)
                 {

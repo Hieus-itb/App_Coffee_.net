@@ -30,7 +30,6 @@ namespace App_Coffee.Controller
             }
         }
 
-        // Lấy danh sách hóa đơn dưới dạng List<HoaDon>
         public List<HoaDon> GetAllHoadon()
         {
             List<HoaDon> hoaDonList = new List<HoaDon>();
@@ -38,33 +37,24 @@ namespace App_Coffee.Controller
 
             try
             {
-                // Mở kết nối với cơ sở dữ liệu
                 OpenConnection();
 
-             
-
-                // Thực thi câu lệnh SQL
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                      
-
-                        // Đọc dữ liệu từ SqlDataReader và ánh xạ vào đối tượng HoaDon
+                 
                         while (reader.Read())
                         {
                             HoaDon hoaDon = new HoaDon
                             {
-                                Id = reader.GetInt32(0),  // ID của hóa đơn
-                                Ngay = reader.GetDateTime(1),  // Ngày hóa đơn
-                                Gio = reader.GetTimeSpan(2),  // Giờ hóa đơn
-                                TongChiPhi = (float)(reader.IsDBNull(3) ? 0 : reader.GetDouble(3)),  // Kiểm tra nếu TONGCHIPHI là NULL
-                                TongTien = (float)(reader.IsDBNull(4) ? 0 : reader.GetDouble(4))  // Kiểm tra nếu TONGTIEN là NULL
+                                Id = reader.GetInt32(0),  
+                                Ngay = reader.GetDateTime(1), 
+                                Gio = reader.GetTimeSpan(2), 
+                                TongChiPhi = (float)(reader.IsDBNull(3) ? 0 : reader.GetDouble(3)),  
+                                TongTien = (float)(reader.IsDBNull(4) ? 0 : reader.GetDouble(4))  
                             };
 
-                         
-
-                            // Thêm vào danh sách hóa đơn
                             hoaDonList.Add(hoaDon);
                         }
                     }
@@ -72,7 +62,6 @@ namespace App_Coffee.Controller
             }
             catch (Exception ex)
             {
-                // Hiển thị lỗi nếu có
                 MessageBox.Show($"Error fetching invoices: {ex.Message}\n{ex.StackTrace}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
@@ -104,14 +93,12 @@ namespace App_Coffee.Controller
         {
             try
             {
-                // Kiểm tra dữ liệu trong bảng DOANHTHU
                 string checkDataSql = "SELECT COUNT(*) FROM DOANHTHU";
                 using (SqlCommand checkCmd = new SqlCommand(checkDataSql, conn))
                 {
                     int rowCount = (int)checkCmd.ExecuteScalar();
                 }
 
-                // Truy vấn tính tổng tiền và chi phí
                 string sql = "SELECT SUM(TONGTIEN) - SUM(TONGCHIPHI) FROM DOANHTHU";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {

@@ -4,7 +4,6 @@ using System.Windows.Forms;
 using App_Coffee.controller;
 using App_Coffee.model;
 using App_Coffee.model.App_Coffee.model;
-//using static Azure.Core.HttpHeader;
 
 
 namespace App_Coffee.view
@@ -17,7 +16,7 @@ namespace App_Coffee.view
         {
             InitializeComponent();
             bancontroller = new Bancontroller();
-            currentUserRole = Dangnhap.userRole; // Nhận quyền người dùng từ form đăng nhập
+            currentUserRole = Dangnhap.userRole;
 
             LoadDataToTable();
             CheckAdminRole();
@@ -31,21 +30,17 @@ namespace App_Coffee.view
 
         private void DisplayLoggedInUser()
         {
-            string username = AccountModel.LoggedInUsername;  // Lấy tên người dùng từ lớp AccountModel
+            string username = AccountModel.LoggedInUsername; 
             if (!string.IsNullOrEmpty(username))
             {
-                txtUser.Text = username;  // Hiển thị tên người dùng lên TextBox
+                txtUser.Text = username; 
             }
             else
             {
-                txtUser.Text = "Chưa đăng nhập";  // Nếu không có tên người dùng, hiển thị thông báo
+                txtUser.Text = "Chưa đăng nhập"; 
             }
         }
 
-
-
-
-        // Kiểm tra quyền admin để hiển thị nút Nhân viên
         private void CheckAdminRole()
         {
             if (currentUserRole == "Admin")
@@ -100,6 +95,8 @@ namespace App_Coffee.view
             {
                 var selectedRow = dataGridView1.SelectedRows[0];
                 string maBan = selectedRow.Cells["MABAN"].Value.ToString();
+
+                bool deleteOrderSuccess = bancontroller.DeleteOrdersByBan(maBan);
                 bool success = bancontroller.UpdateBanStatus(maBan, "Trống");
 
                 if (success)

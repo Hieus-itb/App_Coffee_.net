@@ -208,7 +208,7 @@ namespace App_Coffee.controller
 
         public int GetIDNhanvien()
         {
-            int idNV = 0;  // Giá trị mặc định nếu không tìm thấy ID_NHAN_SU
+            int idNV = 0;  
             string sql = "SELECT MAX(ID_NHAN_SU) FROM NHAN_SU";
 
             try

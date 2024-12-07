@@ -34,14 +34,14 @@ namespace App_Coffee.view
         }
         private void DisplayLoggedInUser()
         {
-            string username = AccountModel.LoggedInUsername;  // Lấy tên người dùng từ lớp AccountModel
+            string username = AccountModel.LoggedInUsername;  
             if (!string.IsNullOrEmpty(username))
             {
-                txtUser.Text = username;  // Hiển thị tên người dùng lên TextBox
+                txtUser.Text = username;  
             }
             else
             {
-                txtUser.Text = "Chưa đăng nhập";  // Nếu không có tên người dùng, hiển thị thông báo
+                txtUser.Text = "Chưa đăng nhập"; 
             }
         }
         public bool unlockTxt()
@@ -60,7 +60,6 @@ namespace App_Coffee.view
 
             dataGridViewDouong.ReadOnly = true;
 
-            // Đổi tên tiêu đề cột
 
             dataGridViewDouong.Columns["MaDouong"].HeaderText = "Mã Đồ Uống";
 
@@ -152,25 +151,24 @@ namespace App_Coffee.view
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            if (dataGridViewDouong.SelectedRows.Count == 0) // Kiểm tra xem có món nào được chọn không
+            if (dataGridViewDouong.SelectedRows.Count == 0) 
             {
                 MessageBox.Show("Vui lòng chọn món cần xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Lấy Mã Đồ Uống của món cần xóa
             string maDouong = dataGridViewDouong.SelectedRows[0].Cells["MaDouong"].Value.ToString();
 
             DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa món này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (dialogResult == DialogResult.Yes)
             {
-                bool success = controller.Delete(maDouong); // Giả sử có phương thức DeleteDouong trong controller
+                bool success = controller.Delete(maDouong);
 
                 if (success)
                 {
                     MessageBox.Show("Món đã được xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    loadDouong();  // Tải lại danh sách món sau khi xóa thành công
+                    loadDouong();
                 }
                 else
                 {

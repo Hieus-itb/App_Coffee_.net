@@ -47,14 +47,14 @@ namespace App_Coffee.view
         }
         private void DisplayLoggedInUser()
         {
-            string username = AccountModel.LoggedInUsername;  // Lấy tên người dùng từ lớp AccountModel
+            string username = AccountModel.LoggedInUsername;
             if (!string.IsNullOrEmpty(username))
             {
-                txtUser.Text = username;  // Hiển thị tên người dùng lên TextBox
+                txtUser.Text = username; 
             }
             else
             {
-                txtUser.Text = "Chưa đăng nhập";  // Nếu không có tên người dùng, hiển thị thông báo
+                txtUser.Text = "Chưa đăng nhập";  
             }
         }
         private void CheckAdminRole()
@@ -102,24 +102,19 @@ namespace App_Coffee.view
         {
             if (dataGridView2.SelectedRows.Count > 0)
             {
-                // Lấy model của DataGridView
                 DataGridViewRow selectedRow = dataGridView2.SelectedRows[0];
-                string maban = maBan; // Biến selectedTable được khai báo từ trước
-                string maDoUong = selectedRow.Cells[0].Value?.ToString(); // Lấy giá trị cột đầu tiên (giả sử là Mã Đồ Uống)
+                string maban = maBan;
+                string maDoUong = selectedRow.Cells[0].Value?.ToString();
 
                 if (!string.IsNullOrEmpty(maBan) && !string.IsNullOrEmpty(maDoUong))
                 {
-                    // Gọi hàm xóa trong database
                     bool isDeleted = ordercontroller.DeleteFromDatabase(maBan, maDoUong);
                     if (isDeleted)
                     {
-                        // Xóa dòng khỏi DataGridView
                         dataGridView2.Rows.Remove(selectedRow);
 
-                        // Tải lại dữ liệu
                         LoadDataDouongdagoi(maBan);
 
-                        // Cập nhật tổng số tiền
                         UpdateTotalAmountLabel();
 
                         MessageBox.Show("Xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -184,8 +179,6 @@ namespace App_Coffee.view
 
             dataGridView1.ReadOnly = true;
 
-            // Đổi tên tiêu đề cột
-
             dataGridView1.Columns["MaDouong"].HeaderText = "Mã Đồ Uống";
 
             dataGridView1.Columns["TenDouong"].HeaderText = "Tên Đồ Uống";
@@ -193,7 +186,7 @@ namespace App_Coffee.view
             dataGridView1.Columns["Gia"].HeaderText = "Giá (VND)";
 
             dataGridView1.Columns["Chiphi"].HeaderText = "Chi Phí (VND)";
-            // ẩn
+
             dataGridView1.Columns["Chiphi"].Visible = false;
         }
         private void HandleBanSelection(string maban)
@@ -204,26 +197,21 @@ namespace App_Coffee.view
 
         private void LoadDataDouongdagoi(string maBan)
         {
-            // Reset DataGridView
             dataGridView2.Rows.Clear();
             dataGridView2.Columns.Clear();
 
-            // Lấy danh sách món đã gọi từ cơ sở dữ liệu
             List<object[]> danhSachMon = ordercontroller.GetDanhSachMonCuaBan(maBan);
 
-            // Đặt header cho DataGridView
             dataGridView2.Columns.Add("MaDouong", "Mã Đồ Uống");
             dataGridView2.Columns.Add("TenDouong", "Tên Đồ Uống");
             dataGridView2.Columns.Add("SoLuong", "Số Lượng");
             dataGridView2.Columns.Add("TongTien", "Tổng Tiền");
 
-            // Thêm dữ liệu vào DataGridView
             foreach (var mon in danhSachMon)
             {
                 dataGridView2.Rows.Add(mon);
             }
 
-            // Cập nhật tổng tiền
             UpdateTotalAmountLabel();
         }
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -352,17 +340,14 @@ namespace App_Coffee.view
         {
             try
             {
-                // Kiểm tra xem người dùng đã chọn dòng nào trong DataGridView hay chưa
                 if (dataGridView1.SelectedRows.Count == 0)
                 {
                     MessageBox.Show("Vui lòng chọn món trước khi thêm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // Lấy chỉ số của dòng được chọn
                 int selectedRow = dataGridView1.SelectedRows[0].Index;
 
-                // Lấy thông tin đồ uống từ dòng được chọn
                 string madouong = dataGridView1.Rows[selectedRow].Cells[0].Value?.ToString();
                 string tendouong = dataGridView1.Rows[selectedRow].Cells[1].Value?.ToString();
 
@@ -372,31 +357,24 @@ namespace App_Coffee.view
                     return;
                 }
 
-                // Lấy giá và kiểm tra hợp lệ
                 if (!double.TryParse(dataGridView1.Rows[selectedRow].Cells[2].Value?.ToString(), out double gia))
                 {
                     MessageBox.Show("Giá trị không hợp lệ, vui lòng kiểm tra lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // Thiết lập thông tin món
                 int soluong = 1;
                 double tongtien;
 
-                // Lấy mã bàn hiện tại (giả định bạn đã gán `maBan` từ trước)
                 string maban = maBan;
 
-                // Tính chi phí dựa trên mã đồ uống
                 double chiphiDouong = controller.getChiphi(madouong);
                 double chiphiMoi = soluong * chiphiDouong;
 
-                // Gọi phương thức thêm món vào bàn
                 bool isUpdated = ordercontroller.AddDrinkToTable(maban, madouong, tendouong, soluong, gia, chiphiMoi);
 
-                // Tải lại dữ liệu để hiển thị món đã gọi
                 LoadDataDouongdagoi(maban);
 
-                // Thông báo kết quả
                 if (isUpdated)
                 {
                     MessageBox.Show("Món đã được thêm vào bàn!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

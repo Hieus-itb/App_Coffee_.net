@@ -11,7 +11,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-//using static Azure.Core.HttpHeader;
 
 namespace App_Coffee.view
 {
@@ -25,7 +24,7 @@ namespace App_Coffee.view
             InitializeComponent();
 
             doanhThuController = new Doanhthucontroller();
-            currentUserRole = Dangnhap.userRole; // Nhận quyền từ form đăng nhập
+            currentUserRole = Dangnhap.userRole; 
 
             LoadDataToTable();
             CheckAdminRole();
@@ -33,14 +32,14 @@ namespace App_Coffee.view
         }
         private void DisplayLoggedInUser()
         {
-            string username = AccountModel.LoggedInUsername;  // Lấy tên người dùng từ lớp AccountModel
+            string username = AccountModel.LoggedInUsername; 
             if (!string.IsNullOrEmpty(username))
             {
-                txtUser.Text = username;  // Hiển thị tên người dùng lên TextBox
+                txtUser.Text = username;  
             }
             else
             {
-                txtUser.Text = "Chưa đăng nhập";  // Nếu không có tên người dùng, hiển thị thông báo
+                txtUser.Text = "Chưa đăng nhập"; 
             }
         }
         private void CheckAdminRole()

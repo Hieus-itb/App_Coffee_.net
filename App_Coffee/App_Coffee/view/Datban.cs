@@ -95,6 +95,8 @@ namespace App_Coffee.view
             {
                 var selectedRow = dataGridView1.SelectedRows[0];
                 string maBan = selectedRow.Cells["MABAN"].Value.ToString();
+
+                bool deleteOrderSuccess = bancontroller.DeleteOrdersByBan(maBan);
                 bool success = bancontroller.UpdateBanStatus(maBan, "Trống");
 
                 if (success)
